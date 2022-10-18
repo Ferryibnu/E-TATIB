@@ -25,9 +25,17 @@ class SiswaController extends Controller
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
         $total_pelanggar = Poin::distinct('siswa_id')->count(); //untuk badge menu pelanggar
         $riwayatPelanggaran = Riwayat::all()->count(); //untuk badge menu pelanggar
-
+        
+        $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
+        ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+        ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
+        ->groupBy('siswa_id')
+        ->orderBy('total')
+        ->get();
+        // dd($totalPoin);
         return view('siswa.index', [
             'siswa' => $siswa,
+            'totalPoin' => $totalPoin,
             'total_siswa' => $total_siswa,
             'total_pelanggar' => $total_pelanggar,
             'kelas' => $kelas,

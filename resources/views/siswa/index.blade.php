@@ -129,18 +129,31 @@
                 <th>NISN</th>
                 <th>Nama</th>
                 <th>Kelas</th>
-                <th>Jenis Kelamin</th>
+                <th>Total Poin</th>
                 <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
+                {{-- Total Poin --}}
                 @foreach($siswa as $s)
+                @php
+                    $total = $totalPoin->where('siswa_id', $s->id);
+                    foreach ($total as $tot) {
+                    }
+                    if($tot->siswa_id == $s->id){
+                      $t = $tot;
+                    } else {
+                      $t = '';
+                    }
+                    
+                @endphp
+                {{-- End Total --}}
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->nisn }}</td>
                 <td>{{ $s->nama }}</td>
                 <td>{{ $s->kelas->kelas }}</td>
-                <td>@if($s->jns_kelamin == 'L') Laki-laki @else Perempuan @endif</td>
+                <td> {{isset($t->total) ? ($t->total) : ''}}</td>
                 <td>
                   <a class="btn btn-sm btn-secondary" title="Preview" href="/siswa/profile/{{$s->id}}"><i class="fa fa-list"></i></a>
                   <a target="_blank" href="/siswa/cetak_pdf/{{$s->id}}" type="button" title="Pdf" class="btn btn-sm btn-danger"><i class="fa fa-file-pdf"></i></a>
