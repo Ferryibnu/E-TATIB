@@ -16,8 +16,6 @@
   <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('AdminLTE/dist/css/adminlte.min.css')}}">
-  <!-- dropzonejs -->
-  <link rel="stylesheet" href="{{asset('AdminLTE/plugins/dropzone/min/dropzone.min.css')}}">
   {{-- sweetalert --}}
   <link rel="stylesheet" href="{{asset('AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <!-- Toastr -->
@@ -101,7 +99,7 @@
     }
 
   </style>
-<body class="hold-transition sidebar-mini sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -154,10 +152,6 @@
               </p>
             </a>
           </li>
-        </ul>
-      </nav>
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="/siswa" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -167,35 +161,58 @@
               </p>
             </a>
           </li>
-        </ul>
-      </nav>
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="/poin" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <span class="badge badge-danger right">{{ $total_pelanggar }}</span>
+              <i class="nav-icon fas fa-edit"></i>
+              <span class="badge badge-danger right">{{ $total_pelanggaran }}</span>
               <p>
-                Siswa Melanggar
+                Catat Pelanggaran
               </p>
             </a>
           </li>
-        </ul>
-      </nav>
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Penanganan Lanjut
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="penanganan/berat" class="nav-link">
+                  <i class="far fa-circle nav-icon text-danger"></i>
+                  <span class="badge badge-danger right">1</span>
+                  <p>Kategori Berat</p>
+                </a>
+                <a href="penanganan/sedang" class="nav-link">
+                  <i class="far fa-circle nav-icon text-warning"></i>
+                  <span class="badge badge-warning right">1</span>
+                  <p>Kategori Sedang</p>
+                </a>
+                <a href="penanganan/ringan" class="nav-link">
+                  <i class="far fa-circle nav-icon text-success"></i>
+                  <span class="badge badge-success right">1</span>
+                  <p>Kategori Ringan</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="/riwayat" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <span class="badge badge-danger right">{{ $riwayatPelanggaran }}</span>
+              <i class="nav-icon fas fa-clock"></i>
+              <span class="badge badge-light right">{{ $riwayatPelanggaran }}</span>
               <p>
-                Riwayat Pelanggaran
+                Riwayat Pelanggar
               </p>
             </a>
           </li>
+          
         </ul>
       </nav>
+      <!-- /.sidebar-menu -->
     </div>
+    <!-- /.sidebar -->
   </aside>
 
   <div class="content-wrapper">

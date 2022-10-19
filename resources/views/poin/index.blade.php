@@ -76,7 +76,7 @@
                         <label for="inputStatus">Pelanggaran</label>
                          <select class="form-control select2bs4" name="pelanggaran_id" style="width: 100%;" required>
                             @foreach($pelanggaran as $p)
-                              <option value="{{$p->id}}">{{$p->pelanggaran}}</option>
+                              <option value="{{$p->id}}">{{$p->pelanggaran}}  (Poin: {{$p->poin}})</option>
                             @endforeach
                           </select>
                       </div>
@@ -121,6 +121,7 @@
                 <th>Pelanggaran</th>
                 <th>Poin</th>
                 <th>Pencatat</th>
+                <th>catatan</th>
                 <th>Waktu Pelanggaran</th>
                 <th>Aksi</th>
               </tr>
@@ -134,6 +135,7 @@
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
                 <td>{{ $s->pencatat }}</td>
+                <td>{{ $s->catatan }}</td>
                 <td>{{ date('d-m-Y / H:i:s', strtotime($s->created_at)) }}</td>
                 <td>
                   <a class="btn btn-sm btn-secondary" title="Preview" href="/siswa/profile/{{$s->siswa_id}}"><i class="fa fa-list"></i></a>
@@ -176,7 +178,7 @@
                               <label for="inputStatus">Pelanggaran</label>
                                 <select class="form-control select2bs4" name="pelanggaran_id" style="width: 100%;" required>
                                   @foreach($pelanggaran as $pel)
-                                    <option selected="selected" value="{{$pel->id}}" @if($s->pelanggaran_id == $pel->id) selected @endif>{{$pel->pelanggaran}}</option>
+                                    <option selected="selected" value="{{$pel->id}}" @if($s->pelanggaran_id == $pel->id) selected @endif>{{$pel->pelanggaran}} (Poin: {{$pel->poin}})</option>
                                   @endforeach
                                 </select>
                             </div>

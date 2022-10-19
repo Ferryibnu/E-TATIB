@@ -18,6 +18,8 @@ class CreateRiwayatTable extends Migration
             $table->unsignedInteger('siswa_id')->nullable();
             $table->unsignedInteger('pelanggaran_id')->nullable();
             $table->string('pencatat')->nullable();
+            $table->string('catatan')->nullable();
+            $table->integer('status')->nullable();
             $table->string('tgl_pelanggaran')->nullable();
             $table->timestamps();
 

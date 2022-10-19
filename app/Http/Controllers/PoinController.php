@@ -18,7 +18,7 @@ class PoinController extends Controller
         $siswaPoin = Poin::all();
         $pelanggaran = Pelanggaran::all();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggar = Poin::distinct('siswa_id')->count(); //untuk badge menu pelanggar
+        $total_pelanggaran = Poin::all()->count();
         $riwayatPelanggaran = Riwayat::all()->count(); //untuk badge menu riwayatPelanggaran
 
         $poinTotal = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
@@ -45,7 +45,7 @@ class PoinController extends Controller
             'poinTotal' => $poinTotal,
             'pelanggaran' => $pelanggaran,
             'total_siswa' => $total_siswa,
-            'total_pelanggar' => $total_pelanggar,
+            'total_pelanggaran' => $total_pelanggaran,
             'riwayatPelanggaran' => $riwayatPelanggaran,
         ]);
     }
@@ -58,18 +58,58 @@ class PoinController extends Controller
             'pelanggaran_id' => '',
             'pencatat' => '',
         ]);
-        
         $getNRP = Siswa::where('nisn', $request->nisn)->first();
-        // dd($getNRP->id);
        
         if($getNRP){
-
             $addPoin = new Poin;
             $addPoin->siswa_id = $getNRP->id;
             $addPoin->pelanggaran_id = $request->pelanggaran_id;
             $addPoin->pencatat = $request->pencatat;
             $addPoin->save();
 
+            $jumlah = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+            ->select(DB::raw('SUM(pelanggaran.poin) as total'))
+            ->orderBy('total')
+            ->where('siswa_id', '=', $getNRP->id)
+            ->first();
+
+            $addPoin1 = Poin::find($addPoin->id);
+            // dd($jumlah->total);
+            if($jumlah->total  >= 0 && $jumlah->total <= 35) {
+                $addPoin1->catatan = "Peringatan ke-1";
+                $addPoin1->status = 1;
+                $addPoin1->update();
+
+            } elseif($jumlah->total >= 36 && $jumlah->total <= 55) {
+                $addPoin1->catatan = "Peringatan ke-2";
+                $addPoin1->status = 1;
+                $addPoin1->update();
+
+            } elseif($jumlah->total >= 56 && $jumlah->total <= 75){
+                $addPoin1->catatan = "Panggilan Orang Tua 1";
+                $addPoin1->status = 1;
+                $addPoin1->update();
+
+            } elseif($jumlah->total >= 76 && $jumlah->total <= 95){
+                $addPoin1->catatan = "Panggilan Orang Tua 2";
+                $addPoin1->status = 1;
+                $addPoin1->update();
+
+            } elseif($jumlah->total >= 96 && $jumlah->total <= 149){
+                $addPoin1->catatan = "Panggilan Orang Tua 3";
+                $addPoin1->status = 1;
+                $addPoin1->update();
+                
+            } elseif($jumlah->total >= 150 && $jumlah->total <= 249){
+                $addPoin1->catatan = "Skorsing";
+                $addPoin1->status = 1;
+                $addPoin1->update();
+
+            } elseif($jumlah->total >= 250){
+                $addPoin1->catatan = "Dikeluarkan dari Sekolah";
+                $addPoin1->status = 1;
+                $addPoin1->update();
+            }
             Alert::success('Sukses Tambah', 'Data Berhasil Ditambahkan');
             return redirect()->back();
         } else {

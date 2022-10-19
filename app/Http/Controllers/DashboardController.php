@@ -94,7 +94,7 @@ class DashboardController extends Controller
                 // dd($ringan_oct);
         if(Auth::user()->level == 'admin') {
 
-                return view('poin.depan', [
+                return view('poin.beranda', [
                     'total_siswa' => $total_siswa,
                     'total_pelanggar' => $total_pelanggar,
                     'total_pelanggaran' => $total_pelanggaran,

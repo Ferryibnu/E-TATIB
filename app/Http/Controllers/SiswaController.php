@@ -23,7 +23,7 @@ class SiswaController extends Controller
         $kelas = Kelas::all();
         $siswa = Siswa::all();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggar = Poin::distinct('siswa_id')->count(); //untuk badge menu pelanggar
+        $total_pelanggaran = Poin::all()->count(); //untuk badge menu pelanggar
         $riwayatPelanggaran = Riwayat::all()->count(); //untuk badge menu pelanggar
         
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
@@ -37,7 +37,7 @@ class SiswaController extends Controller
             'siswa' => $siswa,
             'totalPoin' => $totalPoin,
             'total_siswa' => $total_siswa,
-            'total_pelanggar' => $total_pelanggar,
+            'total_pelanggaran' => $total_pelanggaran,
             'kelas' => $kelas,
             'riwayatPelanggaran' => $riwayatPelanggaran,
         ]);
@@ -56,26 +56,33 @@ class SiswaController extends Controller
             'jns_kelamin' => '',
         ]);
         
-        $addUser = new User;
-        $addUser->name = $request->nama;
-        $addUser->email = $request->nisn;
-        $addUser->password = bcrypt("TATIB123");
-        $addUser->save();
+        $jikaAda = Siswa::where('nisn', $request->nisn)->first();
 
-        $addSiswa = new Siswa;
-        $addSiswa->users_id = $addUser->id;
-        $addSiswa->nisn = $request->nisn;
-        $addSiswa->nama = $request->nama;
-        $addSiswa->agama = $request->agama;
-        $addSiswa->no_telp = $request->no_telp;
-        $addSiswa->kelas_id = $request->kelas;
-        $addSiswa->tempat_lahir = $request->tempat_lahir;
-        $addSiswa->tgl_lahir = $request->tgl_lahir;
-        $addSiswa->jns_kelamin = $request->jns_kelamin;
-        $addSiswa->save();
+        if($jikaAda){
+            Alert::error('Gagal Menambahkan', 'Pegawai Telah Terdaftar');
+            return redirect()->back();
+        } else {
+            $addUser = new User;
+            $addUser->name = $request->nama;
+            $addUser->email = $request->nisn;
+            $addUser->password = bcrypt("TATIB123");
+            $addUser->save();
 
-        Alert::success('Sukses Tambah', 'Data berhasil ditambahkan');
-        return redirect()->back();
+            $addSiswa = new Siswa;
+            $addSiswa->users_id = $addUser->id;
+            $addSiswa->nisn = $request->nisn;
+            $addSiswa->nama = $request->nama;
+            $addSiswa->agama = $request->agama;
+            $addSiswa->no_telp = $request->no_telp;
+            $addSiswa->kelas_id = $request->kelas;
+            $addSiswa->tempat_lahir = $request->tempat_lahir;
+            $addSiswa->tgl_lahir = $request->tgl_lahir;
+            $addSiswa->jns_kelamin = $request->jns_kelamin;
+            $addSiswa->save();
+
+            Alert::success('Sukses Tambah', 'Data berhasil ditambahkan');
+            return redirect()->back();
+        }
     }
 
     public function edit($id, Request $request)
@@ -118,10 +125,13 @@ class SiswaController extends Controller
         ->orderBy('total')
         ->where('siswa_id', '=', $id)
         ->first();
-        
-        // dd($totalPoin);
+        if($totalPoin->total  >= 36 && $totalPoin->total <= 55) {
+        dd('cok');
+        } else {
+            dd($totalPoin->total);
+        }
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggar = Poin::distinct('siswa_id')->count(); //untuk badge menu pelanggar
+        $total_pelanggaran = Poin::all()->count();; //untuk badge menu pelanggar
 
         //Membuat QR Code
         $qrCode = QrCode::size(200)->generate($siswa->nisn);
@@ -131,7 +141,7 @@ class SiswaController extends Controller
             'siswaPoin' => $siswaPoin,
             'qrCode' => $qrCode,
             'total_siswa' => $total_siswa,
-            'total_pelanggar' => $total_pelanggar,
+            'total_pelanggaran' => $total_pelanggaran,
             'riwayatPelanggaran' => $riwayatPelanggaran,
         ]);
     }
