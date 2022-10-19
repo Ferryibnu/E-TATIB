@@ -80,7 +80,7 @@
                       </div>
 
                       <div class="form-group col-md-5" >
-                        <label for="inputStatus">No Telepon</label>
+                        <label for="inputStatus">No HP</label>
                         <input type="text" class="form-control" name="no_telp">
                       </div>
                     </div>
@@ -137,17 +137,23 @@
                 {{-- Total Poin --}}
                 @foreach($siswa as $s)
                 @php
-                    $total = $totalPoin->where('siswa_id', $s->id);
-                    foreach ($total as $tot) {
-                    }
+                  $total = $totalPoin->where('siswa_id', $s->id);
+                  
+                  foreach ($total as $tot) {
+                  }
+
+                  if(isset($tot->siswa_id)) {
                     if($tot->siswa_id == $s->id){
                       $t = $tot;
                     } else {
                       $t = '';
                     }
-                    
+                  } else {
+                    $tot = '';
+                  }
                 @endphp
                 {{-- End Total --}}
+
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->nisn }}</td>
@@ -179,12 +185,12 @@
                           {{csrf_field()}}
               
                           <div class="form-row">
-                            <div class="form-group col-md-6" >
+                            <div class="form-group col-md-4" >
                               <label for="inputStatus">NISN</label>
                               <input id="nisn" type="text" value="{{$s->nisn}}" class="form-control" name="nisn" disabled>
                             </div>
       
-                            <div class="form-group col-md-6" >
+                            <div class="form-group col-md-8" >
                               <label for="inputStatus">Nama</label>
                               <input id="nama" type="text" value="{{$s->nama}}" class="form-control" name="nama" required>
                             </div>
@@ -225,7 +231,7 @@
                             </div>
       
                             <div class="form-group col-md-6" >
-                              <label for="inputStatus">No Telepon</label>
+                              <label for="inputStatus">No HP</label>
                               <input type="text" class="form-control" name="no_telp" value="{{$s->no_telp}}">
                             </div>
                           </div>
@@ -277,7 +283,7 @@
       </a>
       <div class="drop-content">
         <a data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Siswa">Tambah Siswa</a>
-        <a data-toggle="modal" data-target="#importExcel" href="#" title="Import Data Pegawai">Import Data Pegawai</a>
+        <a data-toggle="modal" data-target="#importExcel" href="#" title="Import Data Pegawai">Import Excel Siswa</a>
       </div>
     </div>
     <!-- /.row -->

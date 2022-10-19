@@ -47,7 +47,7 @@
               <hr>
 
               <div class="row ml-5">
-                <div class="col-md-4"> No Telepon</div>
+                <div class="col-md-4"> No HP</div>
                 <div class="col-md-8"> :&emsp;{{ $siswa->no_telp }}</div>
               </div>
               <hr>

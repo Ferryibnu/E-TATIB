@@ -85,6 +85,7 @@ class SiswaController extends Controller
             'kelas' => '',
             'tempat_lahir' => '',
             'tgl_lahir' => '',
+            'no_telp' => '',
         ]);
 
         $editSiswa = Siswa::find($id);
@@ -92,6 +93,7 @@ class SiswaController extends Controller
         $editSiswa->kelas_id = $request->kelas;
         $editSiswa->tempat_lahir = $request->tempat_lahir;
         $editSiswa->tgl_lahir = $request->tgl_lahir;
+        $editSiswa->no_telp = $request->no_telp;
         $editSiswa->update();
 
         Alert::success('Edit Sukses', 'Data berhasil diedit');
@@ -154,7 +156,7 @@ class SiswaController extends Controller
         Excel::import(new ImportSiswa, public_path('/public/'.$nama_file));
     
         // alihkan halaman kembali
-        return redirect('/list');
+        return redirect('/siswa');
     }
     
     public function cetak_pdf($id)

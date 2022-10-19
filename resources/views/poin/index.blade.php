@@ -230,8 +230,8 @@
       </a>
       <div class="drop-content">
         <a data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Pelanggar">Tambah Pelanggar</a>
-        <a data-toggle="modal" data-target="#scanQr" href="#" title="Scan QR Code">Scan QR Code Siswa</a>
-        <a data-toggle="modal" data-target="#ModalReset" href="#" title="Scan QR Code">Hapus Semua Data Pelanggar</a>
+        <a data-toggle="modal" data-target="#scanQr" href="#" title="Scan QR Code">Scan QR Siswa</a>
+        <a data-toggle="modal" data-target="#ModalReset" href="#" title="Reset Data">Reset Data Pelanggaran</a>
       </div>
     </div>
     <!-- /.row -->

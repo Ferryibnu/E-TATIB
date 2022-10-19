@@ -62,7 +62,7 @@
       display: inline-block;
       width:70px;
       height:70px;
-      bottom:180px;
+      bottom:120px;
       right:80px; 
     }
 

@@ -35,7 +35,7 @@
             </div>
 
             <div class="row">
-              <div class="col-md-4"> <pre>No Telepon                  : {{$siswa->no_telp}}</pre></div>
+              <div class="col-md-4"> <pre>No HP                  : {{$siswa->no_telp}}</pre></div>
             </div>
 
             <div class="row">
