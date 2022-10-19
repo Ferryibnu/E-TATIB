@@ -77,37 +77,37 @@ class PoinController extends Controller
             // dd($jumlah->total);
             if($jumlah->total  >= 0 && $jumlah->total <= 35) {
                 $addPoin1->catatan = "Peringatan ke-1";
-                $addPoin1->status = 1;
+                $addPoin1->status = 'Belum Selesai';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 36 && $jumlah->total <= 55) {
                 $addPoin1->catatan = "Peringatan ke-2";
-                $addPoin1->status = 1;
+                $addPoin1->status = 'Belum Selesai';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 56 && $jumlah->total <= 75){
-                $addPoin1->catatan = "Panggilan Orang Tua 1";
-                $addPoin1->status = 1;
+                $addPoin1->catatan = "Panggilan Orang Tua ke-1";
+                $addPoin1->status = 'Belum Selesai';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 76 && $jumlah->total <= 95){
-                $addPoin1->catatan = "Panggilan Orang Tua 2";
-                $addPoin1->status = 1;
+                $addPoin1->catatan = "Panggilan Orang Tua ke-2";
+                $addPoin1->status = 'Belum Selesai';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 96 && $jumlah->total <= 149){
-                $addPoin1->catatan = "Panggilan Orang Tua 3";
-                $addPoin1->status = 1;
+                $addPoin1->catatan = "Panggilan Orang Tua ke-3";
+                $addPoin1->status = 'Belum Selesai';
                 $addPoin1->update();
                 
             } elseif($jumlah->total >= 150 && $jumlah->total <= 249){
                 $addPoin1->catatan = "Skorsing";
-                $addPoin1->status = 1;
+                $addPoin1->status = 'Belum Selesai';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 250){
                 $addPoin1->catatan = "Dikeluarkan dari Sekolah";
-                $addPoin1->status = 1;
+                $addPoin1->status = 'Belum Selesai';
                 $addPoin1->update();
             }
             Alert::success('Sukses Tambah', 'Data Berhasil Ditambahkan');

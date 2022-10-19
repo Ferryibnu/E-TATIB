@@ -121,7 +121,6 @@
                 <th>Pelanggaran</th>
                 <th>Poin</th>
                 <th>Pencatat</th>
-                <th>catatan</th>
                 <th>Waktu Pelanggaran</th>
                 <th>Aksi</th>
               </tr>
@@ -135,7 +134,6 @@
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
                 <td>{{ $s->pencatat }}</td>
-                <td>{{ $s->catatan }}</td>
                 <td>{{ date('d-m-Y / H:i:s', strtotime($s->created_at)) }}</td>
                 <td>
                   <a class="btn btn-sm btn-secondary" title="Preview" href="/siswa/profile/{{$s->siswa_id}}"><i class="fa fa-list"></i></a>

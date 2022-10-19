@@ -180,20 +180,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="penanganan/berat" class="nav-link">
-                  <i class="far fa-circle nav-icon text-danger"></i>
-                  <span class="badge badge-danger right">1</span>
-                  <p>Kategori Berat</p>
+                <a href="/ringan" class="nav-link">
+                  <i class="far fa-circle nav-icon text-success"></i>
+                  <span class="badge badge-success right">1</span>
+                  <p>Kategori Ringan</p>
                 </a>
-                <a href="penanganan/sedang" class="nav-link">
+                <a href="/sedang" class="nav-link">
                   <i class="far fa-circle nav-icon text-warning"></i>
                   <span class="badge badge-warning right">1</span>
                   <p>Kategori Sedang</p>
                 </a>
-                <a href="penanganan/ringan" class="nav-link">
-                  <i class="far fa-circle nav-icon text-success"></i>
-                  <span class="badge badge-success right">1</span>
-                  <p>Kategori Ringan</p>
+                <a href="/berat" class="nav-link">
+                  <i class="far fa-circle nav-icon text-danger"></i>
+                  <span class="badge badge-danger right">1</span>
+                  <p>Kategori Berat</p>
                 </a>
               </li>
             </ul>

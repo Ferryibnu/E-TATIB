@@ -32,6 +32,8 @@ class SiswaController extends Controller
         ->groupBy('siswa_id')
         ->orderBy('total')
         ->get();
+
+        
         // dd($totalPoin);
         return view('siswa.index', [
             'siswa' => $siswa,
@@ -125,11 +127,7 @@ class SiswaController extends Controller
         ->orderBy('total')
         ->where('siswa_id', '=', $id)
         ->first();
-        if($totalPoin->total  >= 36 && $totalPoin->total <= 55) {
-        dd('cok');
-        } else {
-            dd($totalPoin->total);
-        }
+
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
         $total_pelanggaran = Poin::all()->count();; //untuk badge menu pelanggar
 

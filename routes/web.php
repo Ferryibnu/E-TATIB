@@ -41,4 +41,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/poin/edit/{id}', [App\Http\Controllers\PoinController::class, 'edit']);
     Route::get('/poin/hapus/{id}', [App\Http\Controllers\PoinController::class, 'hapus']);
     Route::get('/poin/reset', [App\Http\Controllers\PoinController::class, 'reset']);
+
+    Route::get('/ringan', [App\Http\Controllers\PenangananController::class, 'ringan']);
+    Route::get('/sedang', [App\Http\Controllers\PenangananController::class, 'sedang']);
+    Route::get('/berat', [App\Http\Controllers\PenangananController::class, 'berat']);
+    Route::get('/penanganan/edit/{id}', [App\Http\Controllers\PenangananController::class, 'edit']);
 });
