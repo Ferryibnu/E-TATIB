@@ -7,7 +7,7 @@ use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
 use \App\Models\Siswa;
 use App\Models\Poin;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -17,17 +17,20 @@ class PoinController extends Controller
     {
         $siswaPoin = Poin::all();
         $pelanggaran = Pelanggaran::all();
-        $poinTotal = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
-                    ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                    ->select("siswa_id", "nama", "nisn", "pelanggaran_id", "pelanggaran", DB::raw('COUNT(pelanggaran_id) as total'))
-                    ->having('total', '>=', 3)
-                    ->groupBy('siswa_id')
-                    ->groupBy('nama')
-                    ->groupBy('nisn')
-                    ->groupBy('pelanggaran')
-                    ->groupBy('pelanggaran_id')
-                    ->orderBy('total')
-                    ->get();
+        // $poinTotal = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
+        //             ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+        //             ->select("siswa_id", "nama", "nisn", "pelanggaran_id", "pelanggaran", DB::raw('COUNT(pelanggaran_id) as total'))
+        //             ->having('total', '>=', 3)
+        //             ->groupBy('siswa_id')
+        //             ->groupBy('nama')
+        //             ->groupBy('nisn')
+        //             ->groupBy('pelanggaran')
+        //             ->groupBy('pelanggaran_id')
+        //             ->orderBy('total')
+        //             ->get();
+
+        // dd($siswaPoin);
+       
         //Badge
         $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
@@ -37,7 +40,7 @@ class PoinController extends Controller
         
         return view('poin.index', [
             'siswaPoin' => $siswaPoin,
-            'poinTotal' => $poinTotal,
+            // 'poinTotal' => $poinTotal,
             'pelanggaran' => $pelanggaran,
             //badge
             'badge_ringan' => $badge_ringan,
@@ -73,7 +76,7 @@ class PoinController extends Controller
 
             $addPoin1 = Poin::find($addPoin->id);
             // dd($jumlah->total);
-            if($jumlah->total  >= 0 && $jumlah->total <= 35) {
+            if($jumlah->total  >= 30 && $jumlah->total <= 35) {
                 $addPoin1->catatan = "Peringatan ke-1";
                 $addPoin1->status = 'Belum Selesai';
                 $addPoin1->kategori = 'ringan';

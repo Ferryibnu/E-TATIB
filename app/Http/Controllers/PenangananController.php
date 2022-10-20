@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Poin;
 use App\Models\Siswa;
-use App\Models\Riwayat;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class PenangananController extends Controller
 {
     public function ringan(){
         $ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->get();
+        $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
+        ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+        ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
+        ->groupBy('siswa_id')
+        ->orderBy('total')
+        ->get();
 
         //Badge
         $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
@@ -21,6 +27,7 @@ class PenangananController extends Controller
 
         return view('penanganan.ringan', [
             'ringan' => $ringan,
+            'totalPoin' => $totalPoin,
             //badge
             'badge_ringan' => $badge_ringan,
             'badge_sedang' => $badge_sedang,
@@ -32,6 +39,12 @@ class PenangananController extends Controller
 
     public function sedang(){
         $sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->get();
+        $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
+        ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+        ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
+        ->groupBy('siswa_id')
+        ->orderBy('total')
+        ->get();
         
         //Badge
         $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
@@ -42,6 +55,7 @@ class PenangananController extends Controller
 
         return view('penanganan.sedang', [
             'sedang' => $sedang,
+            'totalPoin' => $totalPoin,
             //badge
             'badge_ringan' => $badge_ringan,
             'badge_sedang' => $badge_sedang,
@@ -53,6 +67,12 @@ class PenangananController extends Controller
 
     public function berat(){
         $berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->get();
+        $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
+        ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+        ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
+        ->groupBy('siswa_id')
+        ->orderBy('total')
+        ->get();
 
         //Badge
         $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
@@ -63,6 +83,7 @@ class PenangananController extends Controller
 
         return view('penanganan.berat', [
             'berat' => $berat,
+            'totalPoin' => $totalPoin,
             //badge
             'badge_ringan' => $badge_ringan,
             'badge_sedang' => $badge_sedang,

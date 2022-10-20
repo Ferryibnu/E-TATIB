@@ -8,7 +8,7 @@
       <div class="col-12">
         <div class="card shadow mt-4">
           <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-dark card-title">Data Siswa Pelanggaran Sedang</h3>
+              <h3 class="m-0 font-weight-bold text-dark card-title">Data Siswa dengan Pelanggaran Sedang</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -18,22 +18,40 @@
                 <th>No</th>
                 <th>NISN</th>
                 <th>Nama</th>
-                <th>Pelanggaran</th>
-                <th>Poin</th>
-                <th>Catatan</th>
+                <th>Pelanggaran Terakhir</th>
+                <th>Total Poin</th>
+                <th>Tindak Lanjut</th>
                 <th>Status</th>
                 <th>Waktu Pelanggaran</th>
                 <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
+                 {{-- Total Poin --}}
                 @foreach($sedang as $s)
+                @php
+                  $total = $totalPoin->where('siswa_id', $s->siswa_id);
+                  
+                  foreach ($total as $tot) {
+                  }
+
+                  if(isset($tot->siswa_id)) {
+                    if($tot->siswa_id == $s->siswa_id){
+                      $t = $tot;
+                    } else {
+                      $t = '';
+                    }
+                  } else {
+                    $tot = '';
+                  }
+                @endphp
+                {{-- End Total --}}
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->siswa->nisn }}</td>
                 <td>{{ $s->siswa->nama }}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
-                <td>{{ $s->pelanggaran->poin }}</td>
+                <td>{{ $t->total }}</td>
                 <td>{{ $s->catatan }}</td>
                 <td>{{ $s->status }}</td>
                 <td>{{ date('d-m-Y / H:i:s', strtotime($s->created_at)) }}</td>

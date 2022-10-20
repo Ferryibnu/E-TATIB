@@ -68,13 +68,14 @@
             <h5 class="m-0 font-weight-bold text-dark text-center">Data Pelanggaran</h5>
           </div>
           <div class="card-body">
-            <p>Total Poin Pelanggaran : {{isset($totalPoin->total) ? ($totalPoin->total) : ''}}</p>
+            <p>Total Poin Pelanggaran : {{isset($totalPoin->total) ? ($totalPoin->total) . ' poin': ''}}</p>
             <table class="table">
               <thead class="thead-light" style="left:1%;">
                 <tr>
                   <th>No</th>
                   <th>Pelanggaran</th>
                   <th>Poin</th>
+                  <th>Tindak Lanjut</th>
                   <th>Waktu Pelanggaran</th>
                 </tr>
               </thead>
@@ -85,6 +86,7 @@
                   <td>{{ $i++ }}</td>
                   <td>{{$p->pelanggaran->pelanggaran}}</td>
                   <td>{{$p->pelanggaran->poin}}</td>
+                  <td>{{$p->catatan}}</td>
                   <td>{{$p->created_at}}</td>
                 @endforeach
               </tbody>

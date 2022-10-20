@@ -5,7 +5,7 @@
   <div class="container-fluid">
 
     {{-- notifikasi sukses --}}
-    @if ($sukses = $poinTotal)
+    {{-- @if ($sukses = $poinTotal)
     @foreach($sukses as $s)
     <div class="alert alert-warning alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -13,7 +13,7 @@
         Peringatan untuk <strong>{{ $s->nama }}</strong> Karena <strong>{{ $s->pelanggaran }} {{ $s->total }}x</strong>
     </div>
     @endforeach
-    @endif
+    @endif --}}
 
     <div class="row">
       <div class="col-12">
@@ -130,7 +130,7 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{isset($s->siswa->nisn) ? ($s->siswa->nisn) : ''}}</td>
-                <td>{{isset($s->siswa->nama) ? ($s->siswa->nama) : ''}}</td>
+                <td>{{isset($s->nama) ? ($s->nama) : ''}}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
                 <td>{{ $s->pencatat }}</td>
@@ -144,6 +144,7 @@
               </tr>
 
               <!--  modal delete -->
+
               <div class="modal fade" id="ModalDelete{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">

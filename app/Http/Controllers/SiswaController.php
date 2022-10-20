@@ -182,13 +182,14 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::where('id', $id)->first();
         $siswaPoin = Poin::where('siswa_id', $id)->get();
+        $penanganan = Poin::where('catatan', '!=', '')->get();
         $totalPoin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
         ->select(DB::raw('SUM(pelanggaran.poin) as total'))
         ->orderBy('total')
         ->where('siswa_id', '=', $id)
         ->first();
         $tahun = date('Y-m-d');
-        $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','totalPoin', 'tahun'));
+        $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','totalPoin', 'tahun', 'penanganan'));
         return $pdf->stream();
     }
 }

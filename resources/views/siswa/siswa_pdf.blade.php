@@ -9,7 +9,7 @@
       <b style="font-size: 12px">SEKOLAH MENENGAH KEJURUAN NEGERI 1 SURABAYA</b></b>
       <i style="font-size: 8px">
       <br>
-      Jl. SMEA No. 4 Wonokromo Telp. 031-8292038 FAX. 031- 8292039, Email : info@smkn1-sby.sch.id 60243
+      Jl. SMEA No. 4 Wonokromo Telp. 031-8292038 FAX. 031- 8292039, Email : info@smkn1-sby.sch.id, 60243
       </i>
       <br>
     <br>
@@ -62,7 +62,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-4"> <pre>Total Poin Pelanggaran : {{$totalPoin->total}} Poin</pre></div>
+        <div class="col-md-4"> <pre>Total Poin Pelanggaran : {{isset($totalPoin->total) ? ($totalPoin->total). ' poin' : ''}}</pre></div>
       </div>
 
     </div>
@@ -92,17 +92,18 @@
     </tbody>
   </table>
 
+  <b style="font-size: 12px">Catatan Penanganan</b>
   <table class="table table-bordered" style="font-size: 12px">
     <thead class="thead">
       <tr>
         <th>No</th>
-        <th>Catatan Pelanggaran</th>
-        <th>Status Pelanggaran</th>
+        <th>Tindak Lanjut</th>
+        <th>Status Penanganan</th>
       </tr>
     </thead>
     <tbody>
       @php $i=1 @endphp
-      @foreach($siswaPoin as $p)
+      @foreach($penanganan as $p)
       <tr>
         <td>{{ $i++ }}</td>
         <td>{{$p->catatan}}</td>
