@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use \App\Models\Siswa;
 use App\Models\User;
 use App\Models\Poin;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Maatwebsite\Excel\Facades\Excel;
@@ -186,7 +187,8 @@ class SiswaController extends Controller
         ->orderBy('total')
         ->where('siswa_id', '=', $id)
         ->first();
-        $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','totalPoin'));
+        $tahun = date('Y-m-d');
+        $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','totalPoin', 'tahun'));
         return $pdf->stream();
     }
 }
