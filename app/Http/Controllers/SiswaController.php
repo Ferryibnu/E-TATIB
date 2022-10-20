@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use \App\Models\Siswa;
 use App\Models\User;
 use App\Models\Poin;
-use App\Models\Riwayat;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Maatwebsite\Excel\Facades\Excel;
@@ -22,10 +21,6 @@ class SiswaController extends Controller
     {
         $kelas = Kelas::all();
         $siswa = Siswa::all();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count(); //untuk badge menu pelanggar
-        $riwayatPelanggaran = Riwayat::all()->count(); //untuk badge menu pelanggar
-        
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
         ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
@@ -34,14 +29,23 @@ class SiswaController extends Controller
         ->get();
 
         
-        // dd($totalPoin);
+        //Badge
+        $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
+        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
+        $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
+        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
+        $total_pelanggaran = Poin::all()->count();
+
         return view('siswa.index', [
             'siswa' => $siswa,
             'totalPoin' => $totalPoin,
+            'kelas' => $kelas,
+            //badge
+            'badge_ringan' => $badge_ringan,
+            'badge_sedang' => $badge_sedang,
+            'badge_berat' => $badge_berat,
             'total_siswa' => $total_siswa,
             'total_pelanggaran' => $total_pelanggaran,
-            'kelas' => $kelas,
-            'riwayatPelanggaran' => $riwayatPelanggaran,
         ]);
     }
     
@@ -121,15 +125,18 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::where('id', $id)->first();
         $siswaPoin = Poin::where('siswa_id', $id)->get();
-        $riwayatPelanggaran = Riwayat::all()->count();
         $totalPoin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
         ->select(DB::raw('SUM(pelanggaran.poin) as total'))
         ->orderBy('total')
         ->where('siswa_id', '=', $id)
         ->first();
 
+        //Badge
+        $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
+        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
+        $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();; //untuk badge menu pelanggar
+        $total_pelanggaran = Poin::all()->count();
 
         //Membuat QR Code
         $qrCode = QrCode::size(200)->generate($siswa->nisn);
@@ -138,9 +145,12 @@ class SiswaController extends Controller
             'totalPoin' => $totalPoin,
             'siswaPoin' => $siswaPoin,
             'qrCode' => $qrCode,
+            //badge
+            'badge_ringan' => $badge_ringan,
+            'badge_sedang' => $badge_sedang,
+            'badge_berat' => $badge_berat,
             'total_siswa' => $total_siswa,
             'total_pelanggaran' => $total_pelanggaran,
-            'riwayatPelanggaran' => $riwayatPelanggaran,
         ]);
     }
 

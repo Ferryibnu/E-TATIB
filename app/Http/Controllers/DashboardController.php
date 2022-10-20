@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
 use App\Models\Siswa;
 use App\Models\Poin;
-use App\Models\Riwayat;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,166 +11,137 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $today = Date('m');
-        
-        $total_siswa = Siswa::all()->count();
         $total_pelanggar = Poin::distinct('siswa_id')->count();
-        $riwayatPelanggaran = Riwayat::all()->count();
-        $total_pelanggaran = Poin::all()->count();
         $cowok = Siswa::where('jns_kelamin', 'L')->count();
         $cewek = Siswa::where('jns_kelamin', 'P')->count();
 
-
-        $jan = Carbon::create('january')->format('m');
-        $feb = Carbon::create('february')->format('m');
-        $mar = Carbon::create('march')->format('m');
-        $apr = Carbon::create('april')->format('m');
-        $may = Carbon::create('may')->format('m');
-        $june = Carbon::create('june')->format('m');
-        $july = Carbon::create('july')->format('m');
-        $aug = Carbon::create('august')->format('m');
-        $sep = Carbon::create('september')->format('m');
-        $oct = Carbon::create('october')->format('m');
-        $nov = Carbon::create('november')->format('m');
-        $dec = Carbon::create('december')->format('m');
+        //Badge
+        $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
+        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
+        $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
+        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
+        $total_pelanggaran = Poin::all()->count();
 
         //Kategori Ringan
         $ringan_jan = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $jan)
+                ->whereMonth('created_at', '=', Carbon::create('january')->format('m'))
                 ->count();
         $ringan_feb = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $feb)
+                ->whereMonth('created_at', '=', Carbon::create('february')->format('m'))
                 ->count();
         $ringan_mar = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $mar)
+                ->whereMonth('created_at', '=', Carbon::create('march')->format('m'))
                 ->count();
         $ringan_apr = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $apr)
+                ->whereMonth('created_at', '=', Carbon::create('april')->format('m'))
                 ->count();
         $ringan_may = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $may)
+                ->whereMonth('created_at', '=', Carbon::create('may')->format('m'))
                 ->count();
         $ringan_june = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $june)
+                ->whereMonth('created_at', '=', Carbon::create('june')->format('m'))
                 ->count();
         $ringan_july = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $july)
+                ->whereMonth('created_at', '=',  Carbon::create('july')->format('m'))
                 ->count();
         $ringan_aug = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $aug)
+                ->whereMonth('created_at', '=', Carbon::create('august')->format('m'))
                 ->count();
         $ringan_sep = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $sep)
+                ->whereMonth('created_at', '=', Carbon::create('september')->format('m'))
                 ->count();
         $ringan_oct = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $oct)
+                ->whereMonth('created_at', '=', Carbon::create('october')->format('m'))
                 ->count();
         $ringan_nov = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $nov)
+                ->whereMonth('created_at', '=', Carbon::create('november')->format('m'))
                 ->count();
         $ringan_dec = Poin::where('kategori','=', 'ringan')
-                ->whereMonth('created_at', '=', $dec)
+                ->whereMonth('created_at', '=', Carbon::create('december')->format('m'))
                 ->count();
 
         //Kategori Ringan
         $sedang_jan = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $jan)
+                ->whereMonth('created_at', '=', Carbon::create('january')->format('m'))
                 ->count();
         $sedang_feb = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $feb)
+                ->whereMonth('created_at', '=', Carbon::create('february')->format('m'))
                 ->count();
         $sedang_mar = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $mar)
+                ->whereMonth('created_at', '=', Carbon::create('march')->format('m'))
                 ->count();
         $sedang_apr = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $apr)
+                ->whereMonth('created_at', '=', Carbon::create('april')->format('m'))
                 ->count();
         $sedang_may = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $may)
+                ->whereMonth('created_at', '=', Carbon::create('may')->format('m'))
                 ->count();
         $sedang_june = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $june)
+                ->whereMonth('created_at', '=', Carbon::create('june')->format('m'))
                 ->count();
         $sedang_july = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $july)
+                ->whereMonth('created_at', '=',  Carbon::create('july')->format('m'))
                 ->count();
         $sedang_aug = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $aug)
+                ->whereMonth('created_at', '=', Carbon::create('august')->format('m'))
                 ->count();
         $sedang_sep = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $sep)
+                ->whereMonth('created_at', '=', Carbon::create('september')->format('m'))
                 ->count();
         $sedang_oct = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $oct)
+                ->whereMonth('created_at', '=', Carbon::create('october')->format('m'))
                 ->count();
         $sedang_nov = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $nov)
+                ->whereMonth('created_at', '=', Carbon::create('november')->format('m'))
                 ->count();
         $sedang_dec = Poin::where('kategori','=', 'sedang')
-                ->whereMonth('created_at', '=', $dec)
+                ->whereMonth('created_at', '=', Carbon::create('december')->format('m'))
                 ->count();
 
         // Kategori Berat
         $berat_jan = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $jan)
+                ->whereMonth('created_at', '=', Carbon::create('january')->format('m'))
                 ->count();
         $berat_feb = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $feb)
+                ->whereMonth('created_at', '=', Carbon::create('february')->format('m'))
                 ->count();
         $berat_mar = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $mar)
+                ->whereMonth('created_at', '=', Carbon::create('march')->format('m'))
                 ->count();
         $berat_apr = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $apr)
+                ->whereMonth('created_at', '=', Carbon::create('april')->format('m'))
                 ->count();
         $berat_may = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $may)
+                ->whereMonth('created_at', '=', Carbon::create('may')->format('m'))
                 ->count();
         $berat_june = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $june)
+                ->whereMonth('created_at', '=', Carbon::create('june')->format('m'))
                 ->count();
         $berat_july = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $july)
+                ->whereMonth('created_at', '=',  Carbon::create('july')->format('m'))
                 ->count();
         $berat_aug = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $aug)
+                ->whereMonth('created_at', '=', Carbon::create('august')->format('m'))
                 ->count();
         $berat_sep = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $sep)
+                ->whereMonth('created_at', '=', Carbon::create('september')->format('m'))
                 ->count();
         $berat_oct = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $oct)
+                ->whereMonth('created_at', '=', Carbon::create('october')->format('m'))
                 ->count();
         $berat_nov = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $nov)
+                ->whereMonth('created_at', '=', Carbon::create('november')->format('m'))
                 ->count();
         $berat_dec = Poin::where('kategori','=', 'berat')
-                ->whereMonth('created_at', '=', $dec)
+                ->whereMonth('created_at', '=', Carbon::create('december')->format('m'))
                 ->count();
 
         if(Auth::user()->level == 'admin') {
 
                 return view('poin.beranda', [
-                    'total_siswa' => $total_siswa,
                     'total_pelanggar' => $total_pelanggar,
-                    'total_pelanggaran' => $total_pelanggaran,
-                    'riwayatPelanggaran' => $riwayatPelanggaran,
                     'cowok' => $cowok,
                     'cewek' => $cewek,
-                    'today' => $today,
-                    //bulan
-                    'jan' => $jan,
-                    'feb' => $feb,
-                    'mar' => $mar,
-                    'apr' => $apr,
-                    'may' => $may,
-                    'june' => $june,
-                    'july' => $july,
-                    'aug' => $aug,
-                    'sep' => $sep,
-                    'oct' => $oct,
-                    'nov' => $nov,
-                    'dec' => $dec,
                     //ringan
                     'ringan_jan' => $ringan_jan,
                     'ringan_feb' => $ringan_feb,
@@ -212,6 +181,12 @@ class DashboardController extends Controller
                     'berat_oct' => $berat_oct,
                     'berat_nov' => $berat_nov,
                     'berat_dec' => $berat_dec,
+                    //badge
+                    'badge_ringan' => $badge_ringan,
+                    'badge_sedang' => $badge_sedang,
+                    'badge_berat' => $badge_berat,
+                    'total_siswa' => $total_siswa,
+                    'total_pelanggaran' => $total_pelanggaran,
                 ]);
         } else {
                 return view('frontend.index');

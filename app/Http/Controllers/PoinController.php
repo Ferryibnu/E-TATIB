@@ -10,7 +10,6 @@ use App\Models\Poin;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
-use App\Models\Riwayat;
 
 class PoinController extends Controller
 {
@@ -18,10 +17,6 @@ class PoinController extends Controller
     {
         $siswaPoin = Poin::all();
         $pelanggaran = Pelanggaran::all();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();
-        $riwayatPelanggaran = Riwayat::all()->count(); //untuk badge menu riwayatPelanggaran
-
         $poinTotal = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
                     ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
                     ->select("siswa_id", "nama", "nisn", "pelanggaran_id", "pelanggaran", DB::raw('COUNT(pelanggaran_id) as total'))
@@ -33,21 +28,23 @@ class PoinController extends Controller
                     ->groupBy('pelanggaran_id')
                     ->orderBy('total')
                     ->get();
-
-        // dd($poinTotal);
-        $resetAwal = Carbon::createFromFormat('m-d H:i:s', '10-17 14:12:00')->format('m-d H:i:s');
-        $resetEnd = Carbon::createFromFormat('m-d H:i:s', '10-17 14:12:02')->format('m-d H:i:s');
-        $today = Date('m-d H:i:s');
-        if($today >= $resetAwal && $today <= $resetEnd){
-            Poin::truncate();
-        }
+        //Badge
+        $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
+        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
+        $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
+        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
+        $total_pelanggaran = Poin::all()->count();
+        
         return view('poin.index', [
             'siswaPoin' => $siswaPoin,
             'poinTotal' => $poinTotal,
             'pelanggaran' => $pelanggaran,
+            //badge
+            'badge_ringan' => $badge_ringan,
+            'badge_sedang' => $badge_sedang,
+            'badge_berat' => $badge_berat,
             'total_siswa' => $total_siswa,
             'total_pelanggaran' => $total_pelanggaran,
-            'riwayatPelanggaran' => $riwayatPelanggaran,
         ]);
     }
     

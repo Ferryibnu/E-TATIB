@@ -132,11 +132,11 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="AdminLTE/index3.html" class="brand-link">
       <img src="{{ asset('img/icon.png') }}" style="opacity: .8; width:37px; margin-left: 9px;">
-      <span class="brand-text font-weight-light ml-2"> E-TATIB</span>
+      <span class="brand-text font-weight-light ml-2"> <b> E-TATIB SMKN 1</b></span>
     </a>
 
     <!-- Sidebar -->
@@ -145,7 +145,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link">
+            <a href="/dashboard" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -182,17 +182,17 @@
               <li class="nav-item">
                 <a href="/ringan" class="nav-link">
                   <i class="far fa-circle nav-icon text-success"></i>
-                  <span class="badge badge-success right">1</span>
+                  <span class="badge badge-success right">{{ $badge_ringan }}</span>
                   <p>Kategori Ringan</p>
                 </a>
                 <a href="/sedang" class="nav-link">
                   <i class="far fa-circle nav-icon text-warning"></i>
-                  <span class="badge badge-warning right">1</span>
+                  <span class="badge badge-warning right">{{ $badge_sedang }}</span>
                   <p>Kategori Sedang</p>
                 </a>
                 <a href="/berat" class="nav-link">
                   <i class="far fa-circle nav-icon text-danger"></i>
-                  <span class="badge badge-danger right">1</span>
+                  <span class="badge badge-danger right">{{ $badge_berat }}</span>
                   <p>Kategori Berat</p>
                 </a>
               </li>
@@ -201,7 +201,6 @@
           <li class="nav-item">
             <a href="/riwayat" class="nav-link">
               <i class="nav-icon fas fa-clock"></i>
-              <span class="badge badge-light right">{{ $riwayatPelanggaran }}</span>
               <p>
                 Riwayat Pelanggar
               </p>
@@ -221,9 +220,9 @@
 
   <footer class="main-footer">
     
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>E-TATIB SMKN 1 SURABAYA &copy; 2022 <a href="https://github.com/Ferryibnu/E-TATIB">- Ferry Ibnu Al Faruq</a>.</strong> 3120510802.
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0
+      <b>D3 PJJ TI B</b> / 2020
     </div>
   </footer>
 
