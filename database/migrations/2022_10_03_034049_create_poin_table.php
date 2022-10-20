@@ -19,6 +19,7 @@ class CreatePoinTable extends Migration
             $table->unsignedInteger('pelanggaran_id')->nullable();
             $table->string('pencatat')->nullable();
             $table->string('catatan')->nullable();
+            $table->string('kategori')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
 

@@ -129,8 +129,8 @@
                 @foreach($siswaPoin as $s)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $s->siswa->nisn }}</td>
-                <td>{{ $s->siswa->nama }}</td>
+                <td>{{isset($s->siswa->nisn) ? ($s->siswa->nisn) : ''}}</td>
+                <td>{{isset($s->siswa->nama) ? ($s->siswa->nama) : ''}}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
                 <td>{{ $s->pencatat }}</td>
@@ -142,6 +142,28 @@
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDelete{{$s->id}}"><i class="fa fa-trash"></i></button>
                 </td>
               </tr>
+
+              <!--  modal delete -->
+              <div class="modal fade" id="ModalDelete{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Anda yakin ingin menghapus?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                      <a href="/poin/hapus/{{$s->id}}" class="btn btn-primary">Iya</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{-- End Delete --}}
 
               {{-- Modal Edit --}}
               <div class="modal fade" id="ModalEdit{{$s->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -162,7 +184,7 @@
                           <div class="form-row">
                             <div class="form-group col-md-6" >
                               <label for="inputStatus">NISN</label>
-                              <input id="result" type="text" class="form-control" name="nisn" value="{{$s->siswa->nisn}}" disabled>
+                              <input id="result" type="text" class="form-control" name="nisn" value="{{isset($s->siswa->nisn) ? ($s->siswa->nisn) : ''}}" disabled>
                             </div>
       
                             <div class="form-group col-md-6" >
@@ -187,28 +209,6 @@
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Ubah</button></form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <!--  modal delete -->
-
-              <div class="modal fade" id="ModalDelete{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Anda yakin ingin menghapus?
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                      <a href="/poin/hapus/{{$s->id}}" class="btn btn-primary">Iya</a>
                     </div>
                   </div>
                 </div>

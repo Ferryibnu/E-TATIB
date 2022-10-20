@@ -122,7 +122,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [1, 2, 4]
+          data                : [{{$sedang_jan}}, {{$sedang_feb}}, {{$sedang_mar}}, {{$sedang_apr}}, {{$sedang_may}}, {{$sedang_june}}]
         },
         {
           label               : 'Berat',
@@ -133,7 +133,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [1, 1, 3]
+          data                : [{{$berat_jan}}, {{$berat_feb}}, {{$berat_mar}}, {{$berat_apr}}, {{$berat_may}}, {{$berat_june}}]
         },
       ]
     }
@@ -162,7 +162,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [1, 2, 4]
+          data                : [{{$sedang_july}}, {{$sedang_aug}}, {{$sedang_sep}}, {{$sedang_oct}}, {{$sedang_nov}}, {{$sedang_dec}}]
         },
         {
           label               : 'Berat',
@@ -173,7 +173,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [1, 1, 3]
+          data                : [{{$berat_july}}, {{$berat_aug}}, {{$berat_sep}}, {{$berat_oct}}, {{$berat_nov}}, {{$berat_dec}}]
         },
       ]
     }

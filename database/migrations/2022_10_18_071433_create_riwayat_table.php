@@ -15,16 +15,18 @@ class CreateRiwayatTable extends Migration
     {
         Schema::create('riwayat', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('siswa_id')->nullable();
             $table->unsignedInteger('pelanggaran_id')->nullable();
+            $table->integer('siswa_id')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('nisn')->nullable();
+            $table->string('kelas')->nullable();
             $table->string('pencatat')->nullable();
             $table->string('catatan')->nullable();
+            $table->string('kategori')->nullable();
             $table->string('status')->nullable();
             $table->string('tgl_pelanggaran')->nullable();
             $table->timestamps();
 
-            $table->foreign('siswa_id')->references('id')->on('siswa')
-                  ->onDelete('set null')->onUpdate('cascade');
             $table->foreign('pelanggaran_id')->references('id')->on('pelanggaran')
                   ->onDelete('set null')->onUpdate('cascade');
         });

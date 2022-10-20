@@ -164,9 +164,31 @@
                   <a class="btn btn-sm btn-secondary" title="Preview" href="/siswa/profile/{{$s->id}}"><i class="fa fa-list"></i></a>
                   <a target="_blank" href="/siswa/cetak_pdf/{{$s->id}}" type="button" title="Pdf" class="btn btn-sm btn-danger"><i class="fa fa-file-pdf"></i></a>
                   <button type="button" title="Edit" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#ModalEdit{{$s->id}}"><i class="fa fa-edit"></i></button>
-                  <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDelete{{$s->id}}"><i class="fa fa-trash"></i></button>
+                  <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalHapus{{$s->id}}"><i class="fa fa-trash"></i></button>
                 </td>
               </tr>
+              
+              <!--  modal delete -->
+              <div class="modal fade" id="ModalHapus{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Anda yakin ingin menghapus?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                      <a href="/siswa/hapus/{{$s->id}}" class="btn btn-primary">Iya</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{-- End Modal Delete --}}
 
               {{-- Modal Edit --}}
               <div class="modal fade" id="ModalEdit{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -246,27 +268,7 @@
                 </div>
               </div>
 
-              <!--  modal delete -->
-
-              <div class="modal fade" id="ModalDelete{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Anda yakin ingin menghapus?
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                      <a href="/siswa/hapus/{{$s->id}}" class="btn btn-primary">Iya</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
                 @endforeach
               </tbody>
             </table>

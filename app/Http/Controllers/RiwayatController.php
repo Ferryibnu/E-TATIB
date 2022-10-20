@@ -5,6 +5,7 @@ use App\Models\Riwayat;
 use App\Models\Pelanggaran;
 use App\Models\Siswa;
 use App\Models\Poin;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RiwayatController extends Controller
 {
@@ -13,8 +14,9 @@ class RiwayatController extends Controller
         $riwayat = Riwayat::all();
         $pelanggaran = Pelanggaran::all();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggar = Poin::distinct('siswa_id')->count(); //untuk badge menu pelanggar
-        $riwayatPelanggaran = Riwayat::all()->count(); //untuk badge menu riwayatPelanggaran
+        $total_pelanggar = Poin::distinct('siswa_id')->count();
+        $riwayatPelanggaran = Riwayat::all()->count();
+        $total_pelanggaran = Poin::all()->count();
 
         // dd($RiwayatTotal);
 
@@ -23,7 +25,16 @@ class RiwayatController extends Controller
             'pelanggaran' => $pelanggaran,
             'total_siswa' => $total_siswa,
             'total_pelanggar' => $total_pelanggar,
+            'total_pelanggaran' => $total_pelanggaran,
             'riwayatPelanggaran' => $riwayatPelanggaran,
         ]);
+    }
+
+    public function hapus($id)
+    {
+        Riwayat::find($id)->delete();
+
+        Alert::success('Hapus Sukses', 'Data Berhasil Dihapus');
+        return redirect()->back();
     }
 }

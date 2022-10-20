@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
 use \App\Models\Siswa;
@@ -78,36 +79,43 @@ class PoinController extends Controller
             if($jumlah->total  >= 0 && $jumlah->total <= 35) {
                 $addPoin1->catatan = "Peringatan ke-1";
                 $addPoin1->status = 'Belum Selesai';
+                $addPoin1->kategori = 'ringan';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 36 && $jumlah->total <= 55) {
                 $addPoin1->catatan = "Peringatan ke-2";
                 $addPoin1->status = 'Belum Selesai';
+                $addPoin1->kategori = 'ringan';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 56 && $jumlah->total <= 75){
                 $addPoin1->catatan = "Panggilan Orang Tua ke-1";
                 $addPoin1->status = 'Belum Selesai';
+                $addPoin1->kategori = 'sedang';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 76 && $jumlah->total <= 95){
                 $addPoin1->catatan = "Panggilan Orang Tua ke-2";
                 $addPoin1->status = 'Belum Selesai';
+                $addPoin1->kategori = 'sedang';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 96 && $jumlah->total <= 149){
                 $addPoin1->catatan = "Panggilan Orang Tua ke-3";
                 $addPoin1->status = 'Belum Selesai';
+                $addPoin1->kategori = 'sedang';
                 $addPoin1->update();
                 
             } elseif($jumlah->total >= 150 && $jumlah->total <= 249){
                 $addPoin1->catatan = "Skorsing";
                 $addPoin1->status = 'Belum Selesai';
+                $addPoin1->kategori = 'berat';
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 250){
                 $addPoin1->catatan = "Dikeluarkan dari Sekolah";
                 $addPoin1->status = 'Belum Selesai';
+                $addPoin1->kategori = 'berat';
                 $addPoin1->update();
             }
             Alert::success('Sukses Tambah', 'Data Berhasil Ditambahkan');
@@ -149,6 +157,12 @@ class PoinController extends Controller
             Poin::query()->each(function ($oldRecord) {
                 $newRecord = $oldRecord->replicate();
                 $newRecord->setTable('riwayat');
+                $siswa = Siswa::find($oldRecord->siswa_id)->first();
+                $kelas = Kelas::find($siswa->kelas_id)->first();
+
+                $newRecord->nisn = $siswa->nisn;
+                $newRecord->nama = $siswa->nama;
+                $newRecord->kelas = $kelas->kelas;
                 $newRecord->tgl_pelanggaran = $oldRecord->created_at;
                 $newRecord->save();
     

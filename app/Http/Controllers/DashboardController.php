@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Siswa;
 use App\Models\Poin;
 use App\Models\Riwayat;
@@ -35,63 +36,120 @@ class DashboardController extends Controller
         $nov = Carbon::create('november')->format('m');
         $dec = Carbon::create('december')->format('m');
 
-        
-        // if($today >= $july && $today <= $dec) {
-        //         dd('bnr');
-        // } else {
-        //         dd('slh');
-        // }
+        //Kategori Ringan
+        $ringan_jan = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $jan)
+                ->count();
+        $ringan_feb = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $feb)
+                ->count();
+        $ringan_mar = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $mar)
+                ->count();
+        $ringan_apr = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $apr)
+                ->count();
+        $ringan_may = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $may)
+                ->count();
+        $ringan_june = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $june)
+                ->count();
+        $ringan_july = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $july)
+                ->count();
+        $ringan_aug = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $aug)
+                ->count();
+        $ringan_sep = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $sep)
+                ->count();
+        $ringan_oct = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $oct)
+                ->count();
+        $ringan_nov = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $nov)
+                ->count();
+        $ringan_dec = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $dec)
+                ->count();
 
         //Kategori Ringan
-        $ringan_jan = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $jan)
+        $sedang_jan = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $jan)
                 ->count();
-        $ringan_feb = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $feb)
+        $sedang_feb = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $feb)
                 ->count();
-        $ringan_mar = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $mar)
+        $sedang_mar = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $mar)
                 ->count();
-        $ringan_apr = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $apr)
+        $sedang_apr = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $apr)
                 ->count();
-        $ringan_may = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $may)
+        $sedang_may = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $may)
                 ->count();
-        $ringan_june = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $june)
+        $sedang_june = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $june)
                 ->count();
-        $ringan_july = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $july)
+        $sedang_july = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $july)
                 ->count();
-        $ringan_aug = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $aug)
+        $sedang_aug = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $aug)
                 ->count();
-        $ringan_sep = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $sep)
+        $sedang_sep = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $sep)
                 ->count();
-        $ringan_oct = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $oct)
+        $sedang_oct = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $oct)
                 ->count();
-        $ringan_nov = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $nov)
+        $sedang_nov = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $nov)
                 ->count();
-        $ringan_dec = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-                ->where('pelanggaran.kategori', 1)
-                ->whereMonth('poin.created_at', '=', $dec)
+        $sedang_dec = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $dec)
                 ->count();
-                // dd($ringan_oct);
+
+        // Kategori Berat
+        $berat_jan = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $jan)
+                ->count();
+        $berat_feb = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $feb)
+                ->count();
+        $berat_mar = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $mar)
+                ->count();
+        $berat_apr = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $apr)
+                ->count();
+        $berat_may = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $may)
+                ->count();
+        $berat_june = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $june)
+                ->count();
+        $berat_july = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $july)
+                ->count();
+        $berat_aug = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $aug)
+                ->count();
+        $berat_sep = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $sep)
+                ->count();
+        $berat_oct = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $oct)
+                ->count();
+        $berat_nov = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $nov)
+                ->count();
+        $berat_dec = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $dec)
+                ->count();
+
         if(Auth::user()->level == 'admin') {
 
                 return view('poin.beranda', [
@@ -101,8 +159,21 @@ class DashboardController extends Controller
                     'riwayatPelanggaran' => $riwayatPelanggaran,
                     'cowok' => $cowok,
                     'cewek' => $cewek,
-                    'july' => $july,
                     'today' => $today,
+                    //bulan
+                    'jan' => $jan,
+                    'feb' => $feb,
+                    'mar' => $mar,
+                    'apr' => $apr,
+                    'may' => $may,
+                    'june' => $june,
+                    'july' => $july,
+                    'aug' => $aug,
+                    'sep' => $sep,
+                    'oct' => $oct,
+                    'nov' => $nov,
+                    'dec' => $dec,
+                    //ringan
                     'ringan_jan' => $ringan_jan,
                     'ringan_feb' => $ringan_feb,
                     'ringan_mar' => $ringan_mar,
@@ -115,6 +186,32 @@ class DashboardController extends Controller
                     'ringan_oct' => $ringan_oct,
                     'ringan_nov' => $ringan_nov,
                     'ringan_dec' => $ringan_dec,
+                    //sedang
+                    'sedang_jan' => $sedang_jan,
+                    'sedang_feb' => $sedang_feb,
+                    'sedang_mar' => $sedang_mar,
+                    'sedang_apr' => $sedang_apr,
+                    'sedang_may' => $sedang_may,
+                    'sedang_june' => $sedang_june,
+                    'sedang_july' => $sedang_july,
+                    'sedang_aug' => $sedang_aug,
+                    'sedang_sep' => $sedang_sep,
+                    'sedang_oct' => $sedang_oct,
+                    'sedang_nov' => $sedang_nov,
+                    'sedang_dec' => $sedang_dec,
+                    //berat
+                    'berat_jan' => $berat_jan,
+                    'berat_feb' => $berat_feb,
+                    'berat_mar' => $berat_mar,
+                    'berat_apr' => $berat_apr,
+                    'berat_may' => $berat_may,
+                    'berat_june' => $berat_june,
+                    'berat_july' => $berat_july,
+                    'berat_aug' => $berat_aug,
+                    'berat_sep' => $berat_sep,
+                    'berat_oct' => $berat_oct,
+                    'berat_nov' => $berat_nov,
+                    'berat_dec' => $berat_dec,
                 ]);
         } else {
                 return view('frontend.index');

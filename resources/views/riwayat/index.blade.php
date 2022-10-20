@@ -18,23 +18,48 @@
                 <th>No</th>
                 <th>NISN</th>
                 <th>Nama</th>
+                <th>Kelas</th>
                 <th>Pelanggaran</th>
                 <th>Poin</th>
-                <th>Pencatat</th>
                 <th>Waktu Pelanggaran</th>
+                <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
                 @foreach($riwayat as $s)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $s->siswa->nisn }}</td>
-                <td>{{ $s->siswa->nama }}</td>
+                <td>{{ $s->nisn }}</td>
+                <td>{{ $s->nama }}</td>
+                <td>{{ $s->kelas }}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
-                <td>{{ $s->pencatat }}</td>
                 <td>{{ date('d-m-Y / H:i:s', strtotime($s->tgl_pelanggaran)) }}</td>
+                <td>
+                  <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDelete{{$s->id}}"><i class="fa fa-trash"></i></button>
+                </td>
               </tr>
+                <!--  modal delete -->
+              <div class="modal fade" id="ModalDelete{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Anda yakin ingin menghapus?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                      <a href="/riwayat/hapus/{{$s->id}}" class="btn btn-primary">Iya</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                {{-- End Delete --}}
                 @endforeach
               </tbody>
             </table>

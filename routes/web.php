@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/siswa', [App\Http\Controllers\SiswaController::class, 'index']);
     Route::get('/riwayat', [App\Http\Controllers\RiwayatController::class, 'index']);
     
+    Route::get('/riwayat/hapus/{id}', [App\Http\Controllers\RiwayatController::class, 'hapus']);
+    
     Route::get('/siswa/tambah', [App\Http\Controllers\SiswaController::class, 'tambah']);
     Route::post('/siswa/tambah/proses', [App\Http\Controllers\SiswaController::class, 'tambah']);
     Route::post('/siswa/edit/{id}', [App\Http\Controllers\SiswaController::class, 'edit']);
