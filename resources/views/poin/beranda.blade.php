@@ -77,6 +77,7 @@
         </h3>
         <div class="card-tools">
           <ul class="nav nav-pills ml-auto">
+            
             <li class="nav-item">
               <a class="nav-link active" href="#triwulan1" data-toggle="tab">Triwulan 1</a>
             </li>
@@ -88,6 +89,11 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#triwulan4" data-toggle="tab">Triwulan 4</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#PDF">
+                <i class="fa fa-file-pdf"></i>
+              </button>
             </li>
           </ul>
         </div>
@@ -110,6 +116,40 @@
         </div>
       </div>
     </div>
+     <!-- PDF Triwulan -->
+     <div class="modal fade" id="PDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cetak Laporan Triwulan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+            <form action="/dashboard/triwulan" method="POST" enctype="multipart/form-data">
+          </div>
+          <div class="modal-body">
+
+            {{ csrf_field() }}
+      
+            <div class="form-row">
+              <label for="inputStatus">Pilih Triwulan</label>
+                <select name="triwulan" id="inputUser" class="form-control" required>
+                  <option value=1>Triwulan ke-1</option>
+                  <option value=2>Triwulan ke-2</option>
+                  <option value=3>Triwulan ke-3</option>
+                  <option value=4>Triwulan ke-4</option>
+                </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+            <button type="submit" class="btn btn-primary">Cetak</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
 <script>

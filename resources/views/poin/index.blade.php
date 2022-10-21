@@ -130,7 +130,7 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{isset($s->siswa->nisn) ? ($s->siswa->nisn) : ''}}</td>
-                <td>{{isset($s->nama) ? ($s->nama) : ''}}</td>
+                <td>{{isset($s->siswa->nama) ? ($s->siswa->nama) : ''}}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
                 <td>{{ $s->pencatat }}</td>

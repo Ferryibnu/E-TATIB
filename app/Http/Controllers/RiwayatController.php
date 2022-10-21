@@ -14,7 +14,7 @@ class RiwayatController extends Controller
         //Badge
         $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
+        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
         $total_pelanggaran = Poin::all()->count();
 

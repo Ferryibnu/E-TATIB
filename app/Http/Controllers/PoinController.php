@@ -34,7 +34,7 @@ class PoinController extends Controller
         //Badge
         $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
+        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
         $total_pelanggaran = Poin::all()->count();
         
@@ -76,13 +76,17 @@ class PoinController extends Controller
 
             $addPoin1 = Poin::find($addPoin->id);
             // dd($jumlah->total);
-            if($jumlah->total  >= 30 && $jumlah->total <= 35) {
+            if($jumlah->total  >= 10 && $jumlah->total <= 29) {
+                $addPoin1->kategori = 'ringan';
+                $addPoin1->update();
+
+            } elseif($jumlah->total  >= 30 && $jumlah->total <= 35) {
                 $addPoin1->catatan = "Peringatan ke-1";
                 $addPoin1->status = 'Belum Selesai';
                 $addPoin1->kategori = 'ringan';
                 $addPoin1->update();
 
-            } elseif($jumlah->total >= 36 && $jumlah->total <= 55) {
+            }elseif($jumlah->total >= 36 && $jumlah->total <= 55) {
                 $addPoin1->catatan = "Peringatan ke-2";
                 $addPoin1->status = 'Belum Selesai';
                 $addPoin1->kategori = 'ringan';
@@ -112,7 +116,7 @@ class PoinController extends Controller
                 $addPoin1->kategori = 'berat';
                 $addPoin1->update();
 
-            } elseif($jumlah->total >= 250){
+            } else {
                 $addPoin1->catatan = "Dikeluarkan dari Sekolah";
                 $addPoin1->status = 'Belum Selesai';
                 $addPoin1->kategori = 'berat';

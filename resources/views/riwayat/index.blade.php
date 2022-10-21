@@ -21,6 +21,7 @@
                 <th>Kelas</th>
                 <th>Pelanggaran</th>
                 <th>Poin</th>
+                <th>Tindak Lanjut</th>
                 <th>Waktu Pelanggaran</th>
                 <th>Aksi</th>
               </tr>
@@ -34,6 +35,7 @@
                 <td>{{ $s->kelas }}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
+                <td>{{ $s->catatan }}</td>
                 <td>{{ date('d-m-Y / H:i:s', strtotime($s->tgl_pelanggaran)) }}</td>
                 <td>
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDelete{{$s->id}}"><i class="fa fa-trash"></i></button>

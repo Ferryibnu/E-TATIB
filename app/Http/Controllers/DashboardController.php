@@ -6,6 +6,8 @@ use App\Models\Siswa;
 use App\Models\Poin;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use PDF;
 
 class DashboardController extends Controller
 {
@@ -18,7 +20,7 @@ class DashboardController extends Controller
         //Badge
         $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
+        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
         $total_pelanggaran = Poin::all()->count();
 
@@ -190,6 +192,57 @@ class DashboardController extends Controller
                 ]);
         } else {
                 return view('frontend.index');
+        }
+    }
+
+    public function triwulan(Request $request)
+    {
+        $this->validate($request, [
+                'triwulan' => '',
+    
+        ]);
+
+        if($request->triwulan == 1) {
+                $bulan = Carbon::create('january')->format('m');
+                $bulan1 = Carbon::create('february')->format('m');
+                $bulan2 =  Carbon::create('march')->format('m');
+                //Kategori Ringan
+
+                $ringan =  Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $bulan)
+                ->count();
+                $ringan1 = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=', $bulan1)
+                ->count();
+                $ringan2 = Poin::where('kategori','=', 'ringan')
+                ->whereMonth('created_at', '=',$bulan2)
+                ->count();
+
+                //Kategori sedang
+                $sedang =  Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $bulan)
+                ->count();
+                $sedang1 = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=', $bulan1)
+                ->count();
+                $sedang2 = Poin::where('kategori','=', 'sedang')
+                ->whereMonth('created_at', '=',$bulan2)
+                ->count();
+
+                //Kategori berat
+                $berat =  Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $bulan)
+                ->count();
+                $berat1 = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=', $bulan1)
+                ->count();
+                $berat2 = Poin::where('kategori','=', 'berat')
+                ->whereMonth('created_at', '=',$bulan2)
+                ->count();
+
+                $pdf = PDF::loadview('poin.triwulan_pdf', compact('ringan', 'ringan1', 'ringan2', 'sedang', 'sedang1', 'sedang2', 'berat', 'berat1', 'berat2', 'bulan', 'bulan1', 'bulan2' ));
+                return $pdf->stream();
+
         }
     }
 }
