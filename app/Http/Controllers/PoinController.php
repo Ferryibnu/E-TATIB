@@ -7,7 +7,6 @@ use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
 use \App\Models\Siswa;
 use App\Models\Poin;
-use Illuminate\Database\Eloquent\Builder;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
@@ -180,5 +179,9 @@ class PoinController extends Controller
             return redirect()->back();
         }
     }
-    
+    // public function autofill(Request $request)
+    // {
+    //     $getFields = Siswa::where('nisn',$request->nisn)->first();
+    //     return json_encode($getFields);
+    // }
 }

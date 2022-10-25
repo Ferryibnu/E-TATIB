@@ -24,7 +24,7 @@ class CreatePoinTable extends Migration
             $table->timestamps();
 
             $table->foreign('siswa_id')->references('id')->on('siswa')
-                  ->onDelete('set null')->onUpdate('cascade');
+                  ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('pelanggaran_id')->references('id')->on('pelanggaran')
                   ->onDelete('set null')->onUpdate('cascade');
         });

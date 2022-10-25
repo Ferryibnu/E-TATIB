@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/gif/png" href="{{ asset('img/icon.png') }}">
   <title>E-TATIB SMKN 1 SURABAYA</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -247,7 +249,6 @@
 <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/jszip/jszip.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
-<script src="{{asset('AdminLTE/plugins/pdfmake/pdfmake.min.js}')}}"></script>
 <script src="{{asset('AdminLTE/plugins/pdfmake/vfs_fonts.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
@@ -270,7 +271,7 @@
     
     // handle the scanned code as you like, for example:
     // console.log(`Code matched = ${decodedText}`, decodedResult);
-    $("#result").val(decodedText)
+    $("#nisn").val(decodedText)
     $('#tambahModal').modal('show')
     $('#scanQr').modal('hide')
 

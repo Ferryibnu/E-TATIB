@@ -62,14 +62,32 @@
                     <div class="form-row">
                       <div class="form-group col-md-6" >
                         <label for="inputStatus">NISN</label>
-                        <input id="result" type="text" class="form-control" name="nisn" required>
+                        <input id="nisn" type="text" class="form-control" name="nisn" required>
                       </div>
 
-                      <div class="form-group col-md-6" >
+                      <div class="form-group col-md-6">
                         <label for="inputStatus">Nama Pencatat</label>
                         <input id="pencatat" type="text" class="form-control" name="pencatat">
                       </div>
                     </div>
+
+                      {{-- <div class="form-group col-md-6" >
+                        <label for="inputStatus">Nama</label>
+                        <input id="nama" type="text" class="form-control" name="nama">
+                      </div>
+
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-4" >
+                        <label for="inputStatus">Kelas</label>
+                        <input id="kelas" type="text" class="form-control" name="kelas">
+                      </div>
+
+                      <div class="form-group col-md-8">
+                        <label for="inputStatus">Nama Pencatat</label>
+                        <input id="pencatat" type="text" class="form-control" name="pencatat">
+                      </div>
+                    </div> --}}
 
                     <div class="form-row">
                       <div class="form-group col-md-12" >
@@ -129,8 +147,8 @@
                 @foreach($siswaPoin as $s)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{isset($s->siswa->nisn) ? ($s->siswa->nisn) : ''}}</td>
-                <td>{{isset($s->siswa->nama) ? ($s->siswa->nama) : ''}}</td>
+                <td>{{$s->siswa->nisn}}</td>
+                <td>{{$s->siswa->nama}}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
                 <td>{{ $s->pencatat }}</td>
@@ -185,7 +203,7 @@
                           <div class="form-row">
                             <div class="form-group col-md-6" >
                               <label for="inputStatus">NISN</label>
-                              <input id="result" type="text" class="form-control" name="nisn" value="{{isset($s->siswa->nisn) ? ($s->siswa->nisn) : ''}}" disabled>
+                              <input id="nisn" type="text" class="form-control" name="nisn" value="{{$s->siswa->nisn}}" disabled>
                             </div>
       
                             <div class="form-group col-md-6" >
@@ -282,5 +300,25 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
+{{-- <script>
+$("#nisn").focusout(function(e){
+  // alert($(this).val());
+  var nisn = $('#nisn').val();
+  $.ajax({
+      type: "POST",
+      url: "{{route('autofill')}}",
+      data: {'nisn':nisn},
+      dataType: 'json',
+      success : function(e) {
+              $('.flash-message').html('');
+              r = $.parseJSON(e); //convert json to array
+              
+      console.log(r.nama);
+              $('#nama').val(r.nama); 
+              $('#kelas').val(r.kelas); 
+      }
+  })
+});
+</script> --}}
 <!-- /.content -->
 @endsection

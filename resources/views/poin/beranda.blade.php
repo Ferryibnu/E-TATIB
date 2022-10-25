@@ -79,22 +79,22 @@
           <ul class="nav nav-pills ml-auto">
             
             <li class="nav-item">
-              <a class="nav-link active" href="#triwulan1" data-toggle="tab">Triwulan 1</a>
+              <a class="nav-link active" href="#triwulan1" data-toggle="tab"> Januari-Maret</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#triwulan2" data-toggle="tab">Triwulan 2</a>
+              <a class="nav-link" href="#triwulan2" data-toggle="tab">April-Juni</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#triwulan3" data-toggle="tab">Triwulan 3</a>
+              <a class="nav-link" href="#triwulan3" data-toggle="tab">Juli-September</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#triwulan4" data-toggle="tab">Triwulan 4</a>
+              <a class="nav-link" href="#triwulan4" data-toggle="tab">Oktober-Desember</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <button type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#PDF">
                 <i class="fa fa-file-pdf"></i>
               </button>
-            </li>
+            </li> --}}
           </ul>
         </div>
       </div><!-- /.card-header -->
@@ -117,7 +117,7 @@
       </div>
     </div>
      <!-- PDF Triwulan -->
-     <div class="modal fade" id="PDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     {{-- <div class="modal fade" id="PDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -134,7 +134,7 @@
       
             <div class="form-row">
               <label for="inputStatus">Pilih Triwulan</label>
-                <select name="triwulan" id="inputUser" class="form-control" required>
+                <select name="triwulan" class="form-control" required>
                   <option value=1>Triwulan ke-1</option>
                   <option value=2>Triwulan ke-2</option>
                   <option value=3>Triwulan ke-3</option>
@@ -148,7 +148,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
   </section>
 

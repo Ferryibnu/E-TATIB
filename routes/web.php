@@ -23,7 +23,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard']);
-    Route::post('/dashboard/triwulan', [App\Http\Controllers\DashboardController::class, 'triwulan']);
+    // Route::post('/autofill', [App\Http\Controllers\PoinController::class, 'autofill'])->name('autofill');
 
     Route::get('/poin', [App\Http\Controllers\PoinController::class, 'index']);
     Route::get('/siswa', [App\Http\Controllers\SiswaController::class, 'index']);

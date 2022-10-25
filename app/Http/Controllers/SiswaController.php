@@ -117,6 +117,7 @@ class SiswaController extends Controller
     public function hapus($id)
     {
        Siswa::find($id)->delete();
+    //    Poin::where('siswa_id', $id)->delete();
 
         Alert::success('Hapus Sukses', 'Data berhasil dihapus');
         return redirect()->back();
