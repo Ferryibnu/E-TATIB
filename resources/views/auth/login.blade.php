@@ -1,6 +1,12 @@
 @extends('layouts.login')
 
 @section('konten')
+
+{{-- <img src="{{asset('img/sekolah.jfif')}}" style="opacity:0.2;
+        position:fixed;
+        width:1400px;
+        bottom:0px"> --}}
+        
 <div class="container">
     <center>
     <div class="middle">
@@ -30,7 +36,7 @@
 
         <div class="row mb-0">
             <div class="col-md-8 offset-md-4">
-                <button type="submit" class="btn btn-dark">
+                <button type="submit" class="btn btn-primary">
                     {{ __('Login') }}
                 </button>
             </div>
@@ -41,7 +47,6 @@
     
           </div> <!-- end login -->
           <div class="logo ml-4"><img src="{{asset('img/logo.png')}}" alt="" srcset="" style="height:100px">
-              
           </div>
           
           </div>

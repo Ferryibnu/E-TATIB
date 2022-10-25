@@ -6,7 +6,8 @@ use App\Models\Siswa;
 use App\Models\Poin;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DashboardController extends Controller
 {
@@ -190,7 +191,24 @@ class DashboardController extends Controller
                     'total_pelanggaran' => $total_pelanggaran,
                 ]);
         } else {
-                return view('frontend.index');
+                $idUser = Auth::user()->id;
+                $siswa = Siswa::where('users_id', $idUser)->first();
+                // dd($siswa->users_id);
+                $siswaPoin = Poin::where('siswa_id', $siswa->id)->get();
+                $totalPoin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+                ->select(DB::raw('SUM(pelanggaran.poin) as total'))
+                ->orderBy('total')
+                ->where('siswa_id', '=', $siswa->id)
+                ->first();
+
+                //Membuat QR Code
+                $qrCode = QrCode::size(200)->generate($siswa->nisn);
+                return view('frontend.index', [
+                        'siswa' => $siswa,
+                        'totalPoin' => $totalPoin,
+                        'siswaPoin' => $siswaPoin,
+                        'qrCode' => $qrCode,
+                ]);
         }
     }
 }
