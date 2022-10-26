@@ -406,6 +406,11 @@ h1, h2, h3, h4, h5, h6, .font-primary {
     width: 50%;
   }
 }
+@media (max-width: 575px){
+  .table-bordered td, .table-bordered th {
+    font-size: 11px;
+  }
+}
 
 @media (max-width: 768px) {
   #hero h1 {
@@ -531,9 +536,9 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Services
+# pelanggaran
 --------------------------------------------------------------*/
-.services .icon-box {
+.pelanggaran .icon-box {
   padding: 30px;
   position: relative;
   overflow: hidden;
@@ -546,49 +551,49 @@ section {
   border-bottom: 3px solid #fff;
 }
 
-.services .icon-box:hover {
+.pelanggaran .icon-box:hover {
   transform: translateY(-5px);
   border-color: #ef7f4d;
 }
 
-.services .icon i {
+.pelanggaran .icon i {
   font-size: 48px;
   line-height: 1;
   margin-bottom: 15px;
   color: #ef7f4d;
 }
 
-.services .title {
+.pelanggaran .title {
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 18px;
 }
 
-.services .title a {
+.pelanggaran .title a {
   color: #111;
 }
 
-.services .description {
+.pelanggaran .description {
   font-size: 15px;
   line-height: 28px;
   margin-bottom: 0;
 }
 
 /*--------------------------------------------------------------
-# Portfolio
+# laporan
 --------------------------------------------------------------*/
-.portfolio .portfolio-item {
+.laporan .laporan-item {
   margin-bottom: 30px;
 }
 
-.portfolio #portfolio-flters {
+.laporan #laporan-flters {
   padding: 0;
   /* margin: 0 0 35px 0; */
   list-style: none;
   text-align: center;
 }
 
-.portfolio #portfolio-flters li {
+.laporan #laporan-flters li {
   cursor: pointer;
   /* margin: 0 15px 15px 0; */
   display: inline-block;
@@ -601,15 +606,15 @@ section {
   transition: all 0.3s ease-in-out;
 }
 
-.portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
+.laporan #laporan-flters li:hover, .laporan #laporan-flters li.filter-active {
   color: #eb5d1e;
 }
 
-.portfolio #portfolio-flters li:last-child {
+.laporan #laporan-flters li:last-child {
   margin-right: 0;
 }
 
-.portfolio .portfolio-wrap {
+.laporan .laporan-wrap {
   transition: 0.3s;
   position: relative;
   overflow: hidden;
@@ -617,7 +622,7 @@ section {
   z-index: 1;
 }
 
-.portfolio .portfolio-wrap::before {
+.laporan .laporan-wrap::before {
   content: "";
   background: rgba(122, 105, 96, 0.6);
   position: absolute;
@@ -629,13 +634,13 @@ section {
   z-index: 2;
 }
 
-.portfolio .portfolio-wrap img {
+.laporan .laporan-wrap img {
   transition: 0.3s;
   position: relative;
   z-index: 1;
 }
 
-.portfolio .portfolio-wrap .portfolio-links {
+.laporan .laporan-wrap .laporan-links {
   opacity: 0;
   left: 0;
   right: 0;
@@ -646,7 +651,7 @@ section {
   transition: all ease-in-out 0.3s;
 }
 
-.portfolio .portfolio-wrap .portfolio-links a {
+.laporan .laporan-wrap .laporan-links a {
   color: #eb5d1e;
   margin: 0 4px;
   font-size: 18px;
@@ -662,16 +667,16 @@ section {
   transition: 0.3s;
 }
 
-.portfolio .portfolio-wrap .portfolio-links a i {
+.laporan .laporan-wrap .laporan-links a i {
   line-height: 1;
 }
 
-.portfolio .portfolio-wrap .portfolio-links a:hover {
+.laporan .laporan-wrap .laporan-links a:hover {
   background: #eb5d1e;
   color: #fff;
 }
 
-.portfolio .portfolio-wrap .portfolio-info {
+.laporan .laporan-wrap .laporan-info {
   opacity: 0;
   position: absolute;
   bottom: -20px;
@@ -682,28 +687,28 @@ section {
   transition: all ease-in-out 0.3s;
 }
 
-.portfolio .portfolio-wrap .portfolio-info h4 {
+.laporan .laporan-wrap .laporan-info h4 {
   font-size: 20px;
   color: #fff;
   font-weight: 600;
 }
 
-.portfolio .portfolio-wrap .portfolio-info p {
+.laporan .laporan-wrap .laporan-info p {
   color: #ffffff;
   font-size: 14px;
   text-transform: uppercase;
 }
 
-.portfolio .portfolio-wrap:hover::before {
+.laporan .laporan-wrap:hover::before {
   left: 0;
 }
 
-.portfolio .portfolio-wrap:hover .portfolio-links {
+.laporan .laporan-wrap:hover .laporan-links {
   opacity: 1;
   top: calc(50% - 16px);
 }
 
-.portfolio .portfolio-wrap:hover .portfolio-info {
+.laporan .laporan-wrap:hover .laporan-info {
   opacity: 1;
   bottom: 0;
 }
@@ -892,9 +897,9 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Contact Us
+# profile Us
 --------------------------------------------------------------*/
-.contact .info {
+.profile .info {
   border-top: 3px solid #eb5d1e;
   border-bottom: 3px solid #eb5d1e;
   padding: 30px;
@@ -903,7 +908,7 @@ section {
   box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
 }
 
-.contact .info i {
+.profile .info i {
   font-size: 20px;
   color: #eb5d1e;
   float: left;
@@ -917,7 +922,7 @@ section {
   transition: all 0.3s ease-in-out;
 }
 
-.contact .info h4 {
+.profile .info h4 {
   padding: 0 0 0 60px;
   font-size: 22px;
   font-weight: 600;
@@ -925,22 +930,22 @@ section {
   color: #7a6960;
 }
 
-.contact .info p {
+.profile .info p {
   padding: 0 0 10px 60px;
   margin-bottom: 20px;
   font-size: 14px;
   color: #ab9d95;
 }
 
-.contact .info .email p {
+.profile .info .email p {
   padding-top: 5px;
 }
 
-.contact .info .social-links {
+.profile .info .social-links {
   padding-left: 60px;
 }
 
-.contact .info .social-links a {
+.profile .info .social-links a {
   font-size: 18px;
   display: inline-block;
   background: #333;
@@ -955,17 +960,17 @@ section {
   margin-right: 10px;
 }
 
-.contact .info .social-links a:hover {
+.profile .info .social-links a:hover {
   background: #eb5d1e;
   color: #fff;
 }
 
-.contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
+.profile .info .email:hover i, .profile .info .address:hover i, .profile .info .phone:hover i {
   background: #eb5d1e;
   color: #fff;
 }
 
-.contact .php-email-form {
+.profile .php-email-form {
   width: 100%;
   border-top: 3px solid #eb5d1e;
   border-bottom: 3px solid #eb5d1e;
@@ -974,11 +979,11 @@ section {
   box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
 }
 
-.contact .php-email-form .form-group {
+.profile .php-email-form .form-group {
   padding-bottom: 8px;
 }
 
-.contact .php-email-form .validate {
+.profile .php-email-form .validate {
   display: none;
   color: red;
   margin: 0;
@@ -986,7 +991,7 @@ section {
   font-size: 13px;
 }
 
-.contact .php-email-form .error-message {
+.profile .php-email-form .error-message {
   display: none;
   color: #fff;
   background: #ed3c0d;
@@ -995,7 +1000,7 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .sent-message {
+.profile .php-email-form .sent-message {
   display: none;
   color: #fff;
   background: #18d26e;
@@ -1004,14 +1009,14 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .loading {
+.profile .php-email-form .loading {
   display: none;
   background: #fff;
   text-align: center;
   padding: 15px;
 }
 
-.contact .php-email-form .loading:before {
+.profile .php-email-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -1024,21 +1029,21 @@ section {
   animation: animate-loading 1s linear infinite;
 }
 
-.contact .php-email-form input, .contact .php-email-form textarea {
+.profile .php-email-form input, .profile .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
 }
 
-.contact .php-email-form input {
+.profile .php-email-form input {
   height: 44px;
 }
 
-.contact .php-email-form textarea {
+.profile .php-email-form textarea {
   padding: 10px 12px;
 }
 
-.contact .php-email-form button[type="submit"] {
+.profile .php-email-form button[type="submit"] {
   background: #eb5d1e;
   border: 0;
   padding: 10px 24px;
@@ -1047,7 +1052,7 @@ section {
   border-radius: 4px;
 }
 
-.contact .php-email-form button[type="submit"]:hover {
+.profile .php-email-form button[type="submit"]:hover {
   background: #ef7f4d;
 }
 
@@ -1137,11 +1142,11 @@ section {
   background: #fff;
 }
 
-#footer .footer-top .footer-contact {
+#footer .footer-top .footer-profile {
   margin-bottom: 30px;
 }
 
-#footer .footer-top .footer-contact h4 {
+#footer .footer-top .footer-profile h4 {
   font-size: 22px;
   margin: 0 0 30px 0;
   padding: 2px 0 2px 0;
@@ -1149,7 +1154,7 @@ section {
   font-weight: 700;
 }
 
-#footer .footer-top .footer-contact p {
+#footer .footer-top .footer-profile p {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;

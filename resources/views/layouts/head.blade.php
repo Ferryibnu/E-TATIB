@@ -7,7 +7,7 @@
   <title>E-TATIB SMKN 1 SURABAYA</title>
   <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
+  <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
