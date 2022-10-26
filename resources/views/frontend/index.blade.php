@@ -119,7 +119,7 @@
           <div class="col-lg-6 pt-5 pt-lg-0">
             <h3 data-aos="fade-up">Apa itu E-TATIB?</h3>
             <p data-aos="fade-up" data-aos-delay="100">
-              E-TATIB adalah Sistem Informasi pencatatan poin pelanggaran siswa, saat siswa melakukan pelanggaran maka akan dicatat oleh petugas Tatib yang bertugas. Siswa diwajibkan untuk menunjukkan unique <b>QR Code</b> mereka pada petugas.
+              E-TATIB adalah Sistem Informasi pencatatan poin pelanggaran siswa, saat siswa melakukan pelanggaran maka akan dicatat oleh petugas Tatib yang bertugas. Siswa diwajibkan untuk menunjukkan unique <b>QR Code</b> mereka pada petugas. Setelah itu siswa juga bisa melihat <b>Laporan Pelanggaran</b> yang telah mereka lakukan. 
             </p>
             <div class="row">
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
@@ -372,12 +372,12 @@
               <h4>Abdul Majid, S.Pd.</h4>
               <span>Pendidikan Pancasila dan Kewarganegaraan</span>
             </div>
-            <div class="social">
+            {{-- <div class="social">
               <a href=""><i class="icofont-twitter"></i></a>
               <a href=""><i class="icofont-facebook"></i></a>
               <a href=""><i class="icofont-instagram"></i></a>
               <a href=""><i class="icofont-linkedin"></i></a>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
@@ -389,12 +389,6 @@
             <div class="member-info-content">
               <h4>Cheby Marse, S.Pd</h4>
               <span>Bimbingan Konseling</span>
-            </div>
-            <div class="social">
-              <a href=""><i class="icofont-twitter"></i></a>
-              <a href=""><i class="icofont-facebook"></i></a>
-              <a href=""><i class="icofont-instagram"></i></a>
-              <a href=""><i class="icofont-linkedin"></i></a>
             </div>
           </div>
         </div>
@@ -408,12 +402,6 @@
               <h4>Sunardi, S.Pd</h4>
               <span>Prakarya dan Kewirausahaan, Sejarah Indonesia</span>
             </div>
-            <div class="social">
-              <a href=""><i class="icofont-twitter"></i></a>
-              <a href=""><i class="icofont-facebook"></i></a>
-              <a href=""><i class="icofont-instagram"></i></a>
-              <a href=""><i class="icofont-linkedin"></i></a>
-            </div>
           </div>
         </div>
       </div>
@@ -425,12 +413,6 @@
             <div class="member-info-content">
               <h4>Ririn Wartinah, S.Pd</h4>
               <span>Produktif Perhotelan</span>
-            </div>
-            <div class="social">
-              <a href=""><i class="icofont-twitter"></i></a>
-              <a href=""><i class="icofont-facebook"></i></a>
-              <a href=""><i class="icofont-instagram"></i></a>
-              <a href=""><i class="icofont-linkedin"></i></a>
             </div>
           </div>
         </div>
@@ -483,14 +465,14 @@
 
     <div class="container py-4">
       <div class="copyright">
-        &copy; Copyright <strong><span>E-TATIB</span></strong>. Ferry Ibnu Al Faruq
+        &copy; Copyright <strong><span>E-TATIB</span></strong>. 2022
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Created by <a href="https://github.com/Ferryibnu">Ferry Ibnu Al Faruq</a>
       </div>
     </div>
   </footer><!-- End Footer -->
