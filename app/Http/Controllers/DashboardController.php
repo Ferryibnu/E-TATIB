@@ -138,59 +138,61 @@ class DashboardController extends Controller
                 ->whereMonth('created_at', '=', Carbon::create('december')->format('m'))
                 ->count();
 
-        if(Auth::user()->level == 'admin') {
+        return view('poin.beranda', [
+        'total_pelanggar' => $total_pelanggar,
+        'cowok' => $cowok,
+        'cewek' => $cewek,
+        //ringan
+        'ringan_jan' => $ringan_jan,
+        'ringan_feb' => $ringan_feb,
+        'ringan_mar' => $ringan_mar,
+        'ringan_apr' => $ringan_apr,
+        'ringan_may' => $ringan_may,
+        'ringan_june' => $ringan_june,
+        'ringan_july' => $ringan_july,
+        'ringan_aug' => $ringan_aug,
+        'ringan_sep' => $ringan_sep,
+        'ringan_oct' => $ringan_oct,
+        'ringan_nov' => $ringan_nov,
+        'ringan_dec' => $ringan_dec,
+        //sedang
+        'sedang_jan' => $sedang_jan,
+        'sedang_feb' => $sedang_feb,
+        'sedang_mar' => $sedang_mar,
+        'sedang_apr' => $sedang_apr,
+        'sedang_may' => $sedang_may,
+        'sedang_june' => $sedang_june,
+        'sedang_july' => $sedang_july,
+        'sedang_aug' => $sedang_aug,
+        'sedang_sep' => $sedang_sep,
+        'sedang_oct' => $sedang_oct,
+        'sedang_nov' => $sedang_nov,
+        'sedang_dec' => $sedang_dec,
+        //berat
+        'berat_jan' => $berat_jan,
+        'berat_feb' => $berat_feb,
+        'berat_mar' => $berat_mar,
+        'berat_apr' => $berat_apr,
+        'berat_may' => $berat_may,
+        'berat_june' => $berat_june,
+        'berat_july' => $berat_july,
+        'berat_aug' => $berat_aug,
+        'berat_sep' => $berat_sep,
+        'berat_oct' => $berat_oct,
+        'berat_nov' => $berat_nov,
+        'berat_dec' => $berat_dec,
+        //badge
+        'badge_ringan' => $badge_ringan,
+        'badge_sedang' => $badge_sedang,
+        'badge_berat' => $badge_berat,
+        'total_siswa' => $total_siswa,
+        'total_pelanggaran' => $total_pelanggaran,
+        ]);
+   }
 
-                return view('poin.beranda', [
-                    'total_pelanggar' => $total_pelanggar,
-                    'cowok' => $cowok,
-                    'cewek' => $cewek,
-                    //ringan
-                    'ringan_jan' => $ringan_jan,
-                    'ringan_feb' => $ringan_feb,
-                    'ringan_mar' => $ringan_mar,
-                    'ringan_apr' => $ringan_apr,
-                    'ringan_may' => $ringan_may,
-                    'ringan_june' => $ringan_june,
-                    'ringan_july' => $ringan_july,
-                    'ringan_aug' => $ringan_aug,
-                    'ringan_sep' => $ringan_sep,
-                    'ringan_oct' => $ringan_oct,
-                    'ringan_nov' => $ringan_nov,
-                    'ringan_dec' => $ringan_dec,
-                    //sedang
-                    'sedang_jan' => $sedang_jan,
-                    'sedang_feb' => $sedang_feb,
-                    'sedang_mar' => $sedang_mar,
-                    'sedang_apr' => $sedang_apr,
-                    'sedang_may' => $sedang_may,
-                    'sedang_june' => $sedang_june,
-                    'sedang_july' => $sedang_july,
-                    'sedang_aug' => $sedang_aug,
-                    'sedang_sep' => $sedang_sep,
-                    'sedang_oct' => $sedang_oct,
-                    'sedang_nov' => $sedang_nov,
-                    'sedang_dec' => $sedang_dec,
-                    //berat
-                    'berat_jan' => $berat_jan,
-                    'berat_feb' => $berat_feb,
-                    'berat_mar' => $berat_mar,
-                    'berat_apr' => $berat_apr,
-                    'berat_may' => $berat_may,
-                    'berat_june' => $berat_june,
-                    'berat_july' => $berat_july,
-                    'berat_aug' => $berat_aug,
-                    'berat_sep' => $berat_sep,
-                    'berat_oct' => $berat_oct,
-                    'berat_nov' => $berat_nov,
-                    'berat_dec' => $berat_dec,
-                    //badge
-                    'badge_ringan' => $badge_ringan,
-                    'badge_sedang' => $badge_sedang,
-                    'badge_berat' => $badge_berat,
-                    'total_siswa' => $total_siswa,
-                    'total_pelanggaran' => $total_pelanggaran,
-                ]);
-        } else {
+   public function dashboardSiswa()
+    {
+        if(Auth::user()){
                 $idUser = Auth::user()->id;
                 $siswa = Siswa::where('users_id', $idUser)->first();
                 // dd($siswa->users_id);
@@ -208,7 +210,10 @@ class DashboardController extends Controller
                         'totalPoin' => $totalPoin,
                         'siswaPoin' => $siswaPoin,
                         'qrCode' => $qrCode,
-                ]);
+        ]);
+        } else {
+                return view('frontend.index');
         }
+        
     }
 }

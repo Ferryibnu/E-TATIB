@@ -53,35 +53,29 @@
           <li><a href="#faq">Q&A</a></li>
           <li><a href="#team">Team</a></li>
 
-          <?php    
-            if(Auth::user()) { 
-          ?>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#laporan">Laporan</a></li>
-          <li class="nav-item dropdown">
-            <a style="background: #eb5d1e;
-            color: #fff;
-            border-radius: 50px;
-            margin: 0 15px;
-            padding: 10px 25px;" data-toggle="dropdown" href="#">
-                <span>{{ Auth::user()->name }}</span>
-            </a>
-            <div class="dropdown-menu" style="text-align: center;">
-              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                {{ __('Logout')}}
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+          @if (Auth::user())
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#laporan">Laporan</a></li>
+            <li class="nav-item dropdown">
+              <a style="background: #eb5d1e;
+              color: #fff;
+              border-radius: 50px;
+              margin: 0 15px;
+              padding: 10px 25px;" data-toggle="dropdown" href="#">
+                  <span>{{ Auth::user()->name }}</span>
               </a>
-            </div>
-          </li>
-          <?php 
-              } else { 
-          ?>
+              <div class="dropdown-menu" style="text-align: center;">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  {{ __('Logout')}}
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+                </a>
+              </div>
+            </li>
+          @else
             <li class="get-started"><a href="{{ route('login') }}">Login</a></li>
-          <?php
-          }
-          ?>
+          @endif
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -179,10 +173,8 @@
       </div>
     </section><!-- End pelanggaran Section -->
 
-    <?php    
-      if(Auth::user()) { 
-    ?>
-    <!-- ======= profile Us Section ======= -->
+    @if (Auth::user())
+            <!-- ======= profile Us Section ======= -->
     <section id="profile" class="profile">
       <div class="container">
 
@@ -280,9 +272,8 @@
           </tbody>
         </table>
     </section><!-- End laporan Section -->
-    <?php 
-        } else { }
-    ?>
+    @endif
+
 <!-- ======= F.A.Q Section ======= -->
 <section id="faq" class="faq section-bg">
   <div class="container">
