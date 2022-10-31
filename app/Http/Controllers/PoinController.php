@@ -31,7 +31,7 @@ class PoinController extends Controller
         // dd($siswaPoin);
        
         //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
+        $badge_ringan = Poin::where('catatan', 'Panggilan Wali Kelas')->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
         $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
@@ -80,13 +80,13 @@ class PoinController extends Controller
                 $addPoin1->update();
 
             } elseif($jumlah->total  >= 30 && $jumlah->total <= 35) {
-                $addPoin1->catatan = "Peringatan ke-1";
+                $addPoin1->catatan = "Panggilan Wali Kelas";
                 $addPoin1->status = 'Belum Selesai';
                 $addPoin1->kategori = 'ringan';
                 $addPoin1->update();
 
             }elseif($jumlah->total >= 36 && $jumlah->total <= 55) {
-                $addPoin1->catatan = "Peringatan ke-2";
+                $addPoin1->catatan = "Panggilan Wali Kelas";
                 $addPoin1->status = 'Belum Selesai';
                 $addPoin1->kategori = 'ringan';
                 $addPoin1->update();
@@ -179,9 +179,12 @@ class PoinController extends Controller
             return redirect()->back();
         }
     }
-    // public function autofill(Request $request)
-    // {
-    //     $getFields = Siswa::where('nisn',$request->nisn)->first();
-    //     return json_encode($getFields);
-    // }
+    public function autofill(Request $request)
+    {
+        $getFields = Siswa::join('kelas', 'kelas.id', '=', 'kelas_id')
+                    ->where('nisn', $request->nisn)
+                    ->first();
+        // dd($getFields);
+        return response()->json($getFields);
+    }
 }

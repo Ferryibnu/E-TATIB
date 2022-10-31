@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard']);
     Route::get('/profile', [App\Http\Controllers\DashboardController::class, 'profile']);
-    // Route::post('/autofill', [App\Http\Controllers\PoinController::class, 'autofill'])->name('autofill');
+    Route::post('/autofill', [App\Http\Controllers\PoinController::class, 'autofill'])->name('autofill');
     
     Route::get('/profile/{id}', [App\Http\Controllers\SiswaController::class, 'profile']);
 

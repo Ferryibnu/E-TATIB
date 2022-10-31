@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $cewek = Siswa::where('jns_kelamin', 'P')->count();
 
         //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Peringatan ke-1', 'Peringatan ke-2'])->count();
+        $badge_ringan = Poin::where('catatan', 'Panggilan Wali Kelas')->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
         $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa

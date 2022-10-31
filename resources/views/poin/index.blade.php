@@ -60,34 +60,28 @@
                     <!-- Tab 1 -->
 
                     <div class="form-row">
-                      <div class="form-group col-md-6" >
+                      <div class="form-group col-md-5" >
                         <label for="inputStatus">NISN</label>
-                        <input id="nisn" type="text" class="form-control" name="nisn" required>
+                        <input id="nisn" type="text" class="form-control" name="nisn"  onkeyup="nisnSiswa()" required>
                       </div>
 
-                      <div class="form-group col-md-6">
-                        <label for="inputStatus">Nama Pencatat</label>
-                        <input id="pencatat" type="text" class="form-control" name="pencatat">
-                      </div>
-                    </div>
-
-                      {{-- <div class="form-group col-md-6" >
+                      <div class="form-group col-md-7" >
                         <label for="inputStatus">Nama</label>
-                        <input id="nama" type="text" class="form-control" name="nama">
+                        <input id="nama" type="text" class="form-control" name="nama" disabled>
                       </div>
 
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-4" >
                         <label for="inputStatus">Kelas</label>
-                        <input id="kelas" type="text" class="form-control" name="kelas">
+                        <input id="kelas" type="text" class="form-control" name="kelas" disabled>
                       </div>
 
                       <div class="form-group col-md-8">
                         <label for="inputStatus">Nama Pencatat</label>
                         <input id="pencatat" type="text" class="form-control" name="pencatat">
                       </div>
-                    </div> --}}
+                    </div>
 
                     <div class="form-row">
                       <div class="form-group col-md-12" >
@@ -300,25 +294,53 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
-{{-- <script>
-$("#nisn").focusout(function(e){
-  // alert($(this).val());
-  var nisn = $('#nisn').val();
-  $.ajax({
-      type: "POST",
+
+{{-- SCAN QR CODE --}}
+<script src="{{ asset ('js/html5-qrcode.min.js') }}" type="text/javascript"></script>
+
+{{-- //HTML 5 QR SCANNER --}}
+<script>
+  function onScanSuccess(decodedText, decodedResult) {
+    
+    // handle the scanned code as you like, for example:
+    // console.log(`Code matched = ${decodedText}`, decodedResult);
+    $("#nisn").val(decodedText)
+    $('#tambahModal').modal('show')
+    $('#scanQr').modal('hide');
+    var nisn = $('#nisn').val();
+    console.log(nisn);
+    $.ajax({
       url: "{{route('autofill')}}",
-      data: {'nisn':nisn},
-      dataType: 'json',
-      success : function(e) {
-              $('.flash-message').html('');
-              r = $.parseJSON(e); //convert json to array
-              
-      console.log(r.nama);
-              $('#nama').val(r.nama); 
-              $('#kelas').val(r.kelas); 
-      }
-  })
-});
-</script> --}}
+      data: { nisn: +nisn, _token: '{{csrf_token()}}' },
+      method: 'post',
+        success: function(data)
+        {
+          $("#nama").val(data.nama)
+          $("#kelas").val(data.kelas);
+        }
+    });
+  }
+
+  let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader", { fps: 10, qrbox: 250 });
+  html5QrcodeScanner.render(onScanSuccess);
+</script>
+
+<script>
+ function nisnSiswa() {
+    var nisn = $('#nisn').val();
+    console.log(nisn);
+    $.ajax({
+      url: "{{route('autofill')}}",
+      data: { nisn: +nisn, _token: '{{csrf_token()}}' },
+      method: 'post',
+        success: function(data)
+        {
+          $("#nama").val(data.nama),
+          $("#kelas").val(data.kelas);
+        }
+    });
+  }
+</script>
 <!-- /.content -->
 @endsection

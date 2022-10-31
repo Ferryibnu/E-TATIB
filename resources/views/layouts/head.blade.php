@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/gif/png" href="{{ asset('img/icon.png') }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>E-TATIB SMKN 1 SURABAYA</title>
   <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -257,36 +258,10 @@
 <script src="{{asset('AdminLTE/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('AdminLTE/dist/js/demo.js')}}"></script>
-{{-- SCAN QR CODE --}}
-<script src="{{ asset ('js/html5-qrcode.min.js') }}" type="text/javascript"></script>
 <!-- ChartJS -->
 <script src="{{asset('AdminLTE/plugins/chart.js/Chart.min.js')}}"></script>
-<!-- dropzonejs -->
-<script src="{{asset('AdminLTE/plugins/dropzone/min/dropzone.min.js')}}"></script>
 <!-- Select2 -->
 <script src="{{asset('AdminLTE/plugins/select2/js/select2.full.min.js')}}"></script>
-
-<script>
-  function onScanSuccess(decodedText, decodedResult) {
-    
-    // handle the scanned code as you like, for example:
-    // console.log(`Code matched = ${decodedText}`, decodedResult);
-    $("#nisn").val(decodedText)
-    $('#tambahModal').modal('show')
-    $('#scanQr').modal('hide')
-
-  }
-
-  function onScanFailure(error) {
-    // handle scan failure, usually better to ignore and keep scanning.
-    // for example:
-    console.warn(`Code scan error = ${error}`);
-  }
-
-  let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250 });
-  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-</script>
 
 @include('sweetalert::alert')
 </body>
