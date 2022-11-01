@@ -96,16 +96,10 @@ class PenangananController extends Controller
 
     public function edit($id){
         $poin = Poin::find($id);
-        if($poin->status == 'Belum Selesai'){
-            $poin->status = 'Selesai';
-            $poin->update();
+        $poin->status = 'Selesai';
+        $poin->update();
 
-            Alert::success('Sukses', 'Status Pelanggaran Berhasil Diupdate');
-            return redirect()->back();
-        } else {
-            Alert::error('Gagal', 'Status Pelanggaran Sudah Berstatus Sukses');
-            return redirect()->back();
-        }
-        
+        Alert::success('Sukses', 'Status Pelanggaran Berhasil Diupdate');
+        return redirect()->back();
     }
 }

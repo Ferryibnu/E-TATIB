@@ -49,7 +49,7 @@
               <div class="modal-dialog " role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggar</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Catat Pelanggaran</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -130,9 +130,9 @@
                 <th>No</th>
                 <th>NISN</th>
                 <th>Nama</th>
+                <th>Kelas</th>
                 <th>Pelanggaran</th>
                 <th>Poin</th>
-                <th>Pencatat</th>
                 <th>Waktu Pelanggaran</th>
                 <th>Aksi</th>
               </tr>
@@ -143,9 +143,9 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{$s->siswa->nisn}}</td>
                 <td>{{$s->siswa->nama}}</td>
+                <td>{{ $s->siswa->kelas->kelas }}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
-                <td>{{ $s->pencatat }}</td>
                 <td>{{ date('d-m-Y / H:i:s', strtotime($s->created_at)) }}</td>
                 <td>
                   <a class="btn btn-sm btn-secondary" title="Preview" href="/siswa/profile/{{$s->siswa_id}}"><i class="fa fa-list"></i></a>
@@ -242,7 +242,7 @@
         <i class="fa fa-plus my-float"></i>
       </a>
       <div class="drop-content">
-        <a data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Pelanggar">Tambah Pelanggar</a>
+        <a data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Pelanggar">Catat Pelanggaran</a>
         <a data-toggle="modal" data-target="#scanQr" href="#" title="Scan QR Code">Scan QR Siswa</a>
         <a data-toggle="modal" data-target="#ModalReset" href="#" title="Reset Data">Reset Data Pelanggaran</a>
       </div>

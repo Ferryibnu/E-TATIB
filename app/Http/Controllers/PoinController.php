@@ -181,6 +181,7 @@ class PoinController extends Controller
     }
     public function autofill(Request $request)
     {
+        // $getFields = Siswa::where('nisn',$request->nisn)->first();
         $getFields = Siswa::join('kelas', 'kelas.id', '=', 'kelas_id')
                     ->where('nisn', $request->nisn)
                     ->first();

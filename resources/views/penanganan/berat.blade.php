@@ -53,10 +53,18 @@
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $t->total }}</td>
                 <td>{{ $s->catatan }}</td>
-                <td>{{ $s->status }}</td>
+                <td>
+                  @if ($s->status == "Belum Selesai")
+                    <span class="badge badge-danger">{{ $s->status }}</span>
+                  @else
+                    <span class="badge badge-success">{{ $s->status }}</span>
+                  @endif 
+                </td>
                 <td>{{ date('d-m-Y / H:i:s', strtotime($s->created_at)) }}</td>
                 <td>
+                  @if ($s->status == "Belum Selesai")
                     <button type="button" title="Edit" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#ModalEdit{{$s->id}}"><i class="fa fa-edit"></i></button>
+                  @endif  
                 </td>
               </tr>
 
