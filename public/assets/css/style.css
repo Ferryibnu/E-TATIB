@@ -1254,3 +1254,11 @@ section {
     padding: 3px 0;
   }
 }
+
+@media (max-width: 575px) {
+  .dropdown-menu{
+    background-color: rgb(78, 64, 57);
+    /* border-inline-color: rgb(78, 64, 57); */
+    border-color: rgb(78, 64, 57);
+  }
+}

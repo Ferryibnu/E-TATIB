@@ -204,7 +204,7 @@ class DashboardController extends Controller
                 ->first();
 
                 //Membuat QR Code
-                $qrCode = QrCode::size(200)->generate($siswa->nisn);
+                $qrCode = QrCode::size(300)->generate($siswa->nisn);
                 return view('frontend.index', [
                         'siswa' => $siswa,
                         'totalPoin' => $totalPoin,

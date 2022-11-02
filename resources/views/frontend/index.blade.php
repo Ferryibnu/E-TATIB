@@ -93,7 +93,7 @@
           <a href="#about" class="btn-get-started scrollto">Apa itu E-TATIB ?</a>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <img src="assets/img/hero-img.svg" class="img-fluid animated" alt="">
+          <img src="{{asset('img/tatib.svg')}}" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@
           <div class="col-lg-6 pt-5 pt-lg-0">
             <h3 data-aos="fade-up">Apa itu E-TATIB?</h3>
             <p data-aos="fade-up" data-aos-delay="100">
-              E-TATIB adalah Sistem Informasi pencatatan poin pelanggaran siswa, saat siswa melakukan pelanggaran maka akan dicatat oleh petugas Tatib yang bertugas. Siswa diwajibkan untuk menunjukkan unique <b>QR Code</b> mereka pada petugas. Setelah itu siswa juga bisa melihat <b>Laporan Pelanggaran</b> yang telah mereka lakukan. 
+              E-TATIB adalah Sistem Informasi pencatatan poin pelanggaran siswa, saat siswa melakukan pelanggaran maka akan dicatat oleh Tim Tatib yang bertugas. Siswa diwajibkan untuk menunjukkan unique <b>QR Code</b> mereka pada TIm Tatib. Setelah itu siswa juga bisa melihat <b>Laporan Pelanggaran</b> yang telah mereka lakukan. 
             </p>
             <div class="row">
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
@@ -185,7 +185,7 @@
 
         <div class="row">
 
-          <div class="col-10 offset-1" style="margin-top: -47px" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-12" style="margin-top: -47px" data-aos="fade-up" data-aos-delay="100">
             <div class="info">
               <div class="address">
                 <i class="icofont-id-card"></i>
