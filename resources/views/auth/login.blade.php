@@ -8,7 +8,8 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="{{asset('css/login.css')}}" />
-    <title>Sign in & Sign up Form</title>
+    <link rel="icon" type="image/gif/png" href="{{ asset('img/icon.png') }}">
+    <title>E-TATIB SMKN 1 SURABAYA</title>
   </head>
   <body>
     <div class="container">
