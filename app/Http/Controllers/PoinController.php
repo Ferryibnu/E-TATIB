@@ -9,6 +9,7 @@ use \App\Models\Siswa;
 use App\Models\Poin;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PoinController extends Controller
 {
@@ -64,7 +65,7 @@ class PoinController extends Controller
             $addPoin = new Poin;
             $addPoin->siswa_id = $getNRP->id;
             $addPoin->pelanggaran_id = $request->pelanggaran_id;
-            $addPoin->pencatat = $request->pencatat;
+            $addPoin->pencatat = Auth::user()->name;
             $addPoin->save();
 
             $jumlah = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')

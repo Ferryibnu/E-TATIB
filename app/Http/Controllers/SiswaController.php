@@ -72,6 +72,7 @@ class SiswaController extends Controller
             $addUser = new User;
             $addUser->name = $request->nama;
             $addUser->email = $request->nisn;
+            $addUser->level = "user";
             $addUser->password = bcrypt("TATIB123");
             $addUser->save();
 

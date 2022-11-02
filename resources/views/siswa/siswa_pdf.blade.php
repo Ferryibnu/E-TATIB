@@ -116,14 +116,14 @@
   <center>
     <p style="font-size: 12px; position:fixed; right:1px;"> Surabaya, {{date('d-m-Y', strtotime($tahun))}}
       <br>
-      Guru Tatib
+      Tim Tatib
       <br>
       <br>
       <br>
       <br>
       <br>
       <br>
-    (............................................)
+    ( {{Auth::user()->name}} )
   </p>
   </center>
   

@@ -27,6 +27,7 @@ class ImportSiswa implements ToModel, WithHeadingRow
             $user = new User;
             $user->email = $row['nisn'];
             $user->name = $row['nama'];
+            $user->level = "user";
             $user->password = bcrypt("TATIB123");
             $user->save();
             

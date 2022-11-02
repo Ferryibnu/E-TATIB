@@ -192,7 +192,7 @@ class DashboardController extends Controller
 
    public function dashboardSiswa()
     {
-        if(Auth::user()){
+        if(Auth::user() && Auth::user()->level == "user"){
                 $idUser = Auth::user()->id;
                 $siswa = Siswa::where('users_id', $idUser)->first();
                 // dd($siswa->users_id);

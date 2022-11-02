@@ -79,7 +79,7 @@
 
                       <div class="form-group col-md-8">
                         <label for="inputStatus">Nama Pencatat</label>
-                        <input id="pencatat" type="text" class="form-control" name="pencatat">
+                        <input id="pencatat" type="text" class="form-control" name="pencatat" value="{{Auth::user()->name}}" disabled>
                       </div>
                     </div>
 

@@ -53,7 +53,7 @@
           <li><a href="#faq">Q&A</a></li>
           <li><a href="#team">Team</a></li>
 
-          @if (Auth::user())
+          @if (Auth::user() && Auth::user()->level == "user")
             <li><a href="#profile">Profile</a></li>
             <li><a href="#laporan">Laporan</a></li>
             <li class="nav-item dropdown">
@@ -73,6 +73,25 @@
                 </a>
               </div>
             </li>
+          @elseif (Auth::user() && Auth::user()->level == "admin")
+          <li><a href="/dashboard">Dashboard Admin</a></li>
+          <li class="nav-item dropdown">
+            <a style="background: #eb5d1e;
+            color: #fff;
+            border-radius: 50px;
+            margin: 0 15px;
+            padding: 10px 25px;" data-toggle="dropdown" href="#">
+                <span>{{ Auth::user()->name }}</span>
+            </a>
+            <div class="dropdown-menu" style="text-align: center;">
+              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout')}}
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+              </a>
+            </div>
+          </li>
           @else
             <li class="get-started"><a href="{{ route('login') }}">Login</a></li>
           @endif
@@ -90,7 +109,11 @@
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1">
           <h1>E-TATIB</h1>
           <h2>Sistem Informasi Pencatatan Pelanggaran Siswa SMKN 1 Surabaya</h2>
-          <a href="#about" class="btn-get-started scrollto">Apa itu E-TATIB ?</a>
+          @if (Auth::user())
+            <a href="#about" class="btn-get-started scrollto">Apa itu E-TATIB ?</a>
+          @else
+            <a href="{{ route('login') }}" class="btn-get-started scrollto">Login E-TATIB</a>
+          @endif
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
           <img src="{{asset('img/tatib.svg')}}" class="img-fluid animated" alt="">
@@ -173,7 +196,7 @@
       </div>
     </section><!-- End pelanggaran Section -->
 
-    @if (Auth::user())
+    @if (Auth::user() && Auth::user()->level == "user")
             <!-- ======= profile Us Section ======= -->
     <section id="profile" class="profile">
       <div class="container">

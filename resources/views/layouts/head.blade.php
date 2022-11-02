@@ -39,7 +39,7 @@
       font-size: 24px;
       background-color: transparent;
       text-transform: uppercase;
-      color: rgb(0, 123, 255);
+      color: rgb(3, 82, 167);
       font-weight: bold;
       box-shadow: inset 0 0 0 rgb(0, 123, 255);
       transition: 0.6s ease-out;
