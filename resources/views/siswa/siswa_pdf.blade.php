@@ -123,7 +123,8 @@
       <br>
       <br>
       <br>
-    ( {{Auth::user()->name}} )
+      <br>
+    (<b style="text-decoration: underline"> {{Auth::user()->name}} </b>)
   </p>
   </center>
   

@@ -118,8 +118,21 @@
     <ul class="navbar-nav ml-auto mb-3">
 	    <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-            <span>{{ Auth::user()->name }}</span>
-            <img src="{{ asset('img/user.png') }}" style="width: 40px" alt="User Image">
+            <span><strong>{{ Auth::user()->name }} </strong></span>
+            @if ( Auth::user()->id == 1)
+              <img src="{{ asset('img/guru1.jpg') }}" style="width: 40px; border-radius: 50%;" alt="User Image">
+            @elseif( Auth::user()->id == 2)
+              <img src="{{ asset('img/guru2.jpg') }}" style="width: 40px; border-radius: 50%;" alt="User Image">
+            @elseif( Auth::user()->id == 3)
+              <img src="{{ asset('img/guru3.jpg') }}" style="width: 40px; border-radius: 50%;" alt="User Image">
+            @elseif( Auth::user()->id == 4)
+              <img src="{{ asset('img/guru4.jpg') }}" style="width: 40px; border-radius: 50%;" alt="User Image">
+            @elseif( Auth::user()->id == 5)
+              <img src="{{ asset('img/zain.png') }}" style="width: 40px; border-radius: 50%;" alt="User Image">
+            @else
+              <img src="{{ asset('img/yunita.png') }}" style="width: 40px; border-radius: 50%;" alt="User Image">
+            @endif
+            {{-- <img src="{{ asset('img/user.png') }}" style="width: 40px" alt="User Image"> --}}
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
           <a class="dropdown-item dropdown-footer" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -149,7 +162,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="/dashboard" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fa fa-home"></i>
               <p>
                 Dashboard
               </p>

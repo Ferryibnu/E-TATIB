@@ -41,7 +41,7 @@
     <div class="container-fluid d-flex">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href=""><span>E-TATIB</span></a></h1>
+        <h1 class="text-light"><a href=""><span>E-TATIB SMKN 1</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -223,13 +223,19 @@
               </div>
 
               <div class="address">
+                <i class='bx bxs-graduation'></i>
+                <h4>Kelas:</h4>
+                <p>{{$siswa->kelas->kelas}}</p>
+              </div>
+
+              <div class="address">
                 <i class="icofont-book"></i>
                 <h4>Agama:</h4>
                 <p>{{$siswa->agama}}</p>
               </div>
 
               <div class="address">
-                @if($siswa->jns_kelamin == 'L') <i class="icofont-user-male"></i> @else <i class="icofont-user-female"></i> @endif
+                @if($siswa->jns_kelamin == 'L') <i class="icofont-student-alt"></i> @else <i class="icofont-student"></i> @endif
                 <h4>Jenis Kelamin:</h4>
                 <p>@if($siswa->jns_kelamin == 'L') Laki-laki @else Perempuan @endif</p>
               </div>
@@ -378,7 +384,7 @@
 
     <div class="row">
 
-      <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
         <div class="member">
           <img src="img/guru1.jpg" class="img-fluid" alt="">
           <div class="member-info">
@@ -396,7 +402,7 @@
         </div>
       </div>
 
-      <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
         <div class="member">
           <img src="img/guru2.jpg" class="img-fluid" alt="">
           <div class="member-info">
@@ -408,7 +414,7 @@
         </div>
       </div>
 
-      <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
         <div class="member">
           <img src="img/guru4.jpg" class="img-fluid" alt="">
           <div class="member-info">
@@ -420,13 +426,35 @@
         </div>
       </div>
 
-      <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
         <div class="member">
           <img src="img/guru3.jpg" class="img-fluid" alt="">
           <div class="member-info">
             <div class="member-info-content">
               <h4>Ririn Wartinah, S.Pd</h4>
               <span>Produktif Perhotelan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+        <div class="member">
+          <img src="img/zain.png" class="img-fluid" alt="">
+          <div class="member-info">
+            <div class="member-info-content">
+              <h4>Zainuri, S.Pd.I</h4>
+              <span>Pendidikan Agama Islam</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+        <div class="member">
+          <img src="img/yunita.png" class="img-fluid" alt="">
+          <div class="member-info">
+            <div class="member-info-content">
+              <h4>Yunitaningrum Dwi Candrarini,S.T</h4>
+              <span>Fisika Kimia dan Seni Budaya</span>
             </div>
           </div>
         </div>

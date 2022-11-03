@@ -21,8 +21,14 @@ class DatabaseSeeder extends Seeder
             'level' => 'admin',
             'password' => bcrypt('ADMIN123')
         ]);
+
+        User::create([
+            'name' => 'Cheby Marse',
+            'email' => '198103132008011006',
+            'level' => 'admin',            
+            'password' => bcrypt('ADMIN123')
+        ]);
         
-        //Seed User
         User::create([
             'name' => 'Sunardi, S.Pd',
             'email' => '196709052008011010',
@@ -38,37 +44,30 @@ class DatabaseSeeder extends Seeder
         ]);
         
         User::create([
-            'name' => 'Cheby Marse',
-            'email' => '198103132008011006',
-            'level' => 'admin',            
+            'name' => 'Zainuri, S.Pd.I',
+            'email' => 'Zainuri',
+            'level' => 'admin',
             'password' => bcrypt('ADMIN123')
         ]);
-        
+
+        User::create([
+            'name' => 'Yunitaningrum Dwi Candrarini,S.T',
+            'email' => 'Yunitaningrum',
+            'level' => 'admin',
+            'password' => bcrypt('ADMIN123')
+        ]);
+
         User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'level' => 'admin',
             'password' => bcrypt('admin')
         ]);
-        
-        // User::create([
-        //     'name' => 'admin',
-        //     'email' => 'admin@gmail.com',
-        //     'level' => 'admin',
-        //     'password' => bcrypt('admin')
-        // ]);
-
-        User::create([
-            'name' => 'user',
-            'email' => 'user@gmail.com',
-            'level' => 'user',
-            'password' => bcrypt('user')
-        ]);
 
         $this->call([
             KelasSeeder::class,
             PelanggaranSeeder::class,
-            SiswaSeeder::class,
+            // SiswaSeeder::class,
         ]);
     }
 }
