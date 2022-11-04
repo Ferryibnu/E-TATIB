@@ -161,7 +161,11 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link active">
+            @if (Route::current()->getName() == 'dashboard')
+              <a href="{{route('dashboard')}}" class="nav-link active">
+            @else
+              <a href="{{route('dashboard')}}"  class="nav-link">
+            @endif
               <i class="nav-icon fa fa-home"></i>
               <p>
                 Dashboard
@@ -169,16 +173,24 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/siswa" class="nav-link">
+            @if (Route::current()->getName() == 'siswa')
+              <a href="{{route('siswa')}}" class="nav-link active">
+            @else
+              <a href="{{route('siswa')}}"  class="nav-link">
+            @endif
               <i class="nav-icon fas fa-users"></i>
-              <span class="badge badge-info right">{{ $total_siswa }}</span>
+              <span class="badge badge-success right">{{ $total_siswa }}</span>
               <p>
                 Siswa
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/poin" class="nav-link">
+            @if (Route::current()->getName() == 'catat')
+              <a href="{{route('catat')}}" class="nav-link active">
+            @else
+              <a href="{{route('catat')}}"  class="nav-link">
+            @endif
               <i class="nav-icon fas fa-edit"></i>
               <span class="badge badge-danger right">{{ $total_pelanggaran }}</span>
               <p>
@@ -187,7 +199,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            @if (Route::current()->getName() == 'ringan' || Route::current()->getName() == 'sedang' || Route::current()->getName() == 'berat')
+              <a href="#" class="nav-link active">
+            @else
+              <a href="#"  class="nav-link">
+            @endif
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Penanganan Lanjut
@@ -196,17 +212,17 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/ringan" class="nav-link">
+                <a href="{{route('ringan')}}" class="nav-link">
                   <i class="far fa-circle nav-icon text-success"></i>
                   <span class="badge badge-success right">{{ $badge_ringan }}</span>
                   <p>Kategori Ringan</p>
                 </a>
-                <a href="/sedang" class="nav-link">
+                <a href="{{route('sedang')}}" class="nav-link">
                   <i class="far fa-circle nav-icon text-warning"></i>
                   <span class="badge badge-warning right">{{ $badge_sedang }}</span>
                   <p>Kategori Sedang</p>
                 </a>
-                <a href="/berat" class="nav-link">
+                <a href="{{route('berat')}}" class="nav-link">
                   <i class="far fa-circle nav-icon text-danger"></i>
                   <span class="badge badge-danger right">{{ $badge_berat }}</span>
                   <p>Kategori Berat</p>
@@ -215,7 +231,11 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="/riwayat" class="nav-link">
+            @if (Route::current()->getName() == 'riwayat')
+              <a href="{{route('riwayat')}}" class="nav-link active">
+            @else
+              <a href="{{route('riwayat')}}"  class="nav-link">
+            @endif
               <i class="nav-icon fas fa-clock"></i>
               <p>
                 Riwayat Pelanggar

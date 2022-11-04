@@ -55,7 +55,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form action="/poin/tambah/proses" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('catat_pelanggaran')}}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <!-- Tab 1 -->
 

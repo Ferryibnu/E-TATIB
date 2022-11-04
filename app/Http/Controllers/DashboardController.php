@@ -138,6 +138,9 @@ class DashboardController extends Controller
                 ->whereMonth('created_at', '=', Carbon::create('december')->format('m'))
                 ->count();
 
+                // $currentURL = url()->current();
+    
+                // dd($currentURL);
         return view('poin.beranda', [
         'total_pelanggar' => $total_pelanggar,
         'cowok' => $cowok,

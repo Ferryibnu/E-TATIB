@@ -22,7 +22,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form action="/siswa/tambah/proses" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('tambah_siswa')}}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <!-- Tab 1 -->
 

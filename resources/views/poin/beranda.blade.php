@@ -1,6 +1,6 @@
 @extends('layouts.head')
 @section('konten')
-<section class="content">
+<section class="content active">
   <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <div class="row mt-3">
@@ -15,7 +15,7 @@
           <div class="icon">
             <i class="fa fa-users"></i>
           </div>
-          <a href="/siswa" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{route('siswa')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -30,7 +30,7 @@
           <div class="icon">
             <i class="fa fa-file"></i>
           </div>
-          <a href="/poin" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{route('catat')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->

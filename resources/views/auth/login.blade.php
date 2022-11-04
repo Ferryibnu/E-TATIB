@@ -46,7 +46,7 @@
           <div class="content">
             <h3 >E-TATIB</h3>
             <p>
-              Lakukan login agar mendapatkan <strong>QR Code</strong> dan melihat <strong>Profil</strong> siswa beserta pelanggaran yang dilakukan.
+              Silahkan login untuk mendapatkan <strong>QR Code</strong> dan melihat <strong>Profil</strong> siswa beserta pelanggaran yang dilakukan.
             </p>
           </div>
           <img  src="{{asset('img/login.svg')}}" class="image" alt="" />
