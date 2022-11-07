@@ -7,6 +7,7 @@ use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
 use \App\Models\Siswa;
 use App\Models\Poin;
+use App\Models\Tindak;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,7 @@ class PoinController extends Controller
         // dd($siswaPoin);
        
         //Badge
-        $badge_ringan = Poin::where('catatan', 'Panggilan Wali Kelas')->count();
+        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
         $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
@@ -81,45 +82,52 @@ class PoinController extends Controller
                 $addPoin1->update();
 
             } elseif($jumlah->total  >= 30 && $jumlah->total <= 35) {
-                $addPoin1->catatan = "Panggilan Wali Kelas";
+                $tindak = Tindak::find(1);
+                $addPoin1->catatan = $tindak->tindak_lanjut;
                 $addPoin1->status = 'Belum Selesai';
-                $addPoin1->kategori = 'ringan';
+                $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
 
             }elseif($jumlah->total >= 36 && $jumlah->total <= 55) {
-                $addPoin1->catatan = "Panggilan Wali Kelas";
+                $tindak = Tindak::find(2);
+                $addPoin1->catatan = $tindak->tindak_lanjut;
                 $addPoin1->status = 'Belum Selesai';
-                $addPoin1->kategori = 'ringan';
+                $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 56 && $jumlah->total <= 75){
-                $addPoin1->catatan = "Panggilan Orang Tua ke-1";
+                $tindak = Tindak::find(3);
+                $addPoin1->catatan = $tindak->tindak_lanjut;
                 $addPoin1->status = 'Belum Selesai';
-                $addPoin1->kategori = 'sedang';
+                $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 76 && $jumlah->total <= 95){
-                $addPoin1->catatan = "Panggilan Orang Tua ke-2";
+                $tindak = Tindak::find(4);
+                $addPoin1->catatan = $tindak->tindak_lanjut;
                 $addPoin1->status = 'Belum Selesai';
-                $addPoin1->kategori = 'sedang';
+                $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
 
             } elseif($jumlah->total >= 96 && $jumlah->total <= 149){
-                $addPoin1->catatan = "Panggilan Orang Tua ke-3";
+                $tindak = Tindak::find(5);
+                $addPoin1->catatan = $tindak->tindak_lanjut;
                 $addPoin1->status = 'Belum Selesai';
-                $addPoin1->kategori = 'sedang';
+                $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
                 
             } elseif($jumlah->total >= 150 && $jumlah->total <= 249){
-                $addPoin1->catatan = "Skorsing";
+                $tindak = Tindak::find(6);
+                $addPoin1->catatan = $tindak->tindak_lanjut;
                 $addPoin1->status = 'Belum Selesai';
-                $addPoin1->kategori = 'berat';
+                $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
 
             } else {
-                $addPoin1->catatan = "Dikeluarkan dari Sekolah";
+                $tindak = Tindak::find(7);
+                $addPoin1->catatan = $tindak->tindak_lanjut;
                 $addPoin1->status = 'Belum Selesai';
-                $addPoin1->kategori = 'berat';
+                $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
             }
             Alert::success('Sukses Tambah', 'Data Berhasil Ditambahkan');

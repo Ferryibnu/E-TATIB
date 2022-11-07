@@ -15,31 +15,31 @@ class TindakSeeder extends Seeder
     public function run()
     {
         DB::table('tindak')->insert([
-            'tindak_lanjut' => 'Panggilan Wali Kelas ke 1',
+            'tindak_lanjut' => 'Panggilan Wali Kelas ke-1',
             'kategori' => 'ringan',
             
         ]);
 
         DB::table('tindak')->insert([
-            'tindak_lanjut' => 'Panggilan Wali Kelas  ke 2',
+            'tindak_lanjut' => 'Panggilan Wali Kelas ke-2',
             'kategori' => 'ringan',
             
         ]);
 
         DB::table('tindak')->insert([
-            'tindak_lanjut' => 'Panggilan Orang Tua ke 1',
+            'tindak_lanjut' => 'Panggilan Orang Tua ke-1',
             'kategori' => 'sedang',
             
         ]);
 
         DB::table('tindak')->insert([
-            'tindak_lanjut' => 'Panggilan Orang Tua ke 2',
+            'tindak_lanjut' => 'Panggilan Orang Tua ke-2',
             'kategori' => 'sedang',
             
         ]);
 
         DB::table('tindak')->insert([
-            'tindak_lanjut' => 'Panggilan Orang Tua ke 3',
+            'tindak_lanjut' => 'Panggilan Orang Tua ke-3',
             'kategori' => 'sedang',
             
         ]);

@@ -257,9 +257,11 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('pelanggaran')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon text-dark"></i>
                   <p>Data Pelanggaran</p>
                 </a>
                 <a href="{{route('tindak')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon text-dark"></i>
                   <p>Tindak Lanjut</p>
                 </a>
               </li>

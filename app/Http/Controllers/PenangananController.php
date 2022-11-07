@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class PenangananController extends Controller
 {
     public function ringan(){
-        $ringan = Poin::where('catatan', 'Panggilan Wali Kelas')->get();
+        $ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->get();
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
         ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
@@ -19,7 +19,7 @@ class PenangananController extends Controller
         ->get();
 
         //Badge
-        $badge_ringan = Poin::where('catatan', 'Panggilan Wali Kelas')->count();
+        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
         $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
@@ -47,7 +47,7 @@ class PenangananController extends Controller
         ->get();
         
         //Badge
-        $badge_ringan = Poin::where('catatan', 'Panggilan Wali Kelas')->count();
+        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
         $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
@@ -76,7 +76,7 @@ class PenangananController extends Controller
 
         // dd($berat);
         //Badge
-        $badge_ringan = Poin::where('catatan', 'Panggilan Wali Kelas')->count();
+        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
         $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
         $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
         $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
