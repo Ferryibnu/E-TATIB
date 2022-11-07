@@ -113,25 +113,25 @@ class PelanggaranSeeder extends Seeder
         DB::table('pelanggaran')->insert([
             'pelanggaran' => 'Memalsukan surat izin masuk/keluar sekolah',
             'poin' => 70,
-            'kategori' => 2,
+            
         ]);
 
         DB::table('pelanggaran')->insert([
             'pelanggaran' => 'Meloncat jendela dan pagar sekolah',
             'poin' => 80,
-            'kategori' => 2,
+            
         ]);
 
         DB::table('pelanggaran')->insert([
             'pelanggaran' => 'Merusak sarana dan prasarana sekolah.',
             'poin' => 80,
-            'kategori' => 2,
+            
         ]);
 
         DB::table('pelanggaran')->insert([
             'pelanggaran' => 'Mengancam mengintimidasi / bullying teman sekelas / teman sekolah',
             'poin' => 100,
-            'kategori' => 2,
+            
         ]);
 
         DB::table('pelanggaran')->insert([

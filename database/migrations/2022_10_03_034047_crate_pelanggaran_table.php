@@ -16,7 +16,7 @@ class CratePelanggaranTable extends Migration
         Schema::create('pelanggaran', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pelanggaran')->nullable();
-            $table->string('penghargaan')->nullable();
+            // $table->string('penghargaan')->nullable();
             $table->integer('poin')->nullable();
             $table->integer('kategori')->nullable();
             $table->timestamps();

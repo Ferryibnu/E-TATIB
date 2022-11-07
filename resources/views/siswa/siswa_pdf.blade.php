@@ -46,7 +46,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-4"> <pre>Tempat, Tanggal Lahir  : {{$siswa->tempat_lahir}}, {{isset($siswa->tgl_lahir) ? date('d-m-Y', strtotime($siswa->tgl_lahir)) : ''}}</pre></div>
+        <div class="col-md-4"> <pre>Tempat, Tanggal Lahir  : {{$siswa->tempat_lahir}}, {{isset($siswa->tgl_lahir) ? date('d F Y', strtotime($siswa->tgl_lahir)) : ''}}</pre></div>
       </div>
 
       <div class="row">
@@ -86,7 +86,7 @@
         <td>{{$p->pelanggaran->pelanggaran}}</td>
         <td>{{$p->pelanggaran->poin}}</td>
         <td>{{$p->pencatat}}</td>
-        <td>{{$p->created_at}}</td>
+        <td>{{date('d-m-Y H:i:s', strtotime($p->created_at))}}</td>
       </tr>
       @endforeach
     </tbody>
@@ -114,17 +114,16 @@
   </table>
 
   <center>
-    <p style="font-size: 12px; position:fixed; right:1px;"> Surabaya, {{date('d-m-Y', strtotime($tahun))}}
+    <p style="font-size: 12px; position:fixed; right:1px;"> Surabaya, {{date('d F Y', strtotime($tahun))}}
       <br>
-      Tim Tatib
-      <br>
-      <br>
+      Koordinator Tim Tatib
       <br>
       <br>
       <br>
       <br>
       <br>
-    (<b style="text-decoration: underline"> {{Auth::user()->name}} </b>)
+      <br>
+      <br>
+    (<b style="text-decoration: underline"> {{$tim->name}} </b>)
   </p>
   </center>
-  

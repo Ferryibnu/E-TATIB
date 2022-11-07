@@ -238,9 +238,32 @@
             @endif
               <i class="nav-icon fas fa-clock"></i>
               <p>
-                Riwayat Pelanggar
+                Riwayat Pelanggaran
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            @if (Route::current()->getName() == 'pelanggaran' || Route::current()->getName() == 'tindak')
+              <a href="#" class="nav-link active">
+            @else
+              <a href="#"  class="nav-link">
+            @endif
+              <i class="nav-icon fas fa-database"></i>
+              <p>
+                Data Master
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('pelanggaran')}}" class="nav-link">
+                  <p>Data Pelanggaran</p>
+                </a>
+                <a href="{{route('tindak')}}" class="nav-link">
+                  <p>Tindak Lanjut</p>
+                </a>
+              </li>
+            </ul>
           </li>
           
         </ul>

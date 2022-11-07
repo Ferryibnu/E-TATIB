@@ -24,7 +24,7 @@
 
               <div class="row ml-5">
                 <div class="col-md-4"> Tempat, Tanggal Lahir</div>
-                <div class="col-md-8"> :&emsp;{{$siswa->tempat_lahir}} {{isset($siswa->tgl_lahir) ? ', '.date('d-m-Y', strtotime($siswa->tgl_lahir)) : ''}}</div>
+                <div class="col-md-8"> :&emsp;{{$siswa->tempat_lahir}} {{isset($siswa->tgl_lahir) ? ', '.date('d F Y', strtotime($siswa->tgl_lahir)) : ''}}</div>
               </div>
               <hr>
 
@@ -87,7 +87,7 @@
                   <td>{{$p->pelanggaran->pelanggaran}}</td>
                   <td>{{$p->pelanggaran->poin}}</td>
                   <td>{{$p->pencatat}}</td>
-                  <td>{{$p->created_at}}</td>
+                  <td>{{date('d-m-Y H:i:s', strtotime($p->created_at))}}</td>
                 </tr>
                 @endforeach
               </tbody>

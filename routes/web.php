@@ -35,6 +35,16 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/poin', [App\Http\Controllers\PoinController::class, 'index'])->name('catat');
     Route::get('/siswa', [App\Http\Controllers\SiswaController::class, 'index'])->name('siswa');
     Route::get('/riwayat', [App\Http\Controllers\RiwayatController::class, 'index'])->name('riwayat');
+
+    Route::get('/pelanggaran', [App\Http\Controllers\PelanggaranController::class, 'index'])->name('pelanggaran');
+    Route::post('/pelanggaran/tambah/', [App\Http\Controllers\PelanggaranController::class, 'tambah'])->name('tambah_pelanggaran');
+    Route::post('/pelanggaran/edit/{id}', [App\Http\Controllers\PelanggaranController::class, 'edit']);
+    Route::get('/pelanggaran/hapus/{id}', [App\Http\Controllers\PelanggaranController::class, 'hapus']);
+
+    Route::get('/tindak', [App\Http\Controllers\TindakController::class, 'index'])->name('tindak');
+    Route::post('/tindak/tambah/', [App\Http\Controllers\TindakController::class, 'tambah'])->name('tambah_tindak');
+    Route::post('/tindak/edit/{id}', [App\Http\Controllers\TindakController::class, 'edit']);
+    Route::get('/tindak/hapus/{id}', [App\Http\Controllers\TindakController::class, 'hapus']);
     
     Route::get('/riwayat/hapus/{id}', [App\Http\Controllers\RiwayatController::class, 'hapus']);
     

@@ -183,6 +183,7 @@ class SiswaController extends Controller
     public function cetak_pdf($id)
     {
         $siswa = Siswa::where('id', $id)->first();
+        $tim = User::where('id', '4')->first();
         $siswaPoin = Poin::where('siswa_id', $id)->get();
         $penanganan = Poin::where('catatan', '!=', '')->get();
         $totalPoin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
@@ -191,7 +192,7 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->first();
         $tahun = date('Y-m-d');
-        $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','totalPoin', 'tahun', 'penanganan'));
+        $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','totalPoin', 'tahun', 'penanganan','tim'));
         return $pdf->stream();
     }
 }
