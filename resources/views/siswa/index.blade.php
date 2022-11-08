@@ -144,7 +144,11 @@
 
                   if(isset($tot->siswa_id)) {
                     if($tot->siswa_id == $s->id){
-                      $t = $tot;
+                      if(isset($s->penghargaan->poin)) {
+                          $t = $tot->total-$s->penghargaan->poin;
+                      } else {
+                          $t = null;
+                      }
                     } else {
                       $t = '';
                     }
@@ -159,7 +163,7 @@
                 <td>{{ $s->nisn }}</td>
                 <td>{{ $s->nama }}</td>
                 <td>{{ $s->kelas->kelas }}</td>
-                <td> {{isset($t->total) ? ($t->total) : ''}}</td>
+                <td> {{isset($t) ? ($t) : ''}}</td>
                 <td>
                   <a class="btn btn-sm btn-secondary" title="Preview" href="/siswa/profile/{{$s->id}}"><i class="fa fa-list"></i></a>
                   <a target="_blank" href="/siswa/cetak_pdf/{{$s->id}}" type="button" title="Pdf" class="btn btn-sm btn-danger"><i class="fa fa-file-pdf"></i></a>

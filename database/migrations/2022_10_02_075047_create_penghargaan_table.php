@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CratePelanggaranTable extends Migration
+class CreatePenghargaanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CratePelanggaranTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelanggaran', function (Blueprint $table) {
+        Schema::create('penghargaan', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pelanggaran')->nullable();
-            $table->integer('poin')->nullable();
-            $table->integer('kategori')->nullable();
+            $table->string('kriteria');
+            $table->integer('poin');
             $table->timestamps();
-
         });
     }
 
@@ -30,6 +28,6 @@ class CratePelanggaranTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelanggaran');
+        Schema::dropIfExists('penghargaan');
     }
 }

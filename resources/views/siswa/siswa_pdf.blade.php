@@ -62,7 +62,11 @@
       </div>
 
       <div class="row">
-        <div class="col-md-4"> <pre>Total Poin Pelanggaran : {{isset($totalPoin->total) ? ($totalPoin->total). ' poin' : ''}}</pre></div>
+        <div class="col-md-4"> <pre>Penghargaan            : {{isset($siswa->penghargaan->kriteria) ? $siswa->penghargaan->kriteria. ' ('.$siswa->penghargaan->poin. ' poin)' : ''}}</pre></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4"> <pre>Total Poin Pelanggaran :@if($total >= 0) {{isset($total) ? ($total). ' poin' : ''}} @else @endif</pre></div>
       </div>
 
     </div>

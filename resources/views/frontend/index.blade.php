@@ -203,7 +203,7 @@
 
         <div class="section-title" data-aos="fade-up">
           <h2>Profile</h2>
-          <p>{{$siswa->nama}}</p>
+          <p>{{$siswa_withID->nama}}</p>
         </div>
 
         <div class="row">
@@ -213,49 +213,55 @@
               <div class="address">
                 <i class="icofont-id-card"></i>
                 <h4>NISN:</h4>
-                <p>{{$siswa->nisn}}</p>
+                <p>{{$siswa_withID->nisn}}</p>
               </div>
 
               <div class="address">
                 <i class="icofont-ui-user"></i>
                 <h4>Nama:</h4>
-                <p>{{$siswa->nama}}</p>
+                <p>{{$siswa_withID->nama}}</p>
               </div>
 
               <div class="address">
                 <i class='bx bxs-graduation'></i>
                 <h4>Kelas:</h4>
-                <p>{{$siswa->kelas->kelas}}</p>
+                <p>{{$siswa_withID->kelas->kelas}}</p>
               </div>
 
               <div class="address">
                 <i class="icofont-book"></i>
                 <h4>Agama:</h4>
-                <p>{{$siswa->agama}}</p>
+                <p>{{$siswa_withID->agama}}</p>
               </div>
 
               <div class="address">
-                @if($siswa->jns_kelamin == 'L') <i class="icofont-student-alt"></i> @else <i class="icofont-student"></i> @endif
+                @if($siswa_withID->jns_kelamin == 'L') <i class="icofont-student-alt"></i> @else <i class="icofont-student"></i> @endif
                 <h4>Jenis Kelamin:</h4>
-                <p>@if($siswa->jns_kelamin == 'L') Laki-laki @else Perempuan @endif</p>
+                <p>@if($siswa_withID->jns_kelamin == 'L') Laki-laki @else Perempuan @endif</p>
               </div>
 
               <div class="address">
                 <i class="icofont-birthday-cake"></i>
                 <h4>Tempat, Tanggal Lahir:</h4>
-                <p>{{$siswa->tempat_lahir}} {{isset($siswa->tgl_lahir) ? ', '.date('d-m-Y', strtotime($siswa->tgl_lahir)) : ''}}</p>
+                <p>{{$siswa_withID->tempat_lahir}} {{isset($siswa_withID->tgl_lahir) ? ', '.date('d-m-Y', strtotime($siswa_withID->tgl_lahir)) : ''}}</p>
               </div>
 
               <div class="phone">
-                <i class="icofont-phone"></i>
+                <i class="icofont-smart-phone"></i>
                 <h4>No. HP:</h4>
-                <p>{{$siswa->no_telp}}</p>
+                <p>{{$siswa_withID->no_telp}}</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-award"></i>
+                <h4>Penghargaan:</h4>
+                <p>{{isset($siswa_withID->penghargaan->kriteria) ? $siswa_withID->penghargaan->kriteria. ' ('.$siswa_withID->penghargaan->poin. ' poin)' : ''}}</p>
               </div>
 
               <div class="phone">
                 <i class="icofont-exclamation-circle"></i>
                 <h4>Total Poin Pelanggaran:</h4>
-                <p>{{isset($totalPoin->total) ? ($totalPoin->total) . ' poin': ''}}</p>
+                <p>{{isset($total) ? ($total) . ' poin': ''}}</p>
               </div>
 
               <div class="qr text-center mt-4 mb-1">
@@ -274,7 +280,7 @@
       <div class="container">
         <div class="section-title" data-aos="fade-up">
           <h2>Laporan</h2>
-          <p>{{$siswa->nama}}</p>
+          <p>{{$siswa_withID->nama}}</p>
         </div>
         
         <table class="table table-bordered" style="margin-top: -30px" data-aos="fade-up">
@@ -283,7 +289,6 @@
               <th>No</th>
               <th>Pelanggaran</th>
               <th>Poin</th>
-              <th>Pencatat</th>
               <th>Waktu Pelanggaran</th>
             </tr>
           </thead>
@@ -294,8 +299,7 @@
               <td>{{ $i++ }}</td>
               <td>{{$p->pelanggaran->pelanggaran}}</td>
               <td>{{$p->pelanggaran->poin}}</td>
-              <td>{{$p->pencatat}}</td>
-              <td>{{$p->created_at}}</td>
+              <td>{{date('d-m-Y H:i:s', strtotime($p->created_at))}}</td>
             </tr>
             @endforeach
           </tbody>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 class PenangananController extends Controller
 {
     public function ringan(){
+        $siswa = Siswa::all();
         $ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->get();
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
@@ -18,26 +19,15 @@ class PenangananController extends Controller
         ->orderBy('total')
         ->get();
 
-        //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
-        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();
-
         return view('penanganan.ringan', [
+            'siswa' => $siswa,
             'ringan' => $ringan,
             'totalPoin' => $totalPoin,
-            //badge
-            'badge_ringan' => $badge_ringan,
-            'badge_sedang' => $badge_sedang,
-            'badge_berat' => $badge_berat,
-            'total_siswa' => $total_siswa,
-            'total_pelanggaran' => $total_pelanggaran,
         ]);
     }
 
     public function sedang(){
+        $siswa = Siswa::all();
         $sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->get();
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
@@ -45,27 +35,16 @@ class PenangananController extends Controller
         ->groupBy('siswa_id')
         ->orderBy('total')
         ->get();
-        
-        //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
-        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();
 
         return view('penanganan.sedang', [
+            'siswa' => $siswa,
             'sedang' => $sedang,
             'totalPoin' => $totalPoin,
-            //badge
-            'badge_ringan' => $badge_ringan,
-            'badge_sedang' => $badge_sedang,
-            'badge_berat' => $badge_berat,
-            'total_siswa' => $total_siswa,
-            'total_pelanggaran' => $total_pelanggaran,
         ]);
     }
 
     public function berat(){
+        $siswa = Siswa::all();
         $berat = Poin::where('catatan', '=', 'Skorsing')->get();
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
@@ -74,23 +53,10 @@ class PenangananController extends Controller
         ->orderBy('total')
         ->get();
 
-        // dd($berat);
-        //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
-        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();
-
         return view('penanganan.berat', [
+            'siswa' => $siswa,
             'berat' => $berat,
             'totalPoin' => $totalPoin,
-            //badge
-            'badge_ringan' => $badge_ringan,
-            'badge_sedang' => $badge_sedang,
-            'badge_berat' => $badge_berat,
-            'total_siswa' => $total_siswa,
-            'total_pelanggaran' => $total_pelanggaran,
         ]);
     }
 

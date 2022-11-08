@@ -17,13 +17,6 @@ class DashboardController extends Controller
         $cowok = Siswa::where('jns_kelamin', 'L')->count();
         $cewek = Siswa::where('jns_kelamin', 'P')->count();
 
-        //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
-        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::whereBetween('catatan', ['Skorsing', 'Dikeluarkan dari Sekolah'])->count();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();
-
         //Kategori Ringan
         $ringan_jan = Poin::where('kategori','=', 'ringan')
                 ->whereMonth('created_at', '=', Carbon::create('january')->format('m'))
@@ -184,12 +177,6 @@ class DashboardController extends Controller
         'berat_oct' => $berat_oct,
         'berat_nov' => $berat_nov,
         'berat_dec' => $berat_dec,
-        //badge
-        'badge_ringan' => $badge_ringan,
-        'badge_sedang' => $badge_sedang,
-        'badge_berat' => $badge_berat,
-        'total_siswa' => $total_siswa,
-        'total_pelanggaran' => $total_pelanggaran,
         ]);
    }
 
@@ -197,20 +184,25 @@ class DashboardController extends Controller
     {
         if(Auth::user() && Auth::user()->level == "user"){
                 $idUser = Auth::user()->id;
-                $siswa = Siswa::where('users_id', $idUser)->first();
-                // dd($siswa->users_id);
-                $siswaPoin = Poin::where('siswa_id', $siswa->id)->get();
+                $siswa_withID = Siswa::where('users_id', $idUser)->first();
+                $siswaPoin = Poin::where('siswa_id', $siswa_withID->id)->get();
                 $totalPoin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
                 ->select(DB::raw('SUM(pelanggaran.poin) as total'))
                 ->orderBy('total')
-                ->where('siswa_id', '=', $siswa->id)
+                ->where('siswa_id', '=', $siswa_withID->id)
                 ->first();
-
+                
+                if(isset($siswa->penghargaan->poin)) {
+                        $total = $totalPoin->total-$siswa->penghargaan->poin;
+                        // dd($total);
+                } else {
+                        $total = null;
+                }
                 //Membuat QR Code
-                $qrCode = QrCode::size(250)->generate($siswa->nisn);
+                $qrCode = QrCode::size(250)->generate($siswa_withID->nisn);
                 return view('frontend.index', [
-                        'siswa' => $siswa,
-                        'totalPoin' => $totalPoin,
+                        'siswa_withID' => $siswa_withID,
+                        'total' => $total,
                         'siswaPoin' => $siswaPoin,
                         'qrCode' => $qrCode,
         ]);

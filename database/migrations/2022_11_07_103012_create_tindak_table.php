@@ -17,6 +17,7 @@ class CreateTindakTable extends Migration
             $table->id();
             $table->string('tindak_lanjut')->nullable();
             $table->string('kategori')->nullable();
+            $table->string('range')->nullable();
             $table->timestamps();
         });
     }

@@ -199,6 +199,19 @@
             </a>
           </li>
           <li class="nav-item">
+            @if (Route::current()->getName() == 'awards')
+              <a href="{{route('awards')}}" class="nav-link active">
+            @else
+              <a href="{{route('awards')}}"  class="nav-link">
+            @endif
+              <i class="nav-icon fas fa-award"></i>
+              {{-- <span class="badge badge-danger right">{{ $total_pelanggaran }}</span> --}}
+              <p>
+                Catat Penghargaan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             @if (Route::current()->getName() == 'ringan' || Route::current()->getName() == 'sedang' || Route::current()->getName() == 'berat')
               <a href="#" class="nav-link active">
             @else
@@ -243,7 +256,7 @@
             </a>
           </li>
           <li class="nav-item">
-            @if (Route::current()->getName() == 'pelanggaran' || Route::current()->getName() == 'tindak')
+            @if (Route::current()->getName() == 'pelanggaran' || Route::current()->getName() == 'tindak' || Route::current()->getName() == 'penghargaan')
               <a href="#" class="nav-link active">
             @else
               <a href="#"  class="nav-link">
@@ -259,6 +272,10 @@
                 <a href="{{route('pelanggaran')}}" class="nav-link">
                   <i class="far fa-circle nav-icon text-dark"></i>
                   <p>Data Pelanggaran</p>
+                </a>
+                <a href="{{route('penghargaan')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon text-dark"></i>
+                  <p>Data Penghargaan</p>
                 </a>
                 <a href="{{route('tindak')}}" class="nav-link">
                   <i class="far fa-circle nav-icon text-dark"></i>

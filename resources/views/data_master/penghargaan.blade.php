@@ -7,7 +7,7 @@
       <div class="col-12">
         <div class="card shadow mt-4">
           <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-dark card-title">Data Master Tindak</h3>
+              <h3 class="m-0 font-weight-bold text-dark card-title">Data Master Penghargaan</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -16,30 +16,25 @@
               <div class="modal-dialog " role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Master Tindak Lanjut</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Master Penghargaan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form action="{{route('tambah_tindak')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('tambah_penghargaan')}}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <!-- Tab 1 -->
 
                     <div class="form-row">
-                      <div class="form-group col-md-6" >
-                        <label for="inputStatus">Tindak Lanjut</label>
-                        <input required type="text" class="form-control" name="tindak_lanjut">
+                      <div class="form-group col-md-9" >
+                        <label for="inputStatus">Kriteria Penghargaan</label>
+                        <input required type="text" class="form-control" name="kriteria">
                       </div>
 
                       <div class="form-group col-md-3" >
-                        <label for="inputStatus">Kategori</label>
-                        <input required type="text" class="form-control" name="kategori">
-                      </div>
-
-                      <div class="form-group col-md-3" >
-                        <label for="inputStatus">Range Poin</label>
-                        <input required type="text" class="form-control" name="range">
+                        <label for="inputStatus">Poin</label>
+                        <input required type="text" class="form-control" name="poin">
                       </div>
                     </div>
 
@@ -56,20 +51,18 @@
               <thead>
               <tr>
                 <th>No</th>
-                <th>Tindak Lanjut</th>
-                <th>Kategori</th>
-                <th>Range Poin</th>
+                <th>Kriteria Penghargaan</th>
+                <th>Poin</th>
                 <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
                 
-              @foreach($tindak as $s)
+              @foreach($penghargaan as $s)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $s->tindak_lanjut }}</td>
-                <td>{{ $s->kategori }}</td>
-                <td>{{ $s->range }}</td>
+                <td>{{ $s->kriteria }}</td>
+                <td>{{ $s->poin }}</td>
                 <td>
                   <button type="button" title="Edit" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#ModalEdit{{$s->id}}"><i class="fa fa-edit"></i></button>
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalHapus{{$s->id}}"><i class="fa fa-trash"></i></button>
@@ -111,22 +104,18 @@
                     <div class="modal-body">
                       <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home{{$s->id}}" role="tabpanel" aria-labelledby="home-tab{{$s->id}}">
-                          <form action="/tindak/edit/{{$s->id}}" method="post" enctype="multipart/form-data">
+                          <form action="/penghargaan/edit/{{$s->id}}" method="post" enctype="multipart/form-data">
                           {{csrf_field()}}
               
                           <div class="form-row">
-                            <div class="form-group col-md-6" >
-                              <label for="inputStatus">Tindak Lanjut</label>
-                              <input type="text" value="{{$s->tindak_lanjut}}" class="form-control" name="tindak_lanjut" required>
+                            <div class="form-group col-md-9" >
+                              <label for="inputStatus">Kriteria Penghargaan</label>
+                              <input required type="text" value="{{$s->kriteria}}" class="form-control" name="kriteria" required>
                             </div>
       
                             <div class="form-group col-md-3" >
-                              <label for="inputStatus">Kategori</label>
-                              <input type="text" value="{{$s->kategori}}" class="form-control" name="kategori" required>
-                            </div>
-                            <div class="form-group col-md-3" >
-                              <label for="inputStatus">Range Poin</label>
-                              <input type="text" value="{{$s->range}}" class="form-control" name="range" required>
+                              <label for="inputStatus">Poin</label>
+                              <input required type="text" value="{{$s->poin}}" class="form-control" name="poin" required>
                             </div>
                           </div>
               

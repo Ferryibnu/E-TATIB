@@ -50,7 +50,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->siswa->nisn }}</td>
                 <td>{{ $s->siswa->nama }}</td>
-                <td>{{ $s->pelanggaran->pelanggaran }}</td>
+                <td>{{ $s->pelanggaran->pelanggaran }} ({{ $s->pelanggaran->poin }} poin)</td>
                 <td>{{ $t->total }}</td>
                 <td>{{ $s->catatan }}</td>
                 <td>

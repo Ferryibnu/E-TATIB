@@ -36,6 +36,17 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/siswa', [App\Http\Controllers\SiswaController::class, 'index'])->name('siswa');
     Route::get('/riwayat', [App\Http\Controllers\RiwayatController::class, 'index'])->name('riwayat');
 
+    Route::get('/awards', [App\Http\Controllers\AwardsController::class, 'index'])->name('awards');
+    Route::post('/awards/tambah/', [App\Http\Controllers\AwardsController::class, 'tambah'])->name('catat_penghargaan');
+    Route::post('/awards/edit/{id}', [App\Http\Controllers\AwardsController::class, 'edit']);
+    Route::get('/awards/hapus/{id}', [App\Http\Controllers\AwardsController::class, 'hapus']);
+
+    //Menu Data Master Penghargaan
+    Route::get('/penghargaan', [App\Http\Controllers\PenghargaanController::class, 'index'])->name('penghargaan');
+    Route::post('/penghargaan/tambah/', [App\Http\Controllers\PenghargaanController::class, 'tambah'])->name('tambah_penghargaan');
+    Route::post('/penghargaan/edit/{id}', [App\Http\Controllers\PenghargaanController::class, 'edit']);
+    Route::get('/penghargaan/hapus/{id}', [App\Http\Controllers\PenghargaanController::class, 'hapus']);
+
     Route::get('/pelanggaran', [App\Http\Controllers\PelanggaranController::class, 'index'])->name('pelanggaran');
     Route::post('/pelanggaran/tambah/', [App\Http\Controllers\PelanggaranController::class, 'tambah'])->name('tambah_pelanggaran');
     Route::post('/pelanggaran/edit/{id}', [App\Http\Controllers\PelanggaranController::class, 'edit']);

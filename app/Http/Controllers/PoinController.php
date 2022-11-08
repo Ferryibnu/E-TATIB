@@ -18,37 +18,11 @@ class PoinController extends Controller
     {
         $siswaPoin = Poin::all();
         $pelanggaran = Pelanggaran::all();
-        // $poinTotal = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
-        //             ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-        //             ->select("siswa_id", "nama", "nisn", "pelanggaran_id", "pelanggaran", DB::raw('COUNT(pelanggaran_id) as total'))
-        //             ->having('total', '>=', 3)
-        //             ->groupBy('siswa_id')
-        //             ->groupBy('nama')
-        //             ->groupBy('nisn')
-        //             ->groupBy('pelanggaran')
-        //             ->groupBy('pelanggaran_id')
-        //             ->orderBy('total')
-        //             ->get();
-
-        // dd($siswaPoin);
-       
-        //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
-        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();
         
         return view('poin.index', [
             'siswaPoin' => $siswaPoin,
             // 'poinTotal' => $poinTotal,
             'pelanggaran' => $pelanggaran,
-            //badge
-            'badge_ringan' => $badge_ringan,
-            'badge_sedang' => $badge_sedang,
-            'badge_berat' => $badge_berat,
-            'total_siswa' => $total_siswa,
-            'total_pelanggaran' => $total_pelanggaran,
         ]);
     }
     
@@ -169,11 +143,11 @@ class PoinController extends Controller
             Poin::query()->each(function ($oldRecord) {
                 $newRecord = $oldRecord->replicate();
                 $newRecord->setTable('riwayat');
-                $siswa = Siswa::find($oldRecord->siswa_id)->first();
-                $kelas = Kelas::find($siswa->kelas_id)->first();
+                $siswa_old = Siswa::find($oldRecord->siswa_id)->first();
+                $kelas = Kelas::find($siswa_old->kelas_id)->first();
 
-                $newRecord->nisn = $siswa->nisn;
-                $newRecord->nama = $siswa->nama;
+                $newRecord->nisn = $siswa_old->nisn;
+                $newRecord->nama = $siswa_old->nama;
                 $newRecord->kelas = $kelas->kelas;
                 $newRecord->tgl_pelanggaran = $oldRecord->created_at;
                 $newRecord->save();

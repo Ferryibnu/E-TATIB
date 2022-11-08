@@ -68,6 +68,7 @@ class DatabaseSeeder extends Seeder
             KelasSeeder::class,
             PelanggaranSeeder::class,
             TindakSeeder::class,
+            PenghargaanSeeder::class,
             // SiswaSeeder::class,
         ]);
     }

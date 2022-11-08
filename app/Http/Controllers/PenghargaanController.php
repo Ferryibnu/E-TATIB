@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tindak;
 use Illuminate\Http\Request;
+use App\Models\Penghargaan;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class TindakController extends Controller
+class PenghargaanController extends Controller
 {
     public function index() {
-        $tindak = Tindak::all();
+        $penghargaan = Penghargaan::all();
 
-        return view('data_master.tindak', [
-            'tindak' => $tindak,
+        return view('data_master.penghargaan', [
+            'penghargaan' => $penghargaan,
         ]);
     }
 
     public function tambah(Request $request)
     {
-       $tindak = new Tindak();
-       $tindak->tindak_lanjut = $request->tindak_lanjut;
-       $tindak->range = $request->range;
-       $tindak->save();
+       $peng = new penghargaan();
+       $peng->kriteria = $request->kriteria;
+       $peng->poin = $request->poin;
+       $peng->save();
         
        Alert::success('Sukses Menambahkan', 'Data Berhasil Ditambahkan');
        return redirect()->back();
@@ -29,10 +29,10 @@ class TindakController extends Controller
 
     public function edit($id, Request $request)
     {
-        $editTindak = Tindak::find($id);
-        $editTindak->tindak_lanjut = $request->tindak_lanjut;
-        $editTindak->range = $request->range;
-        $editTindak->update();
+        $editPeng = penghargaan::find($id);
+        $editPeng->kriteria = $request->kriteria;
+        $editPeng->poin = $request->poin;
+        $editPeng->update();
 
         Alert::success('Edit Sukses', 'Data Berhasil Diedit');
         return redirect()->back();
@@ -40,7 +40,7 @@ class TindakController extends Controller
 
     public function hapus($id)
     {
-        Tindak::find($id)->delete();
+        penghargaan::find($id)->delete();
 
         Alert::success('Hapus Sukses', 'Data Berhasil Dihapus');
         return redirect()->back();

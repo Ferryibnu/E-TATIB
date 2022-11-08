@@ -51,6 +51,12 @@
                 <div class="col-md-8"> :&emsp;{{ $siswa->no_telp }}</div>
               </div>
               <hr>
+
+              <div class="row ml-5">
+                <div class="col-md-4"> Penghargaan</div>
+                <div class="col-md-8"> :&emsp;{{isset($siswa->penghargaan->kriteria) ? $siswa->penghargaan->kriteria. ' ('.$siswa->penghargaan->poin. ' poin)' : ''}}</div>
+              </div>
+              <hr>
         
               <div class="qr text-center mt-4 mb-1">
                 {!! $qrCode !!}
@@ -68,7 +74,7 @@
             <h5 class="m-0 font-weight-bold text-dark text-center">Data Pelanggaran</h5>
           </div>
           <div class="card-body">
-            <p>Total Poin Pelanggaran : {{isset($totalPoin->total) ? ($totalPoin->total) . ' poin': ''}}</p>
+            <p>Total Poin Pelanggaran : {{isset($total) ? ($total) . ' poin': ''}}</p>
             <table class="table table-bordered-ded">
               <thead class="thead">
                 <tr>

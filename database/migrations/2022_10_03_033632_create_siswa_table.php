@@ -17,6 +17,7 @@ class CreateSiswaTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('users_id')->nullable();
             $table->unsignedInteger('kelas_id')->nullable();
+            $table->unsignedInteger('penghargaan_id')->nullable();
             $table->string('nama');
             $table->string('nisn');
             $table->string('agama')->nullable();
@@ -29,6 +30,8 @@ class CreateSiswaTable extends Migration
             $table->foreign('users_id')->references('id')->on('users')
                   ->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kelas_id')->references('id')->on('kelas')
+                  ->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('penghargaan_id')->references('id')->on('penghargaan')
                   ->onDelete('set null')->onUpdate('cascade');
         });
     }

@@ -29,24 +29,10 @@ class SiswaController extends Controller
         ->orderBy('total')
         ->get();
 
-        
-        //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
-        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();
-
         return view('siswa.index', [
             'siswa' => $siswa,
             'totalPoin' => $totalPoin,
             'kelas' => $kelas,
-            //badge
-            'badge_ringan' => $badge_ringan,
-            'badge_sedang' => $badge_sedang,
-            'badge_berat' => $badge_berat,
-            'total_siswa' => $total_siswa,
-            'total_pelanggaran' => $total_pelanggaran,
         ]);
     }
     
@@ -134,26 +120,20 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->first();
 
-        //Badge
-        $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
-        $badge_sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->count();
-        $badge_berat = Poin::where('catatan', '=', 'Skorsing')->count();
-        $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
-        $total_pelanggaran = Poin::all()->count();
+        if(isset($siswa->penghargaan->poin)) {
+            $total = $totalPoin->total-$siswa->penghargaan->poin;
+            // dd($total);
+        } else {
+            $total = null;
+        }
 
         //Membuat QR Code
         $qrCode = QrCode::size(200)->generate($siswa->nisn);
         return view('siswa.profile', [
             'siswa' => $siswa,
-            'totalPoin' => $totalPoin,
+            'total' => $total,
             'siswaPoin' => $siswaPoin,
             'qrCode' => $qrCode,
-            //badge
-            'badge_ringan' => $badge_ringan,
-            'badge_sedang' => $badge_sedang,
-            'badge_berat' => $badge_berat,
-            'total_siswa' => $total_siswa,
-            'total_pelanggaran' => $total_pelanggaran,
         ]);
     }
 
@@ -191,8 +171,15 @@ class SiswaController extends Controller
         ->orderBy('total')
         ->where('siswa_id', '=', $id)
         ->first();
+
+        if(isset($siswa->penghargaan->poin)) {
+            $total = $totalPoin->total-$siswa->penghargaan->poin;
+        } else {
+            $total = null;
+        }
+
         $tahun = date('Y-m-d');
-        $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','totalPoin', 'tahun', 'penanganan','tim'));
+        $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','total', 'tahun', 'penanganan','tim'));
         return $pdf->stream();
     }
 }
