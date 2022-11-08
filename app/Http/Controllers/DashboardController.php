@@ -192,8 +192,8 @@ class DashboardController extends Controller
                 ->where('siswa_id', '=', $siswa_withID->id)
                 ->first();
                 
-                if(isset($siswa->penghargaan->poin)) {
-                        $total = $totalPoin->total-$siswa->penghargaan->poin;
+                if(isset($siswa_withID->penghargaan->poin)) {
+                        $total = $totalPoin->total-$siswa_withID->penghargaan->poin;
                         // dd($total);
                 } else {
                         $total = null;
