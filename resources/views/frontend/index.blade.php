@@ -260,7 +260,7 @@
 
               <div class="phone">
                 <i class="icofont-exclamation-circle"></i>
-                <h4>Total Poin Pelanggaran:</h4>
+                <h4>Total Skor Pelanggaran:</h4>
                 <p>{{isset($total) ? ($total) . ' poin': ''}}</p>
               </div>
 
@@ -288,7 +288,7 @@
             <tr>
               <th>No</th>
               <th>Pelanggaran</th>
-              <th>Poin</th>
+              <th>Skor</th>
               <th>Waktu Pelanggaran</th>
             </tr>
           </thead>
@@ -319,7 +319,7 @@
     <ul class="faq-list">
 
       <li data-aos="fade-up" data-aos-delay="100">
-        <a data-toggle="collapse" class="" href="#faq1">Bagaimana cara saya mendapat QR Code? <i class="icofont-simple-up"></i></a>
+        <a data-toggle="collapse" class="" href="#faq1">Bagaimana cara saya mendapat <strong> QR Code? </strong><i class="icofont-simple-up"></i></a>
         <div id="faq1" class="collapse show" data-parent=".faq-list">
           <p>
             Untuk mendapat QR Code, siswa diharuskan untuk login dengan akun yang sudah dibuat oleh TATIB. Isi Form login dengan<b> NISN </b>sebagai email dan isi passwordnya dengan <b>TATIB123</b>. Setelah login anda klik ke menu <b>Profile</b>, pada menu profil anda dapat melihat data diri beserta unique QR Code siswa.
@@ -328,33 +328,33 @@
       </li>
 
       <li data-aos="fade-up" data-aos-delay="200">
-        <a data-toggle="collapse" href="#faq2" class="collapsed">berapa total poin pelanggaran siswa sehingga terancam skorsing? <i class="icofont-simple-up"></i></a>
+        <a data-toggle="collapse" href="#faq2" class="collapsed">Berapa total poin pelanggaran siswa sehingga terancam <strong> skorsing? </strong><i class="icofont-simple-up"></i></a>
         <div id="faq2" class="collapse" data-parent=".faq-list">
           <p>
-            Dalam buku penghubung tata tertib peserta didik tertulis bahwa siswa yang memiliki skor 150 akan dilakukan hukuman skorsing.
+            Dalam buku penghubung tata tertib peserta didik tertulis bahwa <strong>siswa yang memiliki total skor 150</strong> akan dilakukan hukuman skorsing.
           </p>
         </div>
       </li>
 
       <li data-aos="fade-up" data-aos-delay="300">
-        <a data-toggle="collapse" href="#faq3" class="collapsed">berapa total poin pelanggaran siswa sehingga terancam dikeluarkan dari sekolah? <i class="icofont-simple-up"></i></a>
+        <a data-toggle="collapse" href="#faq3" class="collapsed">Berapa total poin pelanggaran siswa sehingga terancam <strong>dikeluarkan dari sekolah? </strong> <i class="icofont-simple-up"></i></a>
         <div id="faq3" class="collapse" data-parent=".faq-list">
           <p>
-            Dalam buku penghubung tata tertib peserta didik tertulis bahwa siswa yang memiliki skor 250 akan dikembalikan ke orangtua atau dikeluarkan dari sekolah.
+            Dalam buku penghubung tata tertib peserta didik tertulis bahwa <strong>siswa yang memiliki total skor 250</strong> akan dikembalikan ke orangtua atau dikeluarkan dari sekolah.
           </p>
         </div>
       </li>
 
-      {{-- <li data-aos="fade-up" data-aos-delay="400">
-        <a data-toggle="collapse" href="#faq4" class="collapsed">Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla? <i class="icofont-simple-up"></i></a>
+      <li data-aos="fade-up" data-aos-delay="400">
+        <a data-toggle="collapse" href="#faq4" class="collapsed">Apakah dengan mendapat penghargaan dapat mengurangi jumlah skor pelanggaran? <i class="icofont-simple-up"></i></a>
         <div id="faq4" class="collapse" data-parent=".faq-list">
           <p>
-            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+            <strong>Benar</strong>. Total skor pelanggaran <strong>dapat dikurangi dengan mendapatkan penghargaan/prestasi</strong>, oleh karena itu kurangi bermalas-malasan dan raihlah prestasi setinggi langit.
           </p>
         </div>
       </li>
 
-      <li data-aos="fade-up" data-aos-delay="500">
+      {{-- <li data-aos="fade-up" data-aos-delay="500">
         <a data-toggle="collapse" href="#faq5" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="icofont-simple-up"></i></a>
         <div id="faq5" class="collapse" data-parent=".faq-list">
           <p>

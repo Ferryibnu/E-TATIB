@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Poin;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
 {
@@ -210,5 +213,20 @@ class DashboardController extends Controller
                 return view('frontend.index');
         }
         
+    }
+    public function fotoProfil(Request $request)
+    {
+        $this->validate($request, [
+                'image' => 'required|mimes:jpg,jpeg,png',
+        ]);
+        
+        $filename = $request->image->getClientOriginalName();
+        $request->image->storeAs('images',$filename,'public');
+        $user = User::find(Auth::id());
+        $user->image = $filename;
+        $user->update();
+
+        Alert::success('Upload Sukses', 'Foto berhasil ditambahkan');
+        return redirect()->back();
     }
 }

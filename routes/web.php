@@ -28,6 +28,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::post('/foto_profil', [App\Http\Controllers\DashboardController::class, 'fotoProfil'])->name('foto_profil');
     Route::post('/autofill', [App\Http\Controllers\PoinController::class, 'autofill'])->name('autofill');
     
     Route::get('/profile/{id}', [App\Http\Controllers\SiswaController::class, 'profile']);
@@ -40,6 +41,10 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::post('/awards/tambah/', [App\Http\Controllers\AwardsController::class, 'tambah'])->name('catat_penghargaan');
     Route::post('/awards/edit/{id}', [App\Http\Controllers\AwardsController::class, 'edit']);
     Route::get('/awards/hapus/{id}', [App\Http\Controllers\AwardsController::class, 'hapus']);
+
+    Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+    Route::post('/user/tambah/', [App\Http\Controllers\UserController::class, 'tambah'])->name('tambah_user');
+    Route::get('/user/hapus/{id}', [App\Http\Controllers\UserController::class, 'hapus']);
 
     //Menu Data Master Penghargaan
     Route::get('/penghargaan', [App\Http\Controllers\PenghargaanController::class, 'index'])->name('penghargaan');
@@ -76,8 +81,3 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/berat', [App\Http\Controllers\PenangananController::class, 'berat'])->name('berat');
     Route::get('/penanganan/edit/{id}', [App\Http\Controllers\PenangananController::class, 'edit']);
 });
-
-// Route::group(['middleware' => ['auth','ceklevel:user']], function () {
-    
-//     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard']);
-// });
