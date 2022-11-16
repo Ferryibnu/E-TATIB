@@ -147,7 +147,7 @@
                       if(isset($s->penghargaan->poin)) {
                           $t = $tot->total-$s->penghargaan->poin;
                       } else {
-                          $t = null;
+                          $t = $tot->total;
                       }
                     } else {
                       $t = '';

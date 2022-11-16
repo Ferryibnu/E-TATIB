@@ -124,7 +124,8 @@ class SiswaController extends Controller
             $total = $totalPoin->total-$siswa->penghargaan->poin;
             // dd($total);
         } else {
-            $total = null;
+            $total = $totalPoin->total;
+            // dd($totalPoin);
         }
 
         //Membuat QR Code
@@ -175,7 +176,7 @@ class SiswaController extends Controller
         if(isset($siswa->penghargaan->poin)) {
             $total = $totalPoin->total-$siswa->penghargaan->poin;
         } else {
-            $total = null;
+            $total = $totalPoin->total;
         }
 
         $tahun = date('Y-m-d');

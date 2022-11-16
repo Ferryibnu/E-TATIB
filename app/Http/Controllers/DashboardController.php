@@ -199,7 +199,7 @@ class DashboardController extends Controller
                         $total = $totalPoin->total-$siswa_withID->penghargaan->poin;
                         // dd($total);
                 } else {
-                        $total = null;
+                        $total = $totalPoin->total;
                 }
                 //Membuat QR Code
                 $qrCode = QrCode::size(250)->generate($siswa_withID->nisn);
