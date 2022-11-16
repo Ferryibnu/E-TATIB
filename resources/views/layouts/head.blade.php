@@ -155,7 +155,7 @@
             @if(Auth::user()->image)
              <img class="image-e rounded-circle" src="{{asset('/storage/images/'.Auth::user()->image)}}" alt="profile_image" style="width: 40px; margin-left: 10px;">
             @else
-              <img src="{{ asset('img/user.png') }}" style="width: 40px; margin-left: 10px;" alt="User Image">
+              <img class="image-e rounded-circle" src="{{ asset('img/user.png') }}" style="width: 40px; margin-left: 10px;" alt="User Image">
             @endif
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="margin-left: -10px;">
