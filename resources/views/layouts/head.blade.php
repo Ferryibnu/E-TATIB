@@ -244,7 +244,7 @@
             @else
               <a href="#"  class="nav-link">
             @endif
-              <i class="nav-icon fa fa-address-book"></i>
+              <i class="nav-icon fa fa-user"></i>
               <p>
                 Penanganan Lanjut
                 <i class="fas fa-angle-left right"></i>
@@ -317,7 +317,7 @@
             @else
               <a href="{{route('user')}}"  class="nav-link">
             @endif
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-user-plus"></i>
               {{-- <span class="badge badge-danger right">{{ $total_pelanggaran }}</span> --}}
               <p>
                 User
