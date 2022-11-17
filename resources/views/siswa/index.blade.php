@@ -121,6 +121,26 @@
               </div>
             </div>
 
+            {{-- Modal Reset --}}
+            <div class="modal fade" id="ModalReset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Anda yakin ingin menghapus semua data siswa?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <a href="/siswa/reset" class="btn btn-primary">Iya</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <table id="example1" class="table table-bordered table-striped">
               <thead>
@@ -283,13 +303,15 @@
       </div>
       <!-- /.col -->
     </div>
-    <div class="drop">
-      <a class="float" href="#" title="Tambah Data siswa">
+    <div class="dropdown">
+      <a class="float"  role="button" id="dropdownMenuButton" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-plus my-float"></i>
       </a>
-      <div class="drop-content">
-        <a data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Siswa">Tambah Siswa</a>
-        <a data-toggle="modal" data-target="#importExcel" href="#" title="Import Data Pegawai">Import Excel Siswa</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Siswa">Tambah Siswa</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#importExcel" href="#" title="Import Data Siswa">Import Excel Siswa</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#ModalReset" href="#" title="Hapus Semua">Hapus Semua</a>
       </div>
     </div>
     <!-- /.row -->

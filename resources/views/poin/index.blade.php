@@ -23,9 +23,8 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-             <!--  modal Reset -->
-
-             <div class="modal fade" id="ModalReset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <!--  modal Reset -->
+          <div class="modal fade" id="ModalReset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -237,14 +236,15 @@
       </div>
       <!-- /.col -->
     </div>
-    <div class="drop">
-      <a class="float" href="#" title="Tambah Data Pegawai">
+    <div class="dropdown">
+      <a class="float"  role="button" id="dropdownMenuButton" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-plus my-float"></i>
       </a>
-      <div class="drop-content">
-        <a data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Pelanggar">Catat Pelanggaran</a>
-        <a data-toggle="modal" data-target="#scanQr" href="#" title="Scan QR Code">Scan QR Siswa</a>
-        <a data-toggle="modal" data-target="#ModalReset" href="#" title="Reset Data">Reset Data Pelanggaran</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Pelanggar">Catat Pelanggaran</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#scanQr" href="#" title="Scan QR Code">Scan QR Siswa</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#ModalReset" href="#" title="Reset Data">Reset Data Pelanggaran</a>
       </div>
     </div>
     <!-- /.row -->

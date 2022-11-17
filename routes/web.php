@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/siswa/profile/{id}', [App\Http\Controllers\SiswaController::class, 'profile']);
     Route::post('/siswa/import_excel', [App\Http\Controllers\SiswaController::class, 'import_excel']);
     Route::get('/siswa/cetak_pdf/{id}', [App\Http\Controllers\SiswaController::class, 'cetak_pdf']);
+    Route::get('/siswa/reset', [App\Http\Controllers\SiswaController::class, 'reset']);
 
     Route::post('/poin/tambah/', [App\Http\Controllers\PoinController::class, 'tambah'])->name('catat_pelanggaran');
     Route::post('/poin/edit/{id}', [App\Http\Controllers\PoinController::class, 'edit']);

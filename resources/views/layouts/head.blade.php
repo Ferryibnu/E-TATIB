@@ -55,57 +55,19 @@
     .my-float{
       margin-top:22px;
       text-shadow: 1px 1px 0 #000;
-    }
-
-        /* The container <div> - needed to position the dropdown content */
-    .drop {
-      position: fixed;
-      display: inline-block;
-      width:70px;
-      height:70px;
-      bottom:120px;
-      right:80px; 
-    }
-
-    /* drop Content (Hidden by Default) */
-    .drop-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-
-    /* Links inside the drop */
-    .drop-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    /* Change color of drop links on hover */
-    .drop-content a:hover {
-      background-color:rgb(0, 123, 255);
-      color: white;
-    }
-
-    /* Show the drop menu on hover */
-    .drop:hover .drop-content {
-      display: block;
-    }
-
-    /* Change the background color of the drop button when the drop content is shown */
-    .drop:hover .float {
-      background-color: rgb(0, 123, 255);
-    }
+    } 
     
-  @media (max-width: 600px){
-    .image-e {
-      display: none;
-  }
-}
+    .dropdown .dropdown-menu .dropdown-item:hover {
+      color: #fff;
+      background-color: rgb(3, 82, 167);
+    }
+    @media (max-width: 600px)
+    {
+      .image-e 
+      {
+        display: none;
+      }
+    }
 
   </style>
 <body class="hold-transition sidebar-mini layout-fixed">

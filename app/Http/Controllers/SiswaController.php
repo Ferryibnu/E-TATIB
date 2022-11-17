@@ -183,4 +183,13 @@ class SiswaController extends Controller
         $pdf = PDF::loadview('siswa/siswa_pdf', compact('siswa', 'siswaPoin','total', 'tahun', 'penanganan','tim'));
         return $pdf->stream();
     }
+
+    public function reset()
+    {
+        foreach (Siswa::all() as $e) { 
+            $e->delete(); 
+        }
+        Alert::success('Hapus Sukses', 'Data berhasil dihapus');
+        return redirect()->back();
+    }
 }

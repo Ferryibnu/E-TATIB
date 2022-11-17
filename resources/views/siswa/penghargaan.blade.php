@@ -191,12 +191,14 @@
       </div>
       <!-- /.col -->
     </div>
-    <div class="drop">
-      <a class="float" href="#" title="Tambah Data Pegawai">
+    <div class="dropdown">
+      <a class="float"  role="button" id="dropdownMenuButton" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-plus my-float"></i>
       </a>
-      <div class="drop-content">
-        <a data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Pelanggar">Catat Penghargaan</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Penghargaan">Catat Penghargaan</a>
+        <br>
       </div>
     </div>
     <!-- /.row -->
