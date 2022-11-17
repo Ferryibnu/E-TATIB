@@ -1,5 +1,5 @@
 <head>
-	<title>Laporan Data Pegawai</title>
+	<title>Rapor Pelanggaran Siswa</title>
   <link rel="stylesheet" type="style/css" href="../public/css/bootstrap.min.css">
 </head>
 

@@ -9,6 +9,7 @@ use \App\Models\Siswa;
 use App\Models\User;
 use App\Models\Poin;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Maatwebsite\Excel\Facades\Excel;
@@ -164,7 +165,7 @@ class SiswaController extends Controller
     public function cetak_pdf($id)
     {
         $siswa = Siswa::where('id', $id)->first();
-        $tim = User::where('id', '4')->first();
+        $tim = Auth::user();
         $siswaPoin = Poin::where('siswa_id', $id)->get();
         $penanganan = Poin::where('catatan', '!=', '')->get();
         $totalPoin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
@@ -187,7 +188,9 @@ class SiswaController extends Controller
     public function reset()
     {
         foreach (Siswa::all() as $e) { 
-            $e->delete(); 
+            // $e->delete(); 
+            User::find($e->users_id)->delete();
+            $e->delete();
         }
         Alert::success('Hapus Sukses', 'Data berhasil dihapus');
         return redirect()->back();
