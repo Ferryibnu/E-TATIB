@@ -116,7 +116,7 @@
           @endif
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <img src="{{asset('img/tatib.svg')}}" class="img-fluid" alt="">
+          <img src="assets/img/about-img.svg" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
