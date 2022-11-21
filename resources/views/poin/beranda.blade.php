@@ -76,7 +76,7 @@
           Grafik Pelangaran
         </h3>
         <div class="card-tools">
-          <ul class="nav nav-pills ml-auto">
+          <ul class="nav nav-pills ml-auto mt-2">
             
             <li class="nav-item">
               <a class="nav-link active" href="#triwulan1" data-toggle="tab"> Januari-Maret</a>
