@@ -28,7 +28,7 @@
             <p>Siswa yang Melanggar</p>
           </div>
           <div class="icon">
-            <i class="fa fa-file"></i>
+            <i class="fa fa-user"></i>
           </div>
           <a href="{{route('catat')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
@@ -38,12 +38,12 @@
         <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>{{$cowok}}</h3>
+            <h3>{{$pelanggaran}}</h3>
 
-            <p>Siswa Laki-laki</p>
+            <p>Total Pelanggaran</p>
           </div>
           <div class="icon">
-            <i class="fa fa-male"></i>
+            <i class="fa fa-file"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
@@ -53,12 +53,12 @@
         <!-- small box -->
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>{{$cewek}}</h3>
+            <h3>{{$prestasi}}</h3>
 
-            <p>Siswa Perempuan</p>
+            <p>Siswa Berprestasi</p>
           </div>
           <div class="icon">
-            <i class="fa fa-female"></i>
+            <i class="fa fa-award"></i>
           </div>
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>

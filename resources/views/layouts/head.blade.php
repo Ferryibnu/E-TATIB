@@ -139,7 +139,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="AdminLTE/index3.html" class="brand-link">
+    <a href="{{route('dashboard')}}" class="brand-link">
       <img src="{{ asset('img/icon.png') }}" style="opacity: .8; width:37px; margin-left: 9px;">
       <span class="brand-text font-weight-light ml-2"> <b> E-TATIB SMKN 1</b></span>
     </a>

@@ -17,8 +17,8 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $total_pelanggar = Poin::distinct('siswa_id')->count();
-        $cowok = Siswa::where('jns_kelamin', 'L')->count();
-        $cewek = Siswa::where('jns_kelamin', 'P')->count();
+        $pelanggaran = Poin::all()->count();
+        $prestasi = Siswa::whereNotNull('penghargaan_id')->count();
 
         //Kategori Ringan
         $ringan_jan = Poin::where('kategori','=', 'ringan')
@@ -139,8 +139,8 @@ class DashboardController extends Controller
                 // dd($currentURL);
         return view('poin.beranda', [
         'total_pelanggar' => $total_pelanggar,
-        'cowok' => $cowok,
-        'cewek' => $cewek,
+        'pelanggaran' => $pelanggaran,
+        'prestasi' => $prestasi,
         //ringan
         'ringan_jan' => $ringan_jan,
         'ringan_feb' => $ringan_feb,
