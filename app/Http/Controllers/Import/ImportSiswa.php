@@ -22,7 +22,7 @@ class ImportSiswa implements ToModel, WithHeadingRow
         $jikaAda = Siswa::where('nisn', $row['nisn'])->first();
 
         if($jikaAda){
-            Alert::error('Gagal Menambahkan', 'Pegawai Telah Terdaftar');
+            Alert::error('Gagal Menambahkan', 'Siswa Telah Terdaftar');
         } else {
             $user = new User;
             $user->email = $row['nisn'];

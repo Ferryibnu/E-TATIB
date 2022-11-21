@@ -53,7 +53,7 @@ class SiswaController extends Controller
         $jikaAda = Siswa::where('nisn', $request->nisn)->first();
 
         if($jikaAda){
-            Alert::error('Gagal Menambahkan', 'Pegawai Telah Terdaftar');
+            Alert::error('Gagal Menambahkan', 'Siswa Telah Terdaftar');
             return redirect()->back();
         } else {
             $addUser = new User;
@@ -167,7 +167,7 @@ class SiswaController extends Controller
     public function cetak_pdf($id)
     {
         $siswa = Siswa::where('id', $id)->first();
-        $tim = Auth::user();
+        $tim = User::where('status', 'Koordinator')->first();
         $siswaPoin = Poin::where('siswa_id', $id)->get();
         $penanganan = Poin::where('catatan', '!=', '')->get();
         $totalPoin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')

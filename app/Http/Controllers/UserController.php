@@ -20,15 +20,23 @@ class UserController extends Controller
 
     public function tambah(Request $request)
     {
-        $tambahUser = new User();
-        $tambahUser->name = $request->name;
-        $tambahUser->email = $request->email;
-        $tambahUser->password = Hash::make($request->password);
-        $tambahUser->level = 'admin';
-        $tambahUser->save();
+        $jikaAda = User::where('name', $request->name)->first();
 
-        Alert::success('Sukses Tambah', 'User baru berhasil ditambahkan');
-        return redirect()->back();
+        if($jikaAda){
+            Alert::error('Gagal Menambahkan', 'User Telah Terdaftar');
+            return redirect()->back();
+        } else {
+            $tambahUser = new User();
+            $tambahUser->name = $request->name;
+            $tambahUser->email = $request->email;
+            $tambahUser->password = Hash::make($request->password);
+            $tambahUser->level = 'admin';
+            $tambahUser->status = $request->status;
+            $tambahUser->save();
+
+            Alert::success('Sukses Tambah', 'User baru berhasil ditambahkan');
+            return redirect()->back();
+        }
     }
 
     public function hapus($id)

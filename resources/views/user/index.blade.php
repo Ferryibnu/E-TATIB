@@ -27,11 +27,18 @@
                     <!-- Tab 1 -->
 
                     <div class="form-row">
-                      <div class="form-group col-md-9" >
+                      <div class="form-group col-md-6" >
                         <label for="inputStatus">Nama</label>
                         <input required type="text" class="form-control" name="name">
                       </div>
-                      <div class="form-group col-md-3" >
+                      <div class="form-group col-md-4" >
+                        <label for="inputStatus">Status</label>
+                        <select class="form-control" name="status" style="width: 100%;" required>
+                            <option value="Tim Tatib">Tim Tatib</option>
+                            <option value="Koordinator">Koordinator Tim Tatib</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-2" >
                         <label for="inputStatus">Level</label>
                         <input required type="text" class="form-control" value="admin" disabled>
                       </div>
@@ -64,7 +71,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Email</th>
-                <th>Level</th>
+                <th>Status</th>
                 <th>Aksi</th>
               </tr>
               </thead>
@@ -75,7 +82,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->name }}</td>
                 <td>{{ $s->email }}</td>
-                <td>{{ $s->level }}</td>
+                <td>{{ $s->status }}</td>
                 <td>
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalHapus{{$s->id}}"><i class="fa fa-trash"></i></button>
                 </td>

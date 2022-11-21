@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Abdul Majid, S.Pd',
             'email' => '196207072007011010',
             'level' => 'admin',
+            'status' => 'Tim Tatib',
             'password' => bcrypt('TIMTATIB123')
         ]);
 
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Cheby Marse',
             'email' => '198103132008011006',
             'level' => 'admin',            
+            'status' => 'Tim Tatib',
             'password' => bcrypt('TIMTATIB123')
         ]);
         
@@ -33,6 +35,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Sunardi, S.Pd',
             'email' => '196709052008011010',
             'level' => 'admin',
+            'status' => 'Tim Tatib',
             'password' => bcrypt('TIMTATIB123')
         ]);
         
@@ -40,6 +43,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Ririn Wartinah, S.Pd',
             'email' => '197108302008012007',
             'level' => 'admin',
+            'status' => 'Koordinator',
             'password' => bcrypt('TIMTATIB123')
         ]);
         
@@ -47,6 +51,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Zainuri, S.Pd.I',
             'email' => 'Zainuri',
             'level' => 'admin',
+            'status' => 'Tim Tatib',
             'password' => bcrypt('TIMTATIB123')
         ]);
 
@@ -54,6 +59,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Yunitaningrum Dwi Candrarini,S.T',
             'email' => 'Yunitaningrum',
             'level' => 'admin',
+            'status' => 'Tim Tatib',
             'password' => bcrypt('TIMTATIB123')
         ]);
 
@@ -61,6 +67,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'level' => 'admin',
+            'status' => 'Tim Tatib',
             'password' => bcrypt('admin')
         ]);
 

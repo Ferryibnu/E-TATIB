@@ -45,7 +45,7 @@
           <div class="icon">
             <i class="fa fa-file"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{route('catat')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -60,7 +60,7 @@
           <div class="icon">
             <i class="fa fa-award"></i>
           </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{route('awards')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
           <!-- /.card -->
         </div>
