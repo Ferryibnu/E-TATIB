@@ -36,7 +36,7 @@ input {
   transition: 1s 0.7s ease-in-out;
   display: grid;
   grid-template-columns: 1fr;
-  z-index: 5;
+  z-index: 6;
 }
 
 form {
@@ -141,7 +141,7 @@ form.sign-in-form {
   background-image: linear-gradient(-45deg, #e86933 0%, #f59163 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
-  z-index: 6;
+  z-index: 5;
 }
 
 .image {
@@ -156,7 +156,7 @@ form.sign-in-form {
   align-items: flex-end;
   justify-content: space-around;
   text-align: center;
-  z-index: 6;
+  z-index: 5;
 }
 
 .left-panel {
@@ -347,7 +347,7 @@ form.sign-in-form {
     padding: 0 1.5rem;
   }
   .content {
-    z-index: 6;
+    z-index: 5;
   }
   
   .image {
