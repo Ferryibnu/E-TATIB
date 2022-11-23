@@ -46,7 +46,8 @@
               <thead>
               <tr>
                 <th>No</th>
-                <th>kelas </th>
+                <th>Kelas </th>
+                <th>Jurusan </th>
                 <th>Aksi</th>
               </tr>
               </thead>
@@ -56,6 +57,7 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->kelas}}</td>
+                <td>{{ $s->jurusan}}</td>
                 <td>
                   <button type="button" title="Edit" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#ModalEdit{{$s->id}}"><i class="fa fa-edit"></i></button>
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalHapus{{$s->id}}"><i class="fa fa-trash"></i></button>

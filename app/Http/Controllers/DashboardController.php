@@ -151,7 +151,68 @@ class DashboardController extends Controller
                         $query1->where('grade', '12');
                 });
         })->count();
-        // dd($kelas10);
+
+        //Chart Jurusan
+        $tkj = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'TKJ');
+                });
+        })->count();
+        $rpl = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'RPL');
+                });
+        })->count();
+        $ph = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'PH');
+                });
+        })->count();
+        $dkv = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'DKV');
+                });
+        })->count();
+        $mm = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'MM');
+                });
+        })->count();
+        $pspt = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'PSPT');
+                });
+        })->count();
+        $ak = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'AK');
+                });
+        })->count();
+        $akl = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'AKL');
+                });
+        })->count();
+        $bd = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'BD');
+                });
+        })->count();
+        $bdp = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'BDP');
+                });
+        })->count();
+        $mp = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', 'MP');
+                });
+        })->count();
+        $otkp = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('jurusan', '11 OTKP');
+                });
+        })->count();
 
         //Chart Kategori
         $sikap = Poin::whereHas('pelanggaran', function ($query) {
@@ -217,6 +278,19 @@ class DashboardController extends Controller
         'kelas10' => $kelas10,
         'kelas11' => $kelas11,
         'kelas12' => $kelas12,
+        //CHART JURUSAN
+        'tkj' => $tkj,
+        'rpl' => $rpl,
+        'ph' => $ph,
+        'dkv' => $dkv,
+        'mm' => $mm,
+        'pspt' => $pspt,
+        'ak' => $ak,
+        'akl' => $akl,
+        'bd' => $bd,
+        'bdp' => $bdp,
+        'mp' => $mp,
+        'otkp' => $otkp,
         ]);
    }
 

@@ -10,8 +10,8 @@ class KelasController extends Controller
 {
     public function index() {
         $kelas = Kelas::all();
-        $kelas11 = Kelas::where('id', 13)->first()->kelas;
-        $sub = substr($kelas11,-10,-2);
+        $kelas11 = Kelas::where('id', 50)->first()->kelas;
+        $sub = substr($kelas11,3,-2,);
         // dd($sub);
 
         return view('data_master.kelas', [
@@ -23,7 +23,7 @@ class KelasController extends Controller
     {
        $kelas = new Kelas();
        $kelas->kelas = $request->kelas;
-       $kelas->jurusan = substr($request->kelas,-10,-2);
+       $kelas->jurusan = substr($request->kelas,3,-2);
        $kelas->grade = substr($request->kelas,0,2);
        $kelas->save();
         
@@ -35,7 +35,7 @@ class KelasController extends Controller
     {
         $editkelas = Kelas::find($id);
         $editkelas->kelas = $request->kelas;
-        $editkelas->kelas = substr($request->kelas,-10,-2);
+        $editkelas->kelas = substr($request->kelas,3,-2);
         $editkelas->grade = substr($request->kelas,0,2);
         $editkelas->update();
 

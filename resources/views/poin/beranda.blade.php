@@ -135,14 +135,14 @@
       <div class="card-body">
         <div class="tab-content p-0">
           <!-- Morris chart - Sales -->
-          <div class="chart tab-pane active" id="kelas" style="position: relative; height: 400px;">
-              <canvas id="chart5" height="400" style="height: 400px;"></canvas>
+          <div class="chart tab-pane active" id="kelas" style="position: relative; height: 500px;">
+              <canvas id="chart5" height="500" style="height: 500px;"></canvas>
            </div>
-           <div class="chart tab-pane" id="jurusan" style="position: relative; height: 400px;">
-             <canvas id="chart7" height="400" style="height: 400px;"></canvas>
+           <div class="chart tab-pane" id="jurusan" style="position: relative; height: 500px;">
+             <canvas id="chart7" height="500" style="height: 500px;"></canvas>
            </div>
-          <div class="chart tab-pane" id="kategori" style="position: relative; height: 400px;">
-            <canvas id="chart6" height="400" style="height: 400px;"></canvas>
+          <div class="chart tab-pane" id="kategori" style="position: relative; height: 500px;">
+            <canvas id="chart6" height="500" style="height: 500px;"></canvas>
           </div>
         </div>
       </div>
@@ -407,7 +407,6 @@ $(function(){
   var Data1 = {
       labels  : ['10', '11', '12'],
       datasets: [{
-      label: 'Weekly Sales',
       data: [{{$kelas10}}, {{$kelas11}}, {{$kelas12}}],
       backgroundColor: [
         'rgba(255, 26, 104, 0.2)',
@@ -451,7 +450,6 @@ $(function(){
   var Data6 = {
       labels  : ['Sikap Perilaku', 'Kerajinan', 'Kerapian'],
       datasets: [{
-      label: 'Weekly Sales',
       data: [{{$sikap}}, {{$kerajinan}}, {{$kerapian}}],
       backgroundColor: [
         'rgba(255, 26, 104, 0.2)',
@@ -463,7 +461,7 @@ $(function(){
         'rgba(0, 0, 0, 0.2)'
       ],
       borderColor: [
-        'rgba(255, 26, 104, 1)',
+        'rgba(255,255,204, 1)',
         'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
         'rgba(75, 192, 192, 1)',
@@ -476,6 +474,59 @@ $(function(){
     }
     var barChartCanvas = $('#chart6').get(0).getContext('2d')
     var barChartData = $.extend(true, {}, Data6)
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'pie',
+      data: barChartData,
+      options: barChartOptions
+    })
+})
+
+// PIE CHART Jurusan
+$(function(){
+  var Data7 = {
+      labels  : ['TKJ', 'RPL', 'PH', 'DKV', 'MM', 'PSPT', 'AK', 'AKL', 'BD', 'BDP', 'MP', 'OTKP'],
+      datasets: [{
+      data: [{{$tkj}}, {{$rpl}}, {{$ph}}, {{$dkv}}, {{$mm}}, {{$pspt}}, {{$ak}}, {{$akl}}, {{$bd}}, {{$bdp}}, {{$mp}}, {{$otkp}}],
+      backgroundColor: [
+        'rgba(255, 193, 7, 0.4)',
+        'rgba(255, 102, 0, 0.4)',
+        'rgba(0, 134, 49, 0.4)',
+        'rgba(0, 0, 0, 0.4)',
+        'rgba(54, 162, 235, 0.4)',
+        'rgba(255, 26, 104, 0.4)',
+        'rgba(220, 53, 69, 0.1)',
+        'rgba(186, 6, 6, 0.4)',
+        'rgba(174, 55, 255, 0.4)',
+        'rgba(0, 206, 209, 0.4)',
+        'rgba(0, 206, 139, 0.4)',
+        'rgba(0, 0, 209, 0.4)',
+      ],
+      borderColor: [
+        'rgba(255, 193, 7, 1)',
+        'rgba(255, 102, 0, 1)',
+        'rgba(0, 134, 49, 1)',
+        'rgba(0, 0, 0, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 26, 104, 1)',
+        'rgba(220, 53, 69, 0.5)',
+        'rgba(186, 6, 6, 1)',
+        'rgba(174, 55, 255, 1)',
+        'rgba(0, 206, 209, 1)',
+        'rgba(0, 206, 139, 1)',
+        'rgba(0, 0, 209, 1)',
+      ],
+      borderWidth: 1
+    }]
+    }
+    var barChartCanvas = $('#chart7').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, Data7)
 
     var barChartOptions = {
       responsive              : true,

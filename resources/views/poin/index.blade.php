@@ -352,7 +352,7 @@
 <script>
  function rfidSiswa() {
     var rfid = $('#rfid').val();
-    console.log(rfid);
+    // console.log(rfid);
     $.ajax({
       url: "{{route('autoRFID')}}",
       data: { rfid: +rfid, _token: '{{csrf_token()}}' },

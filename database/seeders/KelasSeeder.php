@@ -16,453 +16,453 @@ class KelasSeeder extends Seeder
     {
         DB::table('kelas')->insert([
             'kelas' => '10 TKJ 1',
-            'jurusan' => '10 TKJ', 
+            'jurusan' => 'TKJ', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 TKJ 2', 
-            'jurusan' => '10 TKJ', 
+            'jurusan' => 'TKJ', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 TKJ 1', 
-            'jurusan' => '11 TKJ', 
+            'jurusan' => 'TKJ', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 TKJ 2', 
-            'jurusan' => '11 TKJ', 
+            'jurusan' => 'TKJ', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 TKJ 1', 
-            'jurusan' => '12 TKJ', 
+            'jurusan' => 'TKJ', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 TKJ 2', 
-            'jurusan' => '12 TKJ', 
+            'jurusan' => 'TKJ', 
             'grade' => '12',
         ]);
 
         // RPL
         DB::table('kelas')->insert([
             'kelas' => '10 RPL 1', 
-            'jurusan' => '10 RPL', 
+            'jurusan' => 'RPL', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 RPL 2', 
-            'jurusan' => '10 RPL', 
+            'jurusan' => 'RPL', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 RPL 1', 
-            'jurusan' => '11 RPL', 
+            'jurusan' => 'RPL', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 RPL 2', 
-            'jurusan' => '11 RPL', 
+            'jurusan' => 'RPL', 
             'grade' => '11',
         ]);
         DB::table('kelas')->insert([
             'kelas' => '12 RPL 1', 
-            'jurusan' => '12 RPL', 
+            'jurusan' => 'RPL', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 RPL 2', 
-            'jurusan' => '12 RPL', 
+            'jurusan' => 'RPL', 
             'grade' => '12',
         ]);
         
         // PH
         DB::table('kelas')->insert([
             'kelas' => '10 PH 1', 
-            'jurusan' => '10 PH', 
+            'jurusan' => 'RPL', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 PH 2', 
-            'jurusan' => '10 PH', 
+            'jurusan' => 'PH', 
             'grade' => '10',
         ]);
         
         DB::table('kelas')->insert([
             'kelas' => '11 PH 1', 
-            'jurusan' => '11 PH', 
+            'jurusan' => 'PH', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 PH 2', 
-            'jurusan' => '11 PH', 
+            'jurusan' => 'PH', 
             'grade' => '11',
         ]);
         DB::table('kelas')->insert([
             'kelas' => '12 PH 1', 
-            'jurusan' => '12 PH', 
+            'jurusan' => 'PH', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 PH 2', 
-            'jurusan' => '12 PH', 
+            'jurusan' => 'PH', 
             'grade' => '12',
         ]);
 
         // DKV
         DB::table('kelas')->insert([
             'kelas' => '10 DKV 1', 
-            'jurusan' => '10 DKV', 
+            'jurusan' => 'DKV', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 DKV 2', 
-            'jurusan' => '10 DKV', 
+            'jurusan' => 'DKV', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 DKV 3', 
-            'jurusan' => '10 DKV', 
+            'jurusan' => 'DKV', 
             'grade' => '10',
         ]);
         
         DB::table('kelas')->insert([
             'kelas' => '11 DKV 1', 
-            'jurusan' => '11 DKV', 
+            'jurusan' => 'DKV', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 DKV 2', 
-            'jurusan' => '11 DKV', 
+            'jurusan' => 'DKV', 
             'grade' => '11',
         ]);
         
         DB::table('kelas')->insert([
             'kelas' => '12 DKV 1', 
-            'jurusan' => '12 DKV', 
+            'jurusan' => 'DKV', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 DKV 2', 
-            'jurusan' => '12 DKV', 
+            'jurusan' => 'DKV', 
             'grade' => '12',
         ]);
         
         // MM
         DB::table('kelas')->insert([
             'kelas' => '10 MM 1', 
-            'jurusan' => '10 MM', 
+            'jurusan' => 'MM', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 MM 2', 
-            'jurusan' => '10 MM', 
+            'jurusan' => 'MM', 
             'grade' => '10',
         ]);
         
         DB::table('kelas')->insert([
             'kelas' => '11 MM 1', 
-            'jurusan' => '11 MM', 
+            'jurusan' => 'MM', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 MM 2', 
-            'jurusan' => '11 MM', 
+            'jurusan' => 'MM', 
             'grade' => '11',
         ]);
         DB::table('kelas')->insert([
             'kelas' => '12 MM 1', 
-            'jurusan' => '12 MM', 
+            'jurusan' => 'MM', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 MM 2', 
-            'jurusan' => '12 MM', 
+            'jurusan' => 'MM', 
             'grade' => '12',
         ]);
 
         // PSPT
         DB::table('kelas')->insert([
             'kelas' => '10 PSPT 1', 
-            'jurusan' => '10 PSPT', 
+            'jurusan' => 'PSPT', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 PSPT 2', 
-            'jurusan' => '10 PSPT', 
+            'jurusan' => 'PSPT', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 PSPT 3', 
-            'jurusan' => '10 PSPT', 
+            'jurusan' => 'PSPT', 
             'grade' => '10',
         ]);
         
         DB::table('kelas')->insert([
             'kelas' => '11 PSPT 1', 
-            'jurusan' => '11 PSPT', 
+            'jurusan' => 'PSPT', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 PSPT 2', 
-            'jurusan' => '11 PSPT', 
+            'jurusan' => 'PSPT', 
             'grade' => '11',
         ]);
         
         DB::table('kelas')->insert([
             'kelas' => '12 PSPT 1', 
-            'jurusan' => '12 PSPT', 
+            'jurusan' => 'PSPT', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 PSPT 2', 
-            'jurusan' => '12 PSPT', 
+            'jurusan' => 'PSPT', 
             'grade' => '12',
         ]);
         
         // AK
         DB::table('kelas')->insert([
             'kelas' => '10 AK 1', 
-            'jurusan' => '10 AK', 
+            'jurusan' => 'AK', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 AK 2', 
-            'jurusan' => '10 AK', 
+            'jurusan' => 'AK', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 AK 3', 
-            'jurusan' => '10 AK', 
+            'jurusan' => 'AK', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 AK 4', 
-            'jurusan' => '10 AK', 
+            'jurusan' => 'AK', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 AK 5', 
-            'jurusan' => '10 AK', 
+            'jurusan' => 'AK', 
             'grade' => '10',
         ]);
         
         // AKL
         DB::table('kelas')->insert([
             'kelas' => '11 AKL 1', 
-            'jurusan' => '11 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 AKL 2', 
-            'jurusan' => '11 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 AKL 3', 
-            'jurusan' => '11 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 AKL 4', 
-            'jurusan' => '11 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 AKL 5', 
-            'jurusan' => '11 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '11',
         ]);
         
         DB::table('kelas')->insert([
             'kelas' => '12 AKL 1', 
-            'jurusan' => '12 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 AKL 2', 
-            'jurusan' => '12 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 AKL 3', 
-            'jurusan' => '12 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 AKL 4', 
-            'jurusan' => '12 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 AKL 5', 
-            'jurusan' => '12 AKL', 
+            'jurusan' => 'AKL', 
             'grade' => '12',
         ]);
 
         // BD
         DB::table('kelas')->insert([
             'kelas' => '10 BD 1', 
-            'jurusan' => '10 BD', 
+            'jurusan' => 'BD', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 BD 2', 
-            'jurusan' => '10 BD', 
+            'jurusan' => 'BD', 
             'grade' => '10',
         ]);
 
         // BDP
         DB::table('kelas')->insert([
             'kelas' => '11 BDP 1', 
-            'jurusan' => '11 BDP',
+            'jurusan' => 'BDP',
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 BDP 2', 
-            'jurusan' => '11 BDP', 
+            'jurusan' => 'BDP', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 BDP 1', 
-            'jurusan' => '12 BDP', 
+            'jurusan' => 'BDP', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 BDP 2', 
-            'jurusan' => '12 BDP', 
+            'jurusan' => 'BDP', 
             'grade' => '12',
         ]);
 
         // MP
         DB::table('kelas')->insert([
             'kelas' => '10 MP 1', 
-            'jurusan' => '10 MP', 
+            'jurusan' => 'MP', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 MP 2', 
-            'jurusan' => '10 MP', 
+            'jurusan' => 'MP', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 MP 3', 
-            'jurusan' => '10 MP', 
+            'jurusan' => 'MP', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 MP 4', 
-            'jurusan' => '10 MP', 
+            'jurusan' => 'MP', 
             'grade' => '10',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '10 MP 5', 
-            'jurusan' => '10 MP', 
+            'jurusan' => 'MP', 
             'grade' => '10',
         ]);
         
         // OTKP
         DB::table('kelas')->insert([
             'kelas' => '11 OTKP 1', 
-            'jurusan' => '11 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 OTKP 2', 
-            'jurusan' => '11 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 OTKP 3', 
-            'jurusan' => '11 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 OTKP 4', 
-            'jurusan' => '11 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '11',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '11 OTKP 5', 
-            'jurusan' => '11 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '11',
         ]);
         
         DB::table('kelas')->insert([
             'kelas' => '12 OTKP 1', 
-            'jurusan' => '12 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 OTKP 2', 
-            'jurusan' => '12 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 OTKP 3', 
-            'jurusan' => '12 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 OTKP 4', 
-            'jurusan' => '12 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '12',
         ]);
 
         DB::table('kelas')->insert([
             'kelas' => '12 OTKP 5', 
-            'jurusan' => '12 OTKP', 
+            'jurusan' => 'OTKP', 
             'grade' => '12',
         ]);
 
