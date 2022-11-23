@@ -62,6 +62,11 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::post('/tindak/tambah/', [App\Http\Controllers\TindakController::class, 'tambah'])->name('tambah_tindak');
     Route::post('/tindak/edit/{id}', [App\Http\Controllers\TindakController::class, 'edit']);
     Route::get('/tindak/hapus/{id}', [App\Http\Controllers\TindakController::class, 'hapus']);
+
+    Route::get('/kelas', [App\Http\Controllers\KelasController::class, 'index'])->name('kelas');
+    Route::post('/kelas/tambah/', [App\Http\Controllers\KelasController::class, 'tambah'])->name('tambah_kelas');
+    Route::post('/kelas/edit/{id}', [App\Http\Controllers\KelasController::class, 'edit']);
+    Route::get('/kelas/hapus/{id}', [App\Http\Controllers\KelasController::class, 'hapus']);
     
     Route::get('/riwayat/hapus/{id}', [App\Http\Controllers\RiwayatController::class, 'hapus']);
     

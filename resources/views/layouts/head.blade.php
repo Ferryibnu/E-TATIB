@@ -289,6 +289,10 @@
                   <i class="far fa-circle nav-icon text-dark"></i>
                   <p>Tindak Lanjut</p>
                 </a>
+                <a href="{{route('kelas')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon text-dark"></i>
+                  <p>Kelas</p>
+                </a>
               </li>
             </ul>
           </li>

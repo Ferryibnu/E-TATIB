@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Poin;
 use App\Models\User;
@@ -134,9 +135,37 @@ class DashboardController extends Controller
                 ->whereMonth('created_at', '=', Carbon::create('december')->format('m'))
                 ->count();
 
-                // $currentURL = url()->current();
-    
-                // dd($currentURL);
+        //Chart Kelas
+        $kelas10 = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('grade', '10');
+                });
+        })->count();
+        $kelas11 = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('grade', '11');
+                });
+        })->count();
+        $kelas12 = Poin::whereHas('siswa', function ($query) {
+                $query->whereHas('kelas', function ($query1) {
+                        $query1->where('grade', '12');
+                });
+        })->count();
+        // dd($kelas10);
+
+        //Chart Kategori
+        $sikap = Poin::whereHas('pelanggaran', function ($query) {
+                $query->where('golongan', 'Sikap Perilaku');
+        })->count();
+
+        $kerajinan = Poin::whereHas('pelanggaran', function ($query) {
+                $query->where('golongan', 'Kerajinan');
+        })->count();
+
+        $kerapian = Poin::whereHas('pelanggaran', function ($query) {
+                $query->where('golongan', 'Kerapian');
+        })->count();
+
         return view('poin.beranda', [
         'total_pelanggar' => $total_pelanggar,
         'pelanggaran' => $pelanggaran,
@@ -180,6 +209,14 @@ class DashboardController extends Controller
         'berat_oct' => $berat_oct,
         'berat_nov' => $berat_nov,
         'berat_dec' => $berat_dec,
+        //chart Kategori
+        'sikap' => $sikap,
+        'kerajinan' => $kerajinan,
+        'kerapian' => $kerapian,
+        //chart Kelas
+        'kelas10' => $kelas10,
+        'kelas11' => $kelas11,
+        'kelas12' => $kelas12,
         ]);
    }
 

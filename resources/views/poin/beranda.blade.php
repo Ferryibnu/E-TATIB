@@ -124,6 +124,9 @@
               <a class="nav-link active" href="#kelas" data-toggle="tab"> Kelas</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="#jurusan" data-toggle="tab">Jurusan</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#kategori" data-toggle="tab">Kategori</a>
             </li>
           </ul>
@@ -134,6 +137,9 @@
           <!-- Morris chart - Sales -->
           <div class="chart tab-pane active" id="kelas" style="position: relative; height: 400px;">
               <canvas id="chart5" height="400" style="height: 400px;"></canvas>
+           </div>
+           <div class="chart tab-pane" id="jurusan" style="position: relative; height: 400px;">
+             <canvas id="chart7" height="400" style="height: 400px;"></canvas>
            </div>
           <div class="chart tab-pane" id="kategori" style="position: relative; height: 400px;">
             <canvas id="chart6" height="400" style="height: 400px;"></canvas>
@@ -399,10 +405,10 @@ $(function(){
 // PIE CHART Kelas
 $(function(){
   var Data1 = {
-      labels  : ['TKJ', 'MM', 'AK'],
+      labels  : ['10', '11', '12'],
       datasets: [{
       label: 'Weekly Sales',
-      data: [0, 0, 0, 9, 12, 3, 9],
+      data: [{{$kelas10}}, {{$kelas11}}, {{$kelas12}}],
       backgroundColor: [
         'rgba(255, 26, 104, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -446,7 +452,7 @@ $(function(){
       labels  : ['Sikap Perilaku', 'Kerajinan', 'Kerapian'],
       datasets: [{
       label: 'Weekly Sales',
-      data: [12, 3, 9],
+      data: [{{$sikap}}, {{$kerajinan}}, {{$kerapian}}],
       backgroundColor: [
         'rgba(255, 26, 104, 0.2)',
         'rgba(54, 162, 235, 0.2)',
