@@ -67,6 +67,7 @@ class SiswaController extends Controller
             $addSiswa->users_id = $addUser->id;
             $addSiswa->nisn = $request->nisn;
             $addSiswa->nama = $request->nama;
+            $addSiswa->rfid = $request->rfid;
             $addSiswa->agama = $request->agama;
             $addSiswa->no_telp = $request->no_telp;
             $addSiswa->kelas_id = $request->kelas;
@@ -92,6 +93,7 @@ class SiswaController extends Controller
 
         $editSiswa = Siswa::find($id);
         $editSiswa->nama = $request->nama;
+        $editSiswa->rfid = $request->rfid;
         $editSiswa->kelas_id = $request->kelas;
         $editSiswa->tempat_lahir = $request->tempat_lahir;
         $editSiswa->tgl_lahir = $request->tgl_lahir;

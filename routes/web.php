@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('dashboard');
     Route::post('/foto_profil', [App\Http\Controllers\DashboardController::class, 'fotoProfil'])->name('foto_profil');
     Route::post('/autofill', [App\Http\Controllers\PoinController::class, 'autofill'])->name('autofill');
+    Route::post('/autoRFID', [App\Http\Controllers\PoinController::class, 'autoRFID'])->name('autoRFID');
     
     Route::get('/profile/{id}', [App\Http\Controllers\SiswaController::class, 'profile']);
 

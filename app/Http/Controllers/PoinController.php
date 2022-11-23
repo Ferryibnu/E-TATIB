@@ -171,4 +171,14 @@ class PoinController extends Controller
         // dd($getFields);
         return response()->json($getFields);
     }
+
+    public function autoRFID(Request $request)
+    {
+        // $getFields = Siswa::where('nisn',$request->nisn)->first();
+        $getFields = Siswa::join('kelas', 'kelas.id', '=', 'kelas_id')
+                    ->where('rfid', $request->rfid)
+                    ->first();
+        // dd($getFields);
+        return response()->json($getFields);
+    }
 }

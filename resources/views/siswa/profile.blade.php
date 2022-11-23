@@ -15,6 +15,12 @@
                   <div class="col-8"> :&emsp;{{$siswa->nisn}}</div>
               </div>
               <hr>
+              
+              <div class="row">
+                  <div class="col-4"> RFID </div>
+                  <div class="col-8"> :&emsp;{{$siswa->rfid}}</div>
+              </div>
+              <hr>
 
               <div class="row">
                 <div class="col-4"> Nama </div>

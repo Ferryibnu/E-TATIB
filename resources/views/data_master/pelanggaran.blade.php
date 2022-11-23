@@ -27,9 +27,20 @@
                     <!-- Tab 1 -->
 
                     <div class="form-row">
-                      <div class="form-group col-md-10" >
+                      <div class="form-group col-md-12" >
                         <label for="inputStatus">Bentuk Pelanggaran</label>
                         <input required type="text" class="form-control" name="pelanggaran">
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-10" >
+                        <label for="inputStatus">Golongan Pelanggaran</label>
+                        <select class="form-control" name="golongan" style="width: 100%;" required>
+                            <option value="Sikap Perilaku">Sikap Perilaku</option>
+                            <option value="Kerajinan">Kerajinan</option>
+                            <option value="Kerapian">Kerapian</option>
+                        </select>
                       </div>
 
                       <div class="form-group col-md-2" >
@@ -53,6 +64,7 @@
                 <th>No</th>
                 <th>Bentuk Pelanggaran</th>
                 <th>Poin</th>
+                <th>Golongan</th>
                 <th>Aksi</th>
               </tr>
               </thead>
@@ -63,6 +75,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->pelanggaran }}</td>
                 <td>{{ $s->poin }}</td>
+                <td>{{ $s->golongan }}</td>
                 <td>
                   <button type="button" title="Edit" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#ModalEdit{{$s->id}}"><i class="fa fa-edit"></i></button>
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalHapus{{$s->id}}"><i class="fa fa-trash"></i></button>
@@ -108,9 +121,16 @@
                           {{csrf_field()}}
               
                           <div class="form-row">
-                            <div class="form-group col-md-10" >
+                            <div class="form-group col-md-12" >
                               <label for="inputStatus">Bentuk Pelanggaran</label>
                               <input type="text" value="{{$s->pelanggaran}}" class="form-control" name="pelanggaran" required>
+                            </div>
+                          </div>
+                          
+                          <div class="form-row">
+                            <div class="form-group col-md-10" >
+                              <label for="inputStatus">Golongan Pelanggaran</label>
+                              <input type="text" value="{{$s->golongan}}" class="form-control" name="golongan" required>
                             </div>
       
                             <div class="form-group col-md-2" >

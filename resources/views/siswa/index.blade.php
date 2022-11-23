@@ -33,8 +33,14 @@
                       </div>
 
                       <div class="form-group col-md-6" >
+                        <label for="inputStatus">RFID</label>
+                        <input required id="rfid" type="text" class="form-control" name="rfid" required>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-12" >
                         <label for="inputStatus">Nama</label>
-                        <input required id="nama" type="text" class="form-control" name="nama">
+                        <input required id="nama" type="text" class="form-control" name="nama" required>
                       </div>
                     </div>
 

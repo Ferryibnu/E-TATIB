@@ -20,6 +20,7 @@ class CreateSiswaTable extends Migration
             $table->unsignedInteger('penghargaan_id')->nullable();
             $table->string('nama');
             $table->string('nisn');
+            $table->string('rfid')->nullable();
             $table->string('agama')->nullable();
             $table->string('no_telp')->nullable();
             $table->string('tempat_lahir')->nullable();

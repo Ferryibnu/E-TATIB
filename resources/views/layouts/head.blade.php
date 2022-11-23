@@ -70,6 +70,25 @@
     }
 
   </style>
+
+<style>
+  .chartMenu {
+    background: #1A1A1A;
+  }
+  .chartMenu p {
+    font-size: 20px;
+  }
+  .chartCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chartBox {
+    width: 400px;
+    border-radius: 20px;
+    background: white;
+  }
+</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 

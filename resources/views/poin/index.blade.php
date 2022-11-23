@@ -76,9 +76,13 @@
                         <input id="kelas" type="text" class="form-control" name="kelas" disabled>
                       </div>
 
-                      <div class="form-group col-md-8">
+                      <div class="form-group col-md-8" style="display: none;">
                         <label for="inputStatus">Nama Pencatat</label>
                         <input id="pencatat" type="text" class="form-control" name="pencatat" value="{{Auth::user()->name}}" disabled>
+                      </div>
+                      <div class="form-group col-md-8">
+                        <label for="inputStatus">RFID</label>
+                        <input id="rfid" type="text" class="form-control" name="rfid"  onkeyup="rfidSiswa()" required>
                       </div>
                     </div>
 
@@ -316,6 +320,7 @@
         success: function(data)
         {
           $("#nama").val(data.nama)
+          $("#rfid").val(data.rfid)
           $("#kelas").val(data.kelas);
         }
     });
@@ -337,6 +342,25 @@
         success: function(data)
         {
           $("#nama").val(data.nama),
+          $("#rfid").val(data.rfid),
+          $("#kelas").val(data.kelas);
+        }
+    });
+  }
+</script>
+
+<script>
+ function rfidSiswa() {
+    var rfid = $('#rfid').val();
+    console.log(rfid);
+    $.ajax({
+      url: "{{route('autoRFID')}}",
+      data: { rfid: +rfid, _token: '{{csrf_token()}}' },
+      method: 'post',
+        success: function(data)
+        {
+          $("#nama").val(data.nama),
+          $("#nisn").val(data.nisn),
           $("#kelas").val(data.kelas);
         }
     });

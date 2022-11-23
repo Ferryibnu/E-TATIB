@@ -73,7 +73,7 @@
       <div class="card-header">
         <h3 class="card-title">
           <i class="fas fa-chart-bar mr-1"></i>
-          Grafik Pelangaran
+          Grafik Triwulan
         </h3>
         <div class="card-tools">
           <ul class="nav nav-pills ml-auto mt-2">
@@ -90,11 +90,6 @@
             <li class="nav-item">
               <a class="nav-link" href="#triwulan4" data-toggle="tab">Oktober-Desember</a>
             </li>
-            {{-- <li class="nav-item">
-              <button type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#PDF">
-                <i class="fa fa-file-pdf"></i>
-              </button>
-            </li> --}}
           </ul>
         </div>
       </div><!-- /.card-header -->
@@ -116,52 +111,49 @@
         </div>
       </div>
     </div>
-     <!-- PDF Triwulan -->
-     {{-- <div class="modal fade" id="PDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cetak Laporan Triwulan</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-chart-bar mr-1"></i>
+          Grafik Pelangaran Berdasarkan
+        </h3>
+        <div class="card-tools">
+          <ul class="nav nav-pills ml-auto mt-2">
             
-            <form action="/dashboard/triwulan" method="POST" enctype="multipart/form-data">
-          </div>
-          <div class="modal-body">
-
-            {{ csrf_field() }}
-      
-            <div class="form-row">
-              <label for="inputStatus">Pilih Triwulan</label>
-                <select name="triwulan" class="form-control" required>
-                  <option value=1>Triwulan ke-1</option>
-                  <option value=2>Triwulan ke-2</option>
-                  <option value=3>Triwulan ke-3</option>
-                  <option value=4>Triwulan ke-4</option>
-                </select>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <button type="submit" class="btn btn-primary">Cetak</button></form>
+            <li class="nav-item">
+              <a class="nav-link active" href="#kelas" data-toggle="tab"> Kelas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#kategori" data-toggle="tab">Kategori</a>
+            </li>
+          </ul>
+        </div>
+      </div><!-- /.card-header -->
+      <div class="card-body">
+        <div class="tab-content p-0">
+          <!-- Morris chart - Sales -->
+          <div class="chart tab-pane active" id="kelas" style="position: relative; height: 400px;">
+              <canvas id="chart5" height="400" style="height: 400px;"></canvas>
+           </div>
+          <div class="chart tab-pane" id="kategori" style="position: relative; height: 400px;">
+            <canvas id="chart6" height="400" style="height: 400px;"></canvas>
           </div>
         </div>
       </div>
-    </div> --}}
-
-  </section>
-
+    </div>
+  </div>
+</section>
 <script>
   // Data Chart Januari-Maret
   $(function(){
-  var Data1 = {
+  var Data = {
       labels  : ['Januari', 'Februari', 'Maret'],
       datasets: [
         {
           label               : 'Ringan',
-          backgroundColor     : 'rgba(40, 167, 69, 1)',
+          backgroundColor     : 'rgba(40, 167, 69, 0.4)',
           borderColor         : 'rgba(40, 167, 69, 1)',
+          borderWidth         : 1,
           pointRadius          : false,
           pointColor          : '#28a746',
           pointStrokeColor    : 'rgba(40, 167, 69, 1)',
@@ -171,8 +163,9 @@
         },
         {
           label               : 'Sedang',
-          backgroundColor     : 'rgba(255, 193, 7, 1)',
+          backgroundColor     : 'rgba(255, 193, 7, 0.4)',
           borderColor         : 'rgba(255, 193, 7, 1)',
+          borderWidth         : 1,
           pointRadius         : false,
           pointColor          : 'rgba(255, 193, 7, 1)',
           pointStrokeColor    : '#c1c7d1',
@@ -182,8 +175,9 @@
         },
         {
           label               : 'Berat',
-          backgroundColor     : 'rgba(220, 53, 69, 1)',
+          backgroundColor     : 'rgba(220, 53, 69, 0.4)',
           borderColor         : 'rgba(220, 53, 69, 1)',
+          borderWidth         : 1,
           pointRadius         : false,
           pointColor          : 'rgba(220, 53, 69, 1)',
           pointStrokeColor    : '#c1c7d1',
@@ -194,9 +188,9 @@
       ]
     }
     var barChartCanvas = $('#chart1').get(0).getContext('2d')
-    var barChartData = $.extend(true, {}, Data1)
-    var temp0 = Data1.datasets[0]
-    var temp1 = Data1.datasets[1]
+    var barChartData = $.extend(true, {}, Data)
+    var temp0 = Data.datasets[0]
+    var temp1 = Data.datasets[1]
     barChartData.datasets[0] = temp1
     barChartData.datasets[1] = temp0
 
@@ -220,8 +214,9 @@ $(function(){
       datasets: [
         {
           label               : 'Ringan',
-          backgroundColor     : 'rgba(40, 167, 69, 1)',
+          backgroundColor     : 'rgba(40, 167, 69, 0.4)',
           borderColor         : 'rgba(40, 167, 69, 1)',
+          borderWidth         : 1,
           pointRadius          : false,
           pointColor          : '#28a746',
           pointStrokeColor    : 'rgba(40, 167, 69, 1)',
@@ -231,8 +226,9 @@ $(function(){
         },
         {
           label               : 'Sedang',
-          backgroundColor     : 'rgba(255, 193, 7, 1)',
+          backgroundColor     : 'rgba(255, 193, 7, 0.4)',
           borderColor         : 'rgba(255, 193, 7, 1)',
+          borderWidth         : 1,
           pointRadius         : false,
           pointColor          : 'rgba(255, 193, 7, 1)',
           pointStrokeColor    : '#c1c7d1',
@@ -242,8 +238,9 @@ $(function(){
         },
         {
           label               : 'Berat',
-          backgroundColor     : 'rgba(220, 53, 69, 1)',
+          backgroundColor     : 'rgba(220, 53, 69, 0.4)',
           borderColor         : 'rgba(220, 53, 69, 1)',
+          borderWidth         : 1,
           pointRadius         : false,
           pointColor          : 'rgba(220, 53, 69, 1)',
           pointStrokeColor    : '#c1c7d1',
@@ -280,8 +277,9 @@ $(function(){
       datasets: [
         {
           label               : 'Ringan',
-          backgroundColor     : 'rgba(40, 167, 69, 1)',
+          backgroundColor     : 'rgba(40, 167, 69, 0.4)',
           borderColor         : 'rgba(40, 167, 69, 1)',
+          borderWidth         : 1,
           pointRadius          : false,
           pointColor          : '#28a746',
           pointStrokeColor    : 'rgba(40, 167, 69, 1)',
@@ -291,8 +289,9 @@ $(function(){
         },
         {
           label               : 'Sedang',
-          backgroundColor     : 'rgba(255, 193, 7, 1)',
+          backgroundColor     : 'rgba(255, 193, 7, 0.4)',
           borderColor         : 'rgba(255, 193, 7, 1)',
+          borderWidth         : 1,
           pointRadius         : false,
           pointColor          : 'rgba(255, 193, 7, 1)',
           pointStrokeColor    : '#c1c7d1',
@@ -302,8 +301,9 @@ $(function(){
         },
         {
           label               : 'Berat',
-          backgroundColor     : 'rgba(220, 53, 69, 1)',
+          backgroundColor     : 'rgba(220, 53, 69, 0.4)',
           borderColor         : 'rgba(220, 53, 69, 1)',
+          borderWidth         : 1,
           pointRadius         : false,
           pointColor          : 'rgba(220, 53, 69, 1)',
           pointStrokeColor    : '#c1c7d1',
@@ -340,8 +340,9 @@ $(function(){
       datasets: [
         {
           label               : 'Ringan',
-          backgroundColor     : 'rgba(40, 167, 69, 1)',
+          backgroundColor     : 'rgba(40, 167, 69, 0.4)',
           borderColor         : 'rgba(40, 167, 69, 1)',
+          borderWidth         : 1,
           pointRadius          : false,
           pointColor          : '#28a746',
           pointStrokeColor    : 'rgba(40, 167, 69, 1)',
@@ -351,8 +352,9 @@ $(function(){
         },
         {
           label               : 'Sedang',
-          backgroundColor     : 'rgba(255, 193, 7, 1)',
+          backgroundColor     : 'rgba(255, 193, 7, 0.4)',
           borderColor         : 'rgba(255, 193, 7, 1)',
+          borderWidth         : 1,
           pointRadius         : false,
           pointColor          : 'rgba(255, 193, 7, 1)',
           pointStrokeColor    : '#c1c7d1',
@@ -362,8 +364,9 @@ $(function(){
         },
         {
           label               : 'Berat',
-          backgroundColor     : 'rgba(220, 53, 69, 1)',
+          backgroundColor     : 'rgba(220, 53, 69, 0.4)',
           borderColor         : 'rgba(220, 53, 69, 1)',
+          borderWidth         : 1,
           pointRadius         : false,
           pointColor          : 'rgba(220, 53, 69, 1)',
           pointStrokeColor    : '#c1c7d1',
@@ -392,6 +395,95 @@ $(function(){
       options: barChartOptions
     })
 })
+
+// PIE CHART Kelas
+$(function(){
+  var Data1 = {
+      labels  : ['TKJ', 'MM', 'AK'],
+      datasets: [{
+      label: 'Weekly Sales',
+      data: [0, 0, 0, 9, 12, 3, 9],
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(0, 0, 0, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(0, 0, 0, 1)'
+      ],
+      borderWidth: 1
+    }]
+    }
+    var barChartCanvas = $('#chart5').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, Data1)
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'pie',
+      data: barChartData,
+      options: barChartOptions
+    })
+})
+
+// PIE CHART Kategori
+$(function(){
+  var Data6 = {
+      labels  : ['Sikap Perilaku', 'Kerajinan', 'Kerapian'],
+      datasets: [{
+      label: 'Weekly Sales',
+      data: [12, 3, 9],
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(0, 0, 0, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(0, 0, 0, 1)'
+      ],
+      borderWidth: 1
+    }]
+    }
+    var barChartCanvas = $('#chart6').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, Data6)
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'pie',
+      data: barChartData,
+      options: barChartOptions
+    })
+})
 </script>
+
 
 @endsection

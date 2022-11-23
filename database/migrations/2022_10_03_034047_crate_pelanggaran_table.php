@@ -18,6 +18,7 @@ class CratePelanggaranTable extends Migration
             $table->string('pelanggaran')->nullable();
             $table->integer('poin')->nullable();
             $table->integer('kategori')->nullable();
+            $table->string('golongan')->nullable();
             $table->timestamps();
 
         });
