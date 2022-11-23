@@ -102,7 +102,7 @@ form.sign-in-form {
   font-weight: 500;
 }
 
-.btn {
+.btnn {
   width: 150px;
   background-color: #eb5d1e;
   border: none;
@@ -116,8 +116,16 @@ form.sign-in-form {
   cursor: pointer;
   transition: 0.5s;
 }
-
-.btn:hover {
+.btn {
+  position: relative;
+  right: 200px;
+  height: 40px;
+  width: 50px;
+  justify-content: center;
+  background-color: #fff;
+  outline: #fff;
+}
+.btnn:hover {
   background-color: #ef7f4d;
 }
 .panels-container {
