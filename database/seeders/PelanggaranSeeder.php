@@ -164,14 +164,254 @@ class PelanggaranSeeder extends Seeder
             'pelanggaran' => 'Mengancam / mengintimidasi Kepala Sekolah, Guru dan Karyawan Sekolah',
             'poin' => 150,
             'golongan' => 'Sikap Perilaku',
-            
         ]);
 
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Membawa / merokok saat masih mengenakan seragam sekolah baik didalam/diluar sekolah',
+            'poin' => 150,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Menyalahgunakan media sosial yang merugikan pihak lain yang berhubungan dengan sekolah',
+            'poin' => 150,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Berjudi dalam bentuk apapun di sekolah',
+            'poin' => 150,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Membawa senjata tajam, senjata api dsb. di sekolah.',
+            'poin' => 150,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Terlibat langsung maupun tidak langsung perkelahian/tawuran di sekolah, di luar sekolah atau antar sekolah.',
+            'poin' => 150,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Mengikuti aliran/perkumpulan/geng terlarang/Komunitas LGBT dan radikalisme',
+            'poin' => 150,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Membuat atau memakai tatto di tubuh',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Melakukan pelecehan seksual (pemerkosaan dll)',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Membawa, menggunakan atau mengedarkan miras dan narkoba',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Membawa dan/atau membuat VCD Porno, buku porno, majalah porno atau sesuatu yang berbau pornografi dan pornoaksi',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Mencuri di sekolah dan di luar sekolah.',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Memalsukan stempel sekolah, edaran sekolah atau tanda tangan Kepala Sekolah, guru dan karyawan sekolah.',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Terlibat dan atau melakukan tindakan kriminal',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Mencemarkan nama baik sekolah',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Terbukti hamil atau menghamili',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Terbukti menikah',
+            'poin' => 250,
+            'golongan' => 'Sikap Perilaku',
+        ]);
+
+        //Kerajinan
+        
         DB::table('pelanggaran')->insert([
             'pelanggaran' => 'Datang terlambat',
             'poin' => 10,
             'golongan' => 'Kerajinan',
             
         ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Meninggalkan kelas tanpa izin.',
+            'poin' => 10,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Di kantin saat jam pembelajaran.',
+            'poin' => 10,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => "Tidak melaksanakan piket harian 7K dan jum'at bersih",
+            'poin' => 10,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidur di kelas saat pelajaran berlangsung',
+            'poin' => 10,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Pulang sebelum waktunya tanpa izin dari sekolah',
+            'poin' => 20,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidak mengikuti upacara',
+            'poin' => 20,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidak mengikuti kegiatan sekolah',
+            'poin' => 20,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidak mengikuti kegiatan ekstrakurikuler pramuka wajib',
+            'poin' => 20,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidak mengikuti pembiasaan membaca kitab suci agama',
+            'poin' => 20,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidak melakukan kegiatan literasi',
+            'poin' => 20,
+            'golongan' => 'Kerajinan',
+            
+        ]);
+
+        //KERAPIAN
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidak memakai seragam sesuai dengan ketentuan',
+            'poin' => 10,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Seragam dicoret-coret.',
+            'poin' => 10,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Melipat lengan baju, baju tidak dikancingkan, tidak rapi',
+            'poin' => 10,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Berambut panjang tidak sesuai ketentuan (putra)',
+            'poin' => 10,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidak memakai kaos kaki sesuai ketentuanTidak memakai ikat pinggang sesuai dengan ketentuan',
+            'poin' => 10,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Atribut seragam tidak lengkap',
+            'poin' => 10,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Tidak memakai sepatu sesuai ketentuan',
+            'poin' => 10,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Memakai perhiasan berlebihan / tidak sesuai ketentuan',
+            'poin' => 10,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Memakai make-up berlebihan (putri)',
+            'poin' => 30,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
+        DB::table('pelanggaran')->insert([
+            'pelanggaran' => 'Memakai tindik telinga lebih dari 1 (putri) dan tindik lidah',
+            'poin' => 30,
+            'golongan' => 'Kerapian',
+            
+        ]);
+
     }
 }
