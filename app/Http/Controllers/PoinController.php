@@ -143,12 +143,6 @@ class PoinController extends Controller
             Poin::query()->each(function ($oldRecord) {
                 $newRecord = $oldRecord->replicate();
                 $newRecord->setTable('riwayat');
-                $siswa_old = Siswa::find($oldRecord->siswa_id)->first();
-                $kelas = Kelas::find($siswa_old->kelas_id)->first();
-
-                $newRecord->nisn = $siswa_old->nisn;
-                $newRecord->nama = $siswa_old->nama;
-                $newRecord->kelas = $kelas->kelas;
                 $newRecord->tgl_pelanggaran = $oldRecord->created_at;
                 $newRecord->save();
     

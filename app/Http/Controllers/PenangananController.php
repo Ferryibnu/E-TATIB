@@ -28,7 +28,7 @@ class PenangananController extends Controller
 
     public function sedang(){
         $siswa = Siswa::all();
-        $sedang = Poin::whereBetween('catatan', ['Panggilan Orang Tua ke-1', 'Panggilan Orang Tua ke-3'])->get();
+        $sedang = Poin::where('kategori', 'sedang')->get();
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
         ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
@@ -45,7 +45,7 @@ class PenangananController extends Controller
 
     public function berat(){
         $siswa = Siswa::all();
-        $berat = Poin::where('catatan', '=', 'Skorsing')->get();
+        $berat = Poin::where('kategori', 'berat')->get();
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
         ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Riwayat;
-use App\Models\Siswa;
-use App\Models\Poin;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RiwayatController extends Controller
@@ -22,6 +20,15 @@ class RiwayatController extends Controller
         Riwayat::find($id)->delete();
 
         Alert::success('Hapus Sukses', 'Data Berhasil Dihapus');
+        return redirect()->back();
+    }
+
+    public function reset()
+    {
+        foreach (Riwayat::all() as $e) { 
+            $e->delete();
+        }
+        Alert::success('Hapus Sukses', 'Semua Data berhasil dihapus');
         return redirect()->back();
     }
 }

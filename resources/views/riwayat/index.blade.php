@@ -12,6 +12,28 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
+            
+            {{-- Modal Reset --}}
+            <div class="modal fade" id="ModalReset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Anda yakin ingin menghapus semua data?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <a href="/riwayat/reset" class="btn btn-primary">Iya</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
@@ -22,7 +44,6 @@
                 <th>Pelanggaran</th>
                 <th>Poin</th>
                 <th>Tindak Lanjut</th>
-                <th>Waktu Pelanggaran</th>
                 <th>Aksi</th>
               </tr>
               </thead>
@@ -30,13 +51,12 @@
                 @foreach($riwayat as $s)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $s->nisn }}</td>
-                <td>{{ $s->nama }}</td>
-                <td>{{ $s->kelas }}</td>
+                <td>{{ $s->siswa->nisn }}</td>
+                <td>{{ $s->siswa->nama }}</td>
+                <td>{{ $s->siswa->kelas->kelas }}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }}</td>
                 <td>{{ $s->pelanggaran->poin }}</td>
                 <td>{{ $s->catatan }}</td>
-                <td>{{ date('d-m-Y / H:i:s', strtotime($s->tgl_pelanggaran)) }}</td>
                 <td>
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDelete{{$s->id}}"><i class="fa fa-trash"></i></button>
                 </td>
@@ -71,6 +91,16 @@
         <!-- /.card -->
       </div>
       <!-- /.col -->
+    </div>
+    <div class="dropdown">
+      <a class="float"  role="button" id="dropdownMenuButton" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-plus my-float"></i>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" data-toggle="modal" data-target="#ModalReset" href="#" title="Hapus Semua">Hapus Semua</a>
+        <br>
+      </div>
     </div>
     <!-- /.row -->
   </div>

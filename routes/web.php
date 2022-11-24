@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/siswa', [App\Http\Controllers\SiswaController::class, 'index'])->name('siswa');
     Route::get('/riwayat', [App\Http\Controllers\RiwayatController::class, 'index'])->name('riwayat');
 
+    Route::get('/riwayat/reset', [App\Http\Controllers\RiwayatController::class, 'reset']);
+
     Route::get('/awards', [App\Http\Controllers\AwardsController::class, 'index'])->name('awards');
     Route::post('/awards/tambah/', [App\Http\Controllers\AwardsController::class, 'tambah'])->name('catat_penghargaan');
     Route::post('/awards/edit/{id}', [App\Http\Controllers\AwardsController::class, 'edit']);
