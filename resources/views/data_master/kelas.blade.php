@@ -104,8 +104,8 @@
               
                           <div class="form-row">
                             <div class="form-group col-md-12" >
-                              <label for="inputStatus">kelas </label>
-                              <input type="text" value="{{$s->kelas}}" class="form-control" name="kelas_" required>
+                              <label for="inputStatus">Kelas </label>
+                              <input type="text" value="{{$s->kelas}}" class="form-control" name="kelas" required>
                             </div>
                           </div>
               

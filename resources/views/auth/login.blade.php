@@ -28,7 +28,7 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input id="password" placeholder="Password" data-toggle="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+              <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                     </span>
                 @enderror
             </div>
-            <input type="submit" class="btnn solid" />
+            <input type="submit" class="btn solid" />
           </form>
         </div>
       </div>
@@ -55,7 +55,4 @@
     </div>
 
   </body>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
-
 </html>

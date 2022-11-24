@@ -1,22 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Kelas;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class KelasController extends Controller
 {
     public function index() {
-        $kelas = Kelas::all();
-        $kelas11 = Kelas::where('id', 50)->first()->kelas;
-        $sub = substr($kelas11,3,-2,);
-        // dd($sub);
-
-        return view('data_master.kelas', [
-            'kelas' => $kelas,
-        ]);
+        // return response()->json([Kelas::all()]);
+        return Kelas::all();
     }
 
     public function tambah(Request $request)
@@ -27,8 +22,7 @@ class KelasController extends Controller
        $kelas->grade = substr($request->kelas,0,2);
        $kelas->save();
         
-       Alert::success('Sukses Menambahkan', 'Data Berhasil Ditambahkan');
-       return redirect()->back();
+       return "Data Kelas Berhasil Ditambahkan";
     }
 
     public function edit($id, Request $request)
@@ -39,15 +33,15 @@ class KelasController extends Controller
         $editkelas->grade = substr($request->kelas,0,2);
         $editkelas->update();
 
-        Alert::success('Edit Sukses', 'Data Berhasil Diedit');
-        return redirect()->back();
+        
+       return "Data Kelas Berhasil Diubah";
     }
 
     public function hapus($id)
     {
         Kelas::find($id)->delete();
 
-        Alert::success('Hapus Sukses', 'Data Berhasil Dihapus');
-        return redirect()->back();
+        
+       return "Data Kelas Berhasil Dihapus";
     }
 }
