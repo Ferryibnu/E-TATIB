@@ -37,7 +37,7 @@ class ImportSiswa implements ToModel, WithHeadingRow
             $siswa->users_id = $user->id;
             $siswa->nisn = $row['nisn'];
             $siswa->nama = $row['nama'];
-            $siswa->nama = $row['rfid'];
+            $siswa->rfid = $row['rfid'];
             $siswa->agama = $row['agama'];
             $siswa->kelas_id = $getKelas->id;
             $siswa->tempat_lahir = $row['tempat_lahir'];
