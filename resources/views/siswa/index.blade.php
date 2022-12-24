@@ -3,6 +3,13 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
+    
+    <div class="alert alert-warning alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
+      Silahkan  download template Excel <a href="{{ asset('storage/Template.xlsx') }}" title="Download Template Excel"><u>disini</u></a>
+    </div>
+
     <div class="row">
       <div class="col-12">
         <div class="card shadow mt-4">

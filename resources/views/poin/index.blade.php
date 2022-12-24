@@ -5,15 +5,11 @@
   <div class="container-fluid">
 
     {{-- notifikasi sukses --}}
-    {{-- @if ($sukses = $poinTotal)
-    @foreach($sukses as $s)
     <div class="alert alert-warning alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
-        Peringatan untuk <strong>{{ $s->nama }}</strong> Karena <strong>{{ $s->pelanggaran }} {{ $s->total }}x</strong>
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
+      Tutorial memberikan permisson QR Scanner ada <a href="#" data-toggle="modal" data-target="#ModalTutor" title="Download Template Excel"><u>disini</u></a>
     </div>
-    @endforeach
-    @endif --}}
 
     <div class="row">
       <div class="col-12">
@@ -120,6 +116,26 @@
 
                     <!-- Scan -->
                     <div id="reader"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.modal -->
+
+            <!-- Modal Tutor -->
+            <div class="modal fade" id="ModalTutor" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tutorial Permission QR Scanner</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    <embed src="{{ asset('storage/Tutorial.pdf') }}" width="100%" frameborder="0" height="450px">
 
                   </div>
                 </div>
