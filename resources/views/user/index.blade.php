@@ -31,16 +31,12 @@
                         <label for="inputStatus">Nama</label>
                         <input required type="text" class="form-control" name="name">
                       </div>
-                      <div class="form-group col-md-4" >
+                      <div class="form-group col-md-6" >
                         <label for="inputStatus">Status</label>
                         <select class="form-control" name="status" style="width: 100%;" required>
                             <option value="Tim Tatib">Tim Tatib</option>
                             <option value="Koordinator">Koordinator Tim Tatib</option>
                         </select>
-                      </div>
-                      <div class="form-group col-md-2" >
-                        <label for="inputStatus">Level</label>
-                        <input required type="text" class="form-control" value="admin" disabled>
                       </div>
                     </div>
 

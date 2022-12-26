@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('id');
 
         \View::composer('*', function ($view) {
-            $badge_ringan = Poin::where('kategori', 'ringan')->count();
+            $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
             $badge_sedang = Poin::where('kategori', 'sedang')->count();
             $badge_berat = Poin::where('kategori', 'berat')->count();
             $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
