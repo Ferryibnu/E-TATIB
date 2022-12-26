@@ -135,7 +135,7 @@
                   </div>
                   <div class="modal-body">
 
-                    <embed src="{{ asset('Tutorial.pdf') }}" width="100%" frameborder="0" height="450px">
+                    <embed src="{{ asset('img/Tutorial.pdf') }}" width="100%" frameborder="0" height="450px">
 
                   </div>
                 </div>

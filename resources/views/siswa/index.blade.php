@@ -7,7 +7,7 @@
     <div class="alert alert-warning alert-block">
       <button type="button" class="close" data-dismiss="alert">×</button>
       <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
-      Silahkan  download template Excel <a href="{{ asset('Template.xlsx') }}" title="Download Template Excel"><u>disini</u></a>
+      Silahkan  download template Excel <a href="{{ asset('img/Template.xlsx') }}" title="Download Template Excel"><u>disini</u></a>
     </div>
 
     <div class="row">
