@@ -93,32 +93,6 @@
 <!-- Site wrapper -->
 
 <div class="wrapper">
-  <!-- Foto Profil -->
-<div class="modal fade" id="fotoProfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <form method="post" action="{{route('foto_profil')}}" enctype="multipart/form-data">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Upload Foto Profil</h5>
-        </div>
-        <div class="modal-body">
-
-          {{ csrf_field() }}
-
-          <label>Pilih Foto Profil</label>
-          <div class="form-group">
-            <input type="file" name="image" required="required">
-          </div>
-            
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Upload</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -133,16 +107,9 @@
 	    <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
             <span><strong>{{ Auth::user()->name }} </strong></span>
-            @if(Auth::user()->image)
-             <img class="image-e rounded-circle" src="{{asset('/storage/images/'.Auth::user()->image)}}" alt="profile_image" style="width: 40px; margin-left: 10px;">
-            @else
               <img class="image-e rounded-circle" src="{{ asset('img/user.png') }}" style="width: 40px; margin-left: 10px;" alt="User Image">
-            @endif
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="margin-left: -10px;">
-          <a class="dropdown-item dropdown-footer" data-toggle="modal" data-target="#fotoProfil" href="#" >
-            {{ __('Tambah Foto')}}
-          </a>
           <a class="dropdown-item dropdown-footer" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             {{ __('Logout')}}
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -325,19 +325,4 @@ class DashboardController extends Controller
         }
         
     }
-    public function fotoProfil(Request $request)
-    {
-        $this->validate($request, [
-                'image' => 'required|mimes:jpg,jpeg,png',
-        ]);
-        
-        $filename = $request->image->getClientOriginalName();
-        $request->image->storeAs('images',$filename,'public');
-        $user = User::find(Auth::id());
-        $user->image = $filename;
-        $user->update();
-
-        Alert::success('Upload Sukses', 'Foto berhasil ditambahkan');
-        return redirect()->back();
-    }
 }
