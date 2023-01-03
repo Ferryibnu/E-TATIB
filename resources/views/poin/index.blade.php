@@ -327,18 +327,31 @@
     $('#tambahModal').modal('show')
     $('#scanQr').modal('hide');
     var nisn = $('#nisn').val();
-    console.log(nisn);
-    $.ajax({
+    if(nisn.substr(0, 2) == "00") {
+      $.ajax({
       url: "{{route('autofill')}}",
       data: { nisn: +nisn, _token: '{{csrf_token()}}' },
       method: 'post',
         success: function(data)
         {
-          $("#nama").val(data.nama)
-          $("#rfid").val(data.rfid)
+          $("#nama").val(data.nama),
+          $("#rfid").val(data.rfid),
           $("#kelas").val(data.kelas);
         }
-    });
+      });
+    } else {
+      $.ajax({
+        url: "{{route('autofillNull')}}",
+        data: { nisn: +nisn, _token: '{{csrf_token()}}' },
+        method: 'post',
+          success: function(data)
+          {
+            $("#nama").val(data.nama),
+            $("#rfid").val(data.rfid),
+            $("#kelas").val(data.kelas);
+          }
+      });
+    }
   }
 
   let html5QrcodeScanner = new Html5QrcodeScanner(
