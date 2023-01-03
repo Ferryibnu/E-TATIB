@@ -158,6 +158,17 @@ class PoinController extends Controller
     }
     public function autofill(Request $request)
     {
+        $tambah = "00" . $request->nisn;
+        // $getFields = Siswa::where('nisn',$request->nisn)->first();
+        $getFields = Siswa::join('kelas', 'kelas.id', '=', 'kelas_id')
+                    ->where('nisn', $tambah)
+                    ->first();
+        // dd($getFields);
+        return response()->json($getFields);
+    }
+    
+    public function autofillNull(Request $request)
+    {
         // $getFields = Siswa::where('nisn',$request->nisn)->first();
         $getFields = Siswa::join('kelas', 'kelas.id', '=', 'kelas_id')
                     ->where('nisn', $request->nisn)
@@ -168,9 +179,10 @@ class PoinController extends Controller
 
     public function autoRFID(Request $request)
     {
+        $tambah = "00" . $request->rfid;
         // $getFields = Siswa::where('nisn',$request->nisn)->first();
         $getFields = Siswa::join('kelas', 'kelas.id', '=', 'kelas_id')
-                    ->where('rfid', $request->rfid)
+                    ->where('rfid', $tambah)
                     ->first();
         // dd($getFields);
         return response()->json($getFields);

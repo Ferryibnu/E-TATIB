@@ -27,7 +27,7 @@
   left:230px; "/>
 
   {{-- logo kemendikbud surabaya --}}
-  <img src="../public/img/kemendik.png" style="position:fixed;
+  <img src="../public/img/kemendik.png" style="
   width:80px;
   bottom:960px;
   left:80px; "/>

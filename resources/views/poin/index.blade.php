@@ -78,7 +78,7 @@
                       </div>
                       <div class="form-group col-md-8">
                         <label for="inputStatus">RFID</label>
-                        <input id="rfid" type="text" class="form-control" name="rfid"  onkeyup="rfidSiswa()" required>
+                        <input id="rfid" type="text" class="form-control" name="rfid" onkeyup="rfidSiswa()">
                       </div>
                     </div>
 
@@ -349,8 +349,8 @@
 <script>
  function nisnSiswa() {
     var nisn = $('#nisn').val();
-    console.log(nisn);
-    $.ajax({
+    if(nisn.substr(0, 2) == "00") {
+      $.ajax({
       url: "{{route('autofill')}}",
       data: { nisn: +nisn, _token: '{{csrf_token()}}' },
       method: 'post',
@@ -360,7 +360,20 @@
           $("#rfid").val(data.rfid),
           $("#kelas").val(data.kelas);
         }
-    });
+      });
+    } else {
+      $.ajax({
+        url: "{{route('autofillNull')}}",
+        data: { nisn: +nisn, _token: '{{csrf_token()}}' },
+        method: 'post',
+          success: function(data)
+          {
+            $("#nama").val(data.nama),
+            $("#rfid").val(data.rfid),
+            $("#kelas").val(data.kelas);
+          }
+      });
+    }
   }
 </script>
 
