@@ -28,6 +28,7 @@
 
   {{-- logo kemendikbud surabaya --}}
   <img src="../public/img/kemendik.png" style="
+  position: absolute;
   width:80px;
   bottom:960px;
   left:80px; "/>
