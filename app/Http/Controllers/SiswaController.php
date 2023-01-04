@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Import\ImportSiswa;
+use App\Http\Controllers\Import\ImportRFID;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use \App\Models\Siswa;
@@ -19,10 +20,14 @@ use Illuminate\Support\Facades\DB;
 
 class SiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $kelas = Kelas::all();
-        $siswa = Siswa::all();
+        if ($request->kelas_id == null) {
+            $siswa = Siswa::where('kelas_id', 1)->get();
+        } else {
+            $siswa = Siswa::where('kelas_id', $request->kelas_id)->get();
+        }
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
         ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
@@ -161,6 +166,29 @@ class SiswaController extends Controller
     
         // import data
         Excel::import(new ImportSiswa, public_path('/public/'.$nama_file));
+    
+        // alihkan halaman kembali
+        return redirect('/siswa');
+    }
+
+    public function import_RFID(Request $request) 
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+    
+        // menangkap file excel
+        $file = $request->file('file');
+    
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+    
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('public',$nama_file);
+    
+        // import data
+        Excel::import(new ImportRFID, public_path('/public/'.$nama_file));
     
         // alihkan halaman kembali
         return redirect('/siswa');
