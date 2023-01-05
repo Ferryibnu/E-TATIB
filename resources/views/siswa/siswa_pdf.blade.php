@@ -130,5 +130,7 @@
       <br>
       <br>
     (<b style="text-decoration: underline"> {{$tim->name}} </b>)
+    <br>
+    NIP. {{$tim->email}}
   </p>
   </center>
