@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::post('/autofill', [App\Http\Controllers\PoinController::class, 'autofill'])->name('autofill');
     Route::post('/autofillNull', [App\Http\Controllers\PoinController::class, 'autofillNull'])->name('autofillNull');
     Route::post('/autoRFID', [App\Http\Controllers\PoinController::class, 'autoRFID'])->name('autoRFID');
+    Route::post('/autoRFID2', [App\Http\Controllers\PoinController::class, 'autoRFID2'])->name('autoRFID2');
     
     Route::get('/profile/{id}', [App\Http\Controllers\SiswaController::class, 'profile']);
 

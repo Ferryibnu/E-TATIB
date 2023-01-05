@@ -393,18 +393,31 @@
 <script>
  function rfidSiswa() {
     var rfid = $('#rfid').val();
-    // console.log(rfid);
-    $.ajax({
-      url: "{{route('autoRFID')}}",
-      data: { rfid: +rfid, _token: '{{csrf_token()}}' },
-      method: 'post',
-        success: function(data)
-        {
-          $("#nama").val(data.nama),
-          $("#nisn").val(data.nisn),
-          $("#kelas").val(data.kelas);
-        }
-    });
+    if(rfid.substr(0, 3) == "000") {
+      $.ajax({
+        url: "{{route('autoRFID')}}",
+        data: { rfid: +rfid, _token: '{{csrf_token()}}' },
+        method: 'post',
+          success: function(data)
+          {
+            $("#nama").val(data.nama),
+            $("#nisn").val(data.nisn),
+            $("#kelas").val(data.kelas);
+          }
+      });
+    } else {
+      $.ajax({
+        url: "{{route('autoRFID2')}}",
+        data: { rfid: +rfid, _token: '{{csrf_token()}}' },
+        method: 'post',
+          success: function(data)
+          {
+            $("#nama").val(data.nama),
+            $("#nisn").val(data.nisn),
+            $("#kelas").val(data.kelas);
+          }
+      });
+    }
   }
 </script>
 <!-- /.content -->
