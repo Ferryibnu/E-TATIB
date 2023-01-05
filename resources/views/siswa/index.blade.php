@@ -7,7 +7,7 @@
     <div class="alert alert-warning alert-block">
       <button type="button" class="close" data-dismiss="alert">×</button>
       <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
-      Silahkan  download template Excel <a href="https://docs.google.com/spreadsheets/d/1ECfPUaTJiBQSokadUmYmmXtOaWV8oXfZ/export?format=xlsx" title="Download Template Excel"><u>disini</u></a>
+      Silahkan  download template Excel Siswa <a href="https://docs.google.com/spreadsheets/d/1dE_n1qnNRQYB0poIhSCvzkNVEYXEJQnq/export?format=xlsx" title="Download Template Excel"><u>disini</u></a> dan Template Excel RFID <a href="https://docs.google.com/spreadsheets/d/1yNRcWWyRUP_MVFIii8mtzK8pcYplS1OK/export?format=xlsx" title="Download Template Excel"><u>disini</u></a>
     </div>
 
     <div class="row">
