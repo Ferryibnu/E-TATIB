@@ -119,7 +119,7 @@
   </table>
 
   <center>
-    <p style="font-size: 12px; position:fixed; right:1px;"> Surabaya, {{date('d F Y', strtotime($tahun))}}
+    <p style="font-size: 12px; position:absolute; right:1px;"> Surabaya, {{date('d F Y', strtotime($tahun))}}
       <br>
       Koordinator Tim Tatib
       <br>
