@@ -21,6 +21,7 @@
             <form action="{{route('siswa')}}">
               <div class="form-group col-md-3" >
                   <select class="form-control select2bs4" name="kelas_id" style="width: 100%;" required>
+                      <option value="{{$siswaKelas->kelas_id}}">{{$siswaKelas->kelas->kelas}}</option>
                     @foreach($kelas as $kls)
                       <option value="{{$kls->id}}">{{$kls->kelas}}</option>
                     @endforeach

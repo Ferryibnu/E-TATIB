@@ -30,19 +30,24 @@ class SiswaController extends Controller
             $siswa = Siswa::where('kelas_id', $request->kelas_id)->get();
             $siswaKelas = Siswa::where('kelas_id', $request->kelas_id)->first();
         }
-        $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
-        ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
-        ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
-        ->groupBy('siswa_id')
-        ->orderBy('total')
-        ->get();
-
-        return view('siswa.index', [
-            'siswa' => $siswa,
-            'siswaKelas' => $siswaKelas,
-            'totalPoin' => $totalPoin,
-            'kelas' => $kelas,
-        ]);
+        if (isset($siswaKelas)) {
+            $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
+            ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+            ->select("siswa_id",DB::raw('SUM(pelanggaran.poin) as total'))
+            ->groupBy('siswa_id')
+            ->orderBy('total')
+            ->get();
+            
+            return view('siswa.index', [
+                'siswa' => $siswa,
+                'siswaKelas' => $siswaKelas,
+                'totalPoin' => $totalPoin,
+                'kelas' => $kelas,
+            ]);
+        } else {
+            Alert::error('ERROR', 'Data Tidak Ditemukan!');
+            return redirect()->back();
+        }
     }
     
     public function tambah(Request $request)
