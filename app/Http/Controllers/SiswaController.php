@@ -25,8 +25,10 @@ class SiswaController extends Controller
         $kelas = Kelas::all();
         if ($request->kelas_id == null) {
             $siswa = Siswa::where('kelas_id', 1)->get();
+            $siswaKelas = Siswa::where('kelas_id', 1)->first();
         } else {
             $siswa = Siswa::where('kelas_id', $request->kelas_id)->get();
+            $siswaKelas = Siswa::where('kelas_id', $request->kelas_id)->first();
         }
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
@@ -37,6 +39,7 @@ class SiswaController extends Controller
 
         return view('siswa.index', [
             'siswa' => $siswa,
+            'siswaKelas' => $siswaKelas,
             'totalPoin' => $totalPoin,
             'kelas' => $kelas,
         ]);

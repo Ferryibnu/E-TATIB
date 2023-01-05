@@ -35,7 +35,7 @@
       <div class="col-12">
         <div class="card shadow mt-4">
           <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-dark card-title">Data Siswa</h3>
+              <h3 class="m-0 font-weight-bold text-dark card-title">Data Siswa Kelas {{$siswaKelas->kelas->kelas}}</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
