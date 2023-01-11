@@ -207,7 +207,7 @@ class SiswaController extends Controller
         $siswa = Siswa::where('id', $id)->first();
         $tim = User::where('status', 'Koordinator')->first();
         $siswaPoin = Poin::where('siswa_id', $id)->get();
-        $penanganan = Poin::where('catatan', '!=', '')->get();
+        $penanganan = Poin::where('siswa_id', $id)->where('catatan', '!=', '')->get();
         $totalPoin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
         ->select(DB::raw('SUM(pelanggaran.poin) as total'))
         ->orderBy('total')
