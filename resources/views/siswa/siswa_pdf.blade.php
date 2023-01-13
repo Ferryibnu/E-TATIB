@@ -11,8 +11,9 @@
       <br>
       Jl. SMEA No. 4 Wonokromo Telp. 031-8292038 FAX. 031- 8292039, Email : info@smkn1-sby.sch.id, 60243
       </i>
+      ____________________________________________________________________________________________________________________________
       <br>
-    <br>
+      <br>
 
       <b style="font-size: 12px">LAPORAN PELANGGARAN TENGAH SEMESETER
         <br>
@@ -119,7 +120,7 @@
   </table>
 
   <center>
-    <p style="font-size: 12px; position:absolute; right:1px;"> Surabaya, {{date('d F Y', strtotime($tahun))}}
+    <p style="font-size: 12px; position:relative; left:250px;"> Surabaya, {{date('d F Y', strtotime($tahun))}}
       <br>
       Koordinator Tim Tatib
       <br>
@@ -134,3 +135,19 @@
     NIP. {{$tim->email}}
   </p>
   </center>
+
+  {{-- <center>
+    <p style="font-size: 12px; position:relative; right:250px; bottom:199px;">
+      <br>
+      Wali Murid
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    (<b style="text-decoration: underline">_______________________</b>)
+    <br>
+  </p>
+  </center> --}}

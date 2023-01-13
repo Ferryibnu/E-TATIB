@@ -307,6 +307,37 @@
     </section><!-- End laporan Section -->
     @endif
 
+     <!-- ======= pelanggar Section ======= -->
+     <section id="pelanggar" class="pelanggar">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Pelanggaran Hari Ini</h2>
+          <p>{{date('d-m-Y', strtotime($date))}}</p>
+        </div>
+        
+        <table class="table table-bordered" style="margin-top: -30px" data-aos="fade-up">
+          <thead class="thead">
+            <tr>
+              <th>No</th>
+              <th>Nama Siswa</th>
+              <th>Pelanggaran</th>
+              <th>Skor</th>
+            </tr>
+          </thead>
+          <tbody>
+            @php $i=1 @endphp
+            @foreach($siswaPoin as $p)
+            <tr>
+              <td>{{ $i++ }}</td>
+              <td>{{$p->siswa->nama}}</td>
+              <td>{{$p->pelanggaran->pelanggaran}}</td>
+              <td>{{$p->pelanggaran->poin}}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+    </section><!-- End pelanggar Section -->
+
 <!-- ======= F.A.Q Section ======= -->
 <section id="faq" class="faq section-bg">
   <div class="container">

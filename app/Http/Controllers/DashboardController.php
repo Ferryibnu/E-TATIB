@@ -319,9 +319,15 @@ class DashboardController extends Controller
                         'total' => $total,
                         'siswaPoin' => $siswaPoin,
                         'qrCode' => $qrCode,
-        ]);
+                ]);
         } else {
-                return view('frontend.index');
+                $date = Carbon::now()->format('d-m-Y');
+                // dd($date);
+                $siswaPoin = Poin::whereDate('created_at', date('Y-m-d'))->get();
+                return view('frontend.index', [
+                        'siswaPoin' => $siswaPoin,
+                        'date' => $date,
+                ]);
         }
         
     }
