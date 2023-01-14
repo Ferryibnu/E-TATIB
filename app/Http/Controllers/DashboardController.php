@@ -294,8 +294,15 @@ class DashboardController extends Controller
         ]);
    }
 
-   public function dashboardSiswa()
+   public function dashboardSiswa(Request $request)
     {
+        if($request->tgl == null) {
+                $pelanggar = Poin::whereDate('created_at', date('Y-m-d'))->get();
+                $date = date('d-m-Y');
+        } else {
+                $pelanggar = Poin::whereDate('created_at', $request->tgl)->get();
+                $date = date('d-m-Y', strtotime($request->tgl));
+        }
         if(Auth::user() && Auth::user()->level == "user"){
                 $idUser = Auth::user()->id;
                 $siswa_withID = Siswa::where('users_id', $idUser)->first();
@@ -319,13 +326,13 @@ class DashboardController extends Controller
                         'total' => $total,
                         'siswaPoin' => $siswaPoin,
                         'qrCode' => $qrCode,
+                        'pelanggar' => $pelanggar,
+                        'date' => $date,
                 ]);
         } else {
-                $date = Carbon::now()->format('d-m-Y');
                 // dd($date);
-                $siswaPoin = Poin::whereDate('created_at', date('Y-m-d'))->get();
                 return view('frontend.index', [
-                        'siswaPoin' => $siswaPoin,
+                        'pelanggar' => $pelanggar,
                         'date' => $date,
                 ]);
         }

@@ -50,6 +50,7 @@
         <ul>
           <li class="active"><a href="#header">Home</a></li>
           <li><a href="#pelanggaran">Pelanggaran</a></li>
+          <li><a href="#pelanggar">Pelanggaran Harian</a></li>
           <li><a href="#faq">Q&A</a></li>
           <li><a href="#team">Team</a></li>
 
@@ -311,8 +312,14 @@
      <section id="pelanggar" class="pelanggar">
       <div class="container">
         <div class="section-title" data-aos="fade-up">
-          <h2>Pelanggaran Hari Ini</h2>
-          <p>{{date('d-m-Y', strtotime($date))}}</p>
+          <h2>Pelanggaran Harian</h2>
+          <p>Pelanggaran Tanggal {{date('d-m-Y', strtotime($date))}}</p>
+          <form action="{{route('berandaSiswa')}}">
+            <div class="form-group col-md-3" >Pilih: 
+                <input type="date" name="tgl" id="tgl">
+                <button type="submit" class="btn" style="background: #eb5d1e; color: white;">Kirim</button>
+            </div>
+          </form>
         </div>
         
         <table class="table table-bordered" style="margin-top: -30px" data-aos="fade-up">
@@ -326,7 +333,7 @@
           </thead>
           <tbody>
             @php $i=1 @endphp
-            @foreach($siswaPoin as $p)
+            @foreach($pelanggar as $p)
             <tr>
               <td>{{ $i++ }}</td>
               <td>{{$p->siswa->nama}}</td>
