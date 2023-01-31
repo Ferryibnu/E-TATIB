@@ -14,19 +14,19 @@
       <div class="col-12">
         <div class="card shadow mt-4">
           <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-dark card-title">Pilih Kelas</h3>
+              <h3 class="m-0 font-weight-bold text-dark card-title">Kelas {{ $siswaKelas->kelas->kelas }} </h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <form action="{{route('siswa')}}">
-              <div class="form-group col-md-3" >
-                  <select class="form-control select2bs4" name="kelas_id" style="width: 100%;" required>
-                      <option value="{{$siswaKelas->kelas_id}}">{{$siswaKelas->kelas->kelas}}</option>
+              <div class="form-group col-md-3" >Pilih Kelas : 
+                  <select class="form-control select2bs4" name="kelas_id" style="width: 100%;" required onchange='if(this.value !=0) { this.form.submit(); }'>
+                      <option value="">---</option>
                     @foreach($kelas as $kls)
                       <option value="{{$kls->id}}">{{$kls->kelas}}</option>
                     @endforeach
                   </select>
-                  <button type="submit" class="btn btn-primary">Kirim</button>
+                  {{-- <button type="submit" class="btn btn-primary">Kirim</button> --}}
               </div>
             </form>
           </div>

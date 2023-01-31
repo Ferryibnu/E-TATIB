@@ -15,6 +15,34 @@
       <div class="col-12">
         <div class="card shadow mt-4">
           <div class="card-header py-3">
+            @if ($date)
+              <h3 class="m-0 font-weight-bold text-dark card-title">Pelanggaran Tanggal {{date('d-m-Y', strtotime($date))}}</h3>  
+            @else
+              <h3 class="m-0 font-weight-bold text-dark card-title">Semua Pelanggaran</h3>
+            @endif
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <form action="{{route('catat')}}" id="pilih">
+              <div class="form-row">
+                <div class="form-group col-md-3" >Pilih Tanggal: 
+                  <input type="date" name="tgl" id="tgl" oninput='pilih.submit()'>
+                  <noscript>
+                    <input type="submit" value="submit">
+                  </noscript>
+                  {{-- <button type="submit" class="btn btn-primary" >Kirim</button> --}}
+                </div>
+                <div class="form-group col-md-9 text-right" >
+                  <button type="submit" id="tgl" name="tgl" value="all" class="btn btn-success">Tampilkan Semua</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card shadow mt-4">
+          <div class="card-header py-3">
               <h3 class="m-0 font-weight-bold text-dark card-title">Data Siswa yang Melanggar</h3>
           </div>
           <!-- /.card-header -->

@@ -14,15 +14,25 @@ use Illuminate\Support\Facades\Auth;
 
 class PoinController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $siswaPoin = Poin::all();
+        if($request->tgl == 'all') {
+            $siswaPoin = Poin::all();
+            $date = null;
+        } elseif($request->tgl == null) {
+            $siswaPoin = Poin::whereDate('created_at', date('Y-m-d'))->get();
+            $date = date('d-m-Y');
+        } else {
+            $siswaPoin = Poin::whereDate('created_at', $request->tgl)->get();
+            $date = date('d-m-Y', strtotime($request->tgl));
+        }
         $pelanggaran = Pelanggaran::all();
         
         return view('poin.index', [
             'siswaPoin' => $siswaPoin,
             // 'poinTotal' => $poinTotal,
             'pelanggaran' => $pelanggaran,
+            'date' => $date,
         ]);
     }
     
