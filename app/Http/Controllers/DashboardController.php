@@ -297,12 +297,14 @@ class DashboardController extends Controller
    public function dashboardSiswa(Request $request)
     {
         if($request->tgl == null) {
-                $pelanggar = Poin::whereDate('created_at', date('Y-m-d'))->get();
+                $pelanggar = Poin::whereDate('created_at', date('Y-m-d'))->paginate(10);
                 $date = date('d-m-Y');
         } else {
-                $pelanggar = Poin::whereDate('created_at', $request->tgl)->get();
+                $pelanggar = Poin::whereDate('created_at', $request->tgl)->paginate(10);
                 $date = date('d-m-Y', strtotime($request->tgl));
         }
+        $url = url()->full();
+        $pelanggar->setPath($url);
         if(Auth::user() && Auth::user()->level == "user"){
                 $idUser = Auth::user()->id;
                 $siswa_withID = Siswa::where('users_id', $idUser)->first();

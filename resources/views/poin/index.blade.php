@@ -276,6 +276,7 @@
                 @endforeach
               </tbody>
             </table>
+              {{ $siswaPoin->links() }}
           </div>
           <!-- /.card-body -->
         </div>
@@ -311,7 +312,7 @@
     })
 
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": false,
+      "responsive": true, "lengthChange": true, "autoWidth": false,  "bPaginate": false,
       "buttons": [
        {
            extend: 'print',

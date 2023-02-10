@@ -345,6 +345,9 @@
             @endforeach
           </tbody>
         </table>
+        <div class="">
+          {{ $pelanggar->links() }}
+        </div>
     </section><!-- End pelanggar Section -->
 
 <!-- ======= F.A.Q Section ======= -->
@@ -457,6 +460,18 @@
           </div>
         </div>
       </div>
+      
+      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+        <div class="member">
+          <img src="img/guru3.jpg" class="img-fluid" alt="">
+          <div class="member-info">
+            <div class="member-info-content">
+              <h4>Ririn Wartinah, S.Pd</h4>
+              <span>Produktif Perhotelan</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
         <div class="member">
@@ -472,15 +487,16 @@
 
       <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
         <div class="member">
-          <img src="img/guru3.jpg" class="img-fluid" alt="">
+          <img src="img/yunita.png" class="img-fluid" alt="">
           <div class="member-info">
             <div class="member-info-content">
-              <h4>Ririn Wartinah, S.Pd</h4>
-              <span>Produktif Perhotelan</span>
+              <h4>Yunitaningrum Dwi Candrarini,S.T</h4>
+              <span>Fisika Kimia dan Seni Budaya</span>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
         <div class="member">
           <img src="img/zain.png" class="img-fluid" alt="">
@@ -488,17 +504,6 @@
             <div class="member-info-content">
               <h4>Zainuri, S.Pd.I</h4>
               <span>Pendidikan Agama Islam</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-        <div class="member">
-          <img src="img/yunita.png" class="img-fluid" alt="">
-          <div class="member-info">
-            <div class="member-info-content">
-              <h4>Yunitaningrum Dwi Candrarini,S.T</h4>
-              <span>Fisika Kimia dan Seni Budaya</span>
             </div>
           </div>
         </div>

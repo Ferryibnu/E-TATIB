@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Carbon;
 use App\Models\Poin;
 use App\Models\Siswa;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
-
+        Paginator::useBootstrap();
         \View::composer('*', function ($view) {
             $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
             $badge_sedang = Poin::where('kategori', 'sedang')->count();
