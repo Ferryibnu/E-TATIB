@@ -227,6 +227,11 @@ class DashboardController extends Controller
                 $query->where('golongan', 'Kerapian');
         })->count();
 
+        //SUM
+        $sumKelas = $kelas10 + $kelas11 + $kelas12;
+        $sumKategori = $sikap + $kerajinan + $kerapian;
+        $sumJurusan = $tkj + $rpl + $ph + $dkv + $mm + $pspt + $ak + $akl + $bd + $bdp + $mp + $otkp;
+
         return view('poin.beranda', [
         'total_pelanggar' => $total_pelanggar,
         'pelanggaran' => $pelanggaran,
@@ -291,6 +296,10 @@ class DashboardController extends Controller
         'bdp' => $bdp,
         'mp' => $mp,
         'otkp' => $otkp,
+        //sum
+        'sumKelas' => $sumKelas,
+        'sumKategori' => $sumKategori,
+        'sumJurusan' => $sumJurusan,
         ]);
    }
 

@@ -563,7 +563,7 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/ -->
-        Created by <a href="https://www.instagram.com/alfaruq_ferry/">Ferry Ibnu Al Faruq</a> | Template by <a href="https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/">Ninestars</a>
+        Created by <a href="http://ferryibnu.it.student.pens.ac.id/">Ferry Ibnu Al Faruq</a>
       </div>
     </div>
   </footer><!-- End Footer -->

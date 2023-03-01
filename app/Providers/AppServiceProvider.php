@@ -31,15 +31,23 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('id');
         Paginator::useBootstrap();
         \View::composer('*', function ($view) {
+            //Badge
             $badge_ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->count();
             $badge_sedang = Poin::where('kategori', 'sedang')->count();
             $badge_berat = Poin::where('kategori', 'berat')->count();
-            $total_siswa = Siswa::all()->count(); //untuk badge menu siswa
+            
+            $DO = Poin::where('catatan', 'Dikeluarkan dari Sekolah')->count();
+            $sumTindak = $DO + $badge_ringan + $badge_sedang + $badge_berat;
+            
+            //untuk badge menu siswa
+            $total_siswa = Siswa::all()->count(); 
             $total_pelanggaran = Poin::all()->count();
             
             $view->with('badge_ringan', $badge_ringan);
             $view->with('badge_sedang', $badge_sedang);
             $view->with('badge_berat', $badge_berat);
+            $view->with('sumTindak', $sumTindak);
+            $view->with('DO', $DO);
             $view->with('total_siswa', $total_siswa);
             $view->with('total_pelanggaran', $total_pelanggaran);
             
