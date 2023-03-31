@@ -142,7 +142,7 @@
                   </div>
                   <div class="modal-body">
 
-                    <!-- Scan -->
+                    <!-- Scan QR-->
                     <div id="reader"></div>
 
                   </div>

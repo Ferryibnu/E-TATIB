@@ -66,7 +66,6 @@ class PoinController extends Controller
 
             $addPoin1 = Poin::find($addPoin->id);
 
-            // dd($jumlah->total);
             if($jumlah->total  >= 10 && $jumlah->total <= 29) {
                 $addPoin1->kategori = 'ringan';
                 $addPoin1->update();
