@@ -247,8 +247,8 @@
                             </div>
       
                             <div class="form-group col-md-6" >
-                              <label for="inputStatus">Nama Pencatat</label>
-                              <input id="pencatat" type="text" class="form-control" name="pencatat" value="{{$s->pencatat}}">
+                              <label for="inputStatus">Tgl Pelanggaran</label>
+                              <input id="tgl" type="date" class="form-control" name="tgl" value="{{$s->tgl}}">
                             </div>
                           </div>
       

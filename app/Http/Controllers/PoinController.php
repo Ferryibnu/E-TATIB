@@ -65,6 +65,7 @@ class PoinController extends Controller
             ->first();
 
             $addPoin1 = Poin::find($addPoin->id);
+
             // dd($jumlah->total);
             if($jumlah->total  >= 10 && $jumlah->total <= 29) {
                 $addPoin1->kategori = 'ringan';
@@ -105,6 +106,7 @@ class PoinController extends Controller
                 $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
                 
+                
             } elseif($jumlah->total >= 150 && $jumlah->total <= 249){
                 $tindak = Tindak::find(6);
                 $addPoin1->catatan = $tindak->tindak_lanjut;
@@ -119,6 +121,42 @@ class PoinController extends Controller
                 $addPoin1->kategori = $tindak->kategori;
                 $addPoin1->update();
             }
+            
+            //WHATSAPP API
+            if($jumlah->total <= 56 ) {
+                //Jika skor pelanggaran kurang dari 56 poin (tindak lanjut pelanggaran kategori ringan) maka tidak akan dikirim peringatan via WA.
+            } else {
+                $br = "\n\n"; //membuat new lines.
+
+                //deadline 1 minggu
+                $tgl = date_modify($addPoin1->created_at, "+ 7 days");
+                $tenggat = date('d-m-Y', strtotime($tgl));
+
+                $curl = curl_init();
+
+                curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.fonnte.com/send',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                'target' => $getNRP->no_telp, //ini no telp dari ortu siswa
+                'message' => 'Assalamulaikum wr.wb. Kami dari *TATIB SMK Negeri 1 Surabaya* menginformasikan bahwa: ' . $br . 'Siswa bernama ' . '*'.$getNRP->nama. '*' . ' dari kelas ' . '*' . $getNRP->kelas->kelas . '*' . ' telah melakukan pelanggaran tata tertib sehingga mendapatkan tindak lanjut '. '*' . $addPoin1->catatan . '*' .' dengan total skor pelanggaran: ' . '*' . $jumlah->total . ' poin*.' . $br . 'Mohon untuk segera memenuhi panggilan TATIB sampai dengan tanggal ' . $tenggat . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.',
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: EBLcVu1Ug3fPwaa4y!dq' //ini Key dari Whatsapp API fonnte.com
+                ),
+                ));
+                
+                $response = curl_exec($curl);
+
+                curl_close($curl);
+            }
+
             Alert::success('Sukses Tambah', 'Data Berhasil Ditambahkan');
             return redirect()->back();
         } else {
@@ -136,7 +174,7 @@ class PoinController extends Controller
         ]);
         $editPoin = Poin::find($id);
         $editPoin->pelanggaran_id = $request->pelanggaran_id;
-        $editPoin->pencatat = $request->pencatat;
+        $editPoin->created_at = $request->tgl;
         $editPoin->update();
 
         Alert::success('Edit Sukses', 'Data Berhasil Diedit');
