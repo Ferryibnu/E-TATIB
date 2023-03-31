@@ -135,13 +135,13 @@
                 <form method="post" action="/siswa/import_RFID" enctype="multipart/form-data">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Import RFID</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Import RFID dan No Whatsapp Orang Tua</h5>
                     </div>
                     <div class="modal-body">
         
                       {{ csrf_field() }}
         
-                      <label>Pilih file excel untuk menambahkan RFID Siswa</label>
+                      <label>Pilih file excel untuk menambahkan RFID dan No WA Orang Tua Siswa</label>
                       <div class="form-group">
                         <input type="file" name="file" required="required">
                       </div>
@@ -373,7 +373,7 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" data-toggle="modal" data-target="#tambahModal" href="#" title="Tambah Data Siswa">Tambah Siswa</a>
         <a class="dropdown-item" data-toggle="modal" data-target="#importExcel" href="#" title="Import Data Siswa">Import Excel Siswa</a>
-        <a class="dropdown-item" data-toggle="modal" data-target="#importRFID" href="#" title="Import Data RFID">Import Excel RFID</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#importRFID" href="#" title="Import Data RFID">Import RFID dan WA</a>
         <a class="dropdown-item" data-toggle="modal" data-target="#ModalReset" href="#" title="Hapus Semua">Hapus Semua</a>
       </div>
     </div>

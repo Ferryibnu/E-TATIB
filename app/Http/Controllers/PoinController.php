@@ -162,7 +162,6 @@ class PoinController extends Controller
             Alert::error('Gagal Menambahkan', 'NISN yang Anda Masukkan Salah!!!');
             return redirect()->back();
         }
-        
     }
 
     public function edit($id, Request $request)
