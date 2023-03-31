@@ -418,6 +418,7 @@
   }
 </script>
 
+{{-- Autofill RFID --}}
 <script>
  function rfidSiswa() {
     var rfid = $('#rfid').val();

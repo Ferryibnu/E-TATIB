@@ -151,7 +151,7 @@ class PoinController extends Controller
                 ),
                 ));
                 
-                $response = curl_exec($curl);
+                $response = curl_exec($curl);//eksekusi
 
                 curl_close($curl);
             }
