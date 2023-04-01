@@ -249,7 +249,7 @@
 
               <div class="phone">
                 <i class="icofont-smart-phone"></i>
-                <h4>No. HP:</h4>
+                <h4>No. HP Orang Tua:</h4>
                 <p>{{$siswa_withID->no_telp}}</p>
               </div>
 

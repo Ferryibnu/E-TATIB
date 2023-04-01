@@ -115,7 +115,7 @@
                       </div>
 
                       <div class="form-group col-md-5" >
-                        <label for="inputStatus">No HP</label>
+                        <label for="inputStatus">No HP Orang Tua</label>
                         <input type="text" class="form-control" name="no_telp">
                       </div>
                     </div>
@@ -339,7 +339,7 @@
                             </div>
       
                             <div class="form-group col-md-6" >
-                              <label for="inputStatus">No HP</label>
+                              <label for="inputStatus">No HP Orang Tua</label>
                               <input type="text" class="form-control" name="no_telp" value="{{$s->no_telp}}">
                             </div>
                           </div>

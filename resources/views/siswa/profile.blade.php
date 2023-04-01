@@ -53,7 +53,7 @@
               <hr>
 
               <div class="row">
-                <div class="col-4"> No HP</div>
+                <div class="col-4"> No HP Orang Tua</div>
                 <div class="col-8"> :&emsp;{{ $siswa->no_telp }}</div>
               </div>
               <hr>

@@ -21,7 +21,11 @@ class ImportRFID implements ToModel, WithHeadingRow
 
         if($jikaAda){
             $siswa = Siswa::where('nisn', $row['nisn'])->first();
-            $siswa->rfid = $row['rfid'];
+            if($row['rfid'] != null) {
+                $siswa->rfid = $row['rfid'];
+            } else {
+                //nothing
+            }
             if($row['no_wa'] != null) {
                 $siswa->no_telp = $row['no_wa'];
             } else {

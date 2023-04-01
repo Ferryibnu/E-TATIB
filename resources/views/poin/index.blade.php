@@ -350,7 +350,7 @@
   function onScanSuccess(decodedText, decodedResult) {
     
     // handle the scanned code as you like, for example:
-    // console.log(`Code matched = ${decodedText}`, decodedResult);
+    // menampilkan modal jika field NISN ada nilainya. Lalu menyembunyikan qr scanner
     $("#nisn").val(decodedText)
     $('#tambahModal').modal('show')
     $('#scanQr').modal('hide');
@@ -381,7 +381,6 @@
       });
     }
   }
-
   let html5QrcodeScanner = new Html5QrcodeScanner(
     "reader", { fps: 10, qrbox: 250 });
   html5QrcodeScanner.render(onScanSuccess);
