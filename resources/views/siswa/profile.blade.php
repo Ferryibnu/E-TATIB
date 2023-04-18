@@ -99,7 +99,7 @@
                   <td>{{$p->pelanggaran->pelanggaran}}</td>
                   <td>{{$p->pelanggaran->poin}}</td>
                   <td>{{$p->pencatat}}</td>
-                  <td>{{date('d-m-Y H:i:s', strtotime($p->created_at))}}</td>
+                  <td>{{date('d M Y', strtotime($p->created_at))}}</td>
                 </tr>
                 @endforeach
               </tbody>
