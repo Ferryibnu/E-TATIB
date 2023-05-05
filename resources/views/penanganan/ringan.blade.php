@@ -18,6 +18,7 @@
                 <th>No</th>
                 <th>NISN</th>
                 <th>Nama</th>
+                <th>Kelas</th>
                 <th>Pelanggaran Terakhir</th>
                 <th>Total Poin</th>
                 <th>Tindak Lanjut</th>
@@ -50,6 +51,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->siswa->nisn }}</td>
                 <td>{{ $s->siswa->nama }}</td>
+                <td>{{ $s->siswa->kelas->kelas }}</td>
                 <td>{{ $s->pelanggaran->pelanggaran }} ({{ $s->pelanggaran->poin }} poin)</td>
                 <td>{{ $t->total }}</td>
                 <td>{{ $s->catatan }}</td>
@@ -116,7 +118,7 @@
            title: '',
            footer: false,
            exportOptions: {
-                columns: [1,2,3,4,5,6]
+                columns: [1,2,3,4,5,6,7,8]
             }
        },
        {
@@ -124,7 +126,7 @@
            title: '',
            footer: false,
            exportOptions: {
-            columns: [1,2,3,4,5,6]
+            columns: [1,2,3,4,5,6,7,8]
             }
        },
        {
@@ -132,7 +134,7 @@
            title: '',
            footer: false,
            exportOptions:  {
-            columns: [1,2,3,4,5,6]
+            columns: [1,2,3,4,5,6,7,8]
             }
        }         
     ]  
