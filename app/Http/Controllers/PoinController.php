@@ -18,14 +18,14 @@ class PoinController extends Controller
     public function index(Request $request)
     {
         if($request->tgl == 'all') {
-            $siswaPoin = Poin::paginate(10);
+            $siswaPoin = Poin::orderBy('id', 'DESC')->paginate(10);
             $date = null;
         } elseif($request->tgl == null) {
-            $siswaPoin = Poin::whereDate('created_at', date('Y-m-d'))->paginate(10);
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereDate('created_at', date('Y-m-d'))->paginate(10);
             $date = date('d-m-Y');
             $page = null;
         } else {
-            $siswaPoin = Poin::whereDate('created_at', $request->tgl)->paginate(10);
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereDate('created_at', $request->tgl)->paginate(10);
             $date = date('d-m-Y', strtotime($request->tgl));
             $page = null;
         }

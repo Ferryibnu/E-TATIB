@@ -85,7 +85,7 @@
                     <div class="form-row">
                       <div class="form-group col-md-5" >
                         <label for="inputStatus">NISN</label>
-                        <input id="nisn" type="text" class="form-control" name="nisn"  onkeyup="nisnSiswa()" required>
+                        <input id="nisn" type="text" class="form-control" name="nisn"  onkeyup="rfidSiswa()" required>
                       </div>
 
                       <div class="form-group col-md-7" >
@@ -123,7 +123,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Tambah</button></form>
+                      <button id="submitButton" type="submit" class="btn btn-primary">Tambah</button></form>
                   </div>
                 </div>
               </div>
@@ -242,7 +242,7 @@
                           <div class="form-row">
                             <div class="form-group col-md-6" >
                               <label for="inputStatus">NISN</label>
-                              <input id="nisn" type="text" class="form-control" name="nisn" value="{{$s->siswa->nisn}}" disabled>
+                              <input id="nisn1" type="text" class="form-control" name="nisn" value="{{$s->siswa->nisn}}" disabled>
                             </div>
       
                             <div class="form-group col-md-6" >
@@ -386,24 +386,43 @@
   html5QrcodeScanner.render(onScanSuccess);
 </script>
 
+{{-- Autofill RFID --}}
 <script>
- function nisnSiswa() {
+ function rfidSiswa() {
+    var rfid = $('#rfid').val();
     var nisn = $('#nisn').val();
-    if(nisn.substr(0, 2) == "00") {
-      $.ajax({
-      url: "{{route('autofill')}}",
-      data: { nisn: +nisn, _token: '{{csrf_token()}}' },
-      method: 'post',
-        success: function(data)
-        {
-          $("#nama").val(data.nama),
-          $("#rfid").val(data.rfid),
-          $("#kelas").val(data.kelas);
-        }
-      });
+
+    if (rfid != '') {
+      // document.getElementById("nisn").disabled = true;
+      if(rfid.substr(0, 3) == "000") {
+        $.ajax({
+          url: "{{route('autoRFID')}}",
+          data: { rfid: +rfid, _token: '{{csrf_token()}}' },
+          method: 'post',
+            success: function(data)
+            {
+              $("#nama").val(data.nama),
+              $("#nisn").val(data.nisn),
+              $("#kelas").val(data.kelas);
+            }
+        });
+      } else {
+        $.ajax({
+          url: "{{route('autoRFID2')}}",
+          data: { rfid: +rfid, _token: '{{csrf_token()}}' },
+          method: 'post',
+            success: function(data)
+            {
+              $("#nama").val(data.nama),
+              $("#nisn").val(data.nisn),
+              $("#kelas").val(data.kelas);
+            }
+        });
+      }
     } else {
-      $.ajax({
-        url: "{{route('autofillNull')}}",
+      if(nisn.substr(0, 2) == "00") {
+        $.ajax({
+        url: "{{route('autofill')}}",
         data: { nisn: +nisn, _token: '{{csrf_token()}}' },
         method: 'post',
           success: function(data)
@@ -412,40 +431,27 @@
             $("#rfid").val(data.rfid),
             $("#kelas").val(data.kelas);
           }
-      });
+        });
+      } else {
+        $.ajax({
+          url: "{{route('autofillNull')}}",
+          data: { nisn: +nisn, _token: '{{csrf_token()}}' },
+          method: 'post',
+            success: function(data)
+            {
+              $("#nama").val(data.nama),
+              $("#rfid").val(data.rfid),
+              $("#kelas").val(data.kelas);
+            }
+        });
+      }
     }
-  }
-</script>
 
-{{-- Autofill RFID --}}
-<script>
- function rfidSiswa() {
-    var rfid = $('#rfid').val();
-    if(rfid.substr(0, 3) == "000") {
-      $.ajax({
-        url: "{{route('autoRFID')}}",
-        data: { rfid: +rfid, _token: '{{csrf_token()}}' },
-        method: 'post',
-          success: function(data)
-          {
-            $("#nama").val(data.nama),
-            $("#nisn").val(data.nisn),
-            $("#kelas").val(data.kelas);
-          }
-      });
-    } else {
-      $.ajax({
-        url: "{{route('autoRFID2')}}",
-        data: { rfid: +rfid, _token: '{{csrf_token()}}' },
-        method: 'post',
-          success: function(data)
-          {
-            $("#nama").val(data.nama),
-            $("#nisn").val(data.nisn),
-            $("#kelas").val(data.kelas);
-          }
-      });
-    }
+    // if (rfid == '' || nisn == '') {
+    //   $('#submitButton').attr('disabled', true);
+    // } else {
+    //   $('#submitButton').attr('disabled', false);
+    // }
   }
 </script>
 <!-- /.content -->

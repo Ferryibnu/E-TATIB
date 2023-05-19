@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class PenangananController extends Controller
 {
     public function ringan(){
-        $siswa = Siswa::all();
+        $siswa = Siswa::orderBy('id', 'DESC')->get();
         $ringan = Poin::whereBetween('catatan', ['Panggilan Wali Kelas ke-1', 'Panggilan Wali Kelas ke-2'])->latest()->get()->unique('siswa_id');
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
@@ -27,7 +27,7 @@ class PenangananController extends Controller
     }
 
     public function sedang(){
-        $siswa = Siswa::all();
+        $siswa = Siswa::orderBy('id', 'DESC')->get();
         $sedang = Poin::where('kategori', 'sedang')->latest()->get()->unique('siswa_id');
         
         // dd($sedang);
@@ -46,7 +46,7 @@ class PenangananController extends Controller
     }
 
     public function berat(){
-        $siswa = Siswa::all();
+        $siswa = Siswa::orderBy('id', 'DESC')->get();
         $berat = Poin::where('kategori', 'berat')->latest()->get()->unique('siswa_id');
         $totalPoin = Poin::join('siswa', 'poin.siswa_id', '=', 'siswa.id')
         ->join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
