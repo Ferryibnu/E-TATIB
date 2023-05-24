@@ -30,7 +30,7 @@
 
               <div class="row">
                 <div class="col-4"> Tempat, Tgl Lahir</div>
-                <div class="col-8"> :&emsp;{{$siswa->tempat_lahir}} {{isset($siswa->tgl_lahir) ? ', '.date('d F Y', strtotime($siswa->tgl_lahir)) : ''}}</div>
+                <div class="col-8"> :&emsp;{{$siswa->tempat_lahir}} {{isset($siswa->tgl_lahir) ? ', '.date('d M Y', strtotime($siswa->tgl_lahir)) : ''}}</div>
               </div>
               <hr>
 

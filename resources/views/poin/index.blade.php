@@ -16,7 +16,7 @@
         <div class="card shadow mt-4">
           <div class="card-header py-3">
             @if ($date)
-              <h3 class="m-0 font-weight-bold text-dark card-title">Pelanggaran Tanggal {{date('d-m-Y', strtotime($date))}}</h3>  
+              <h3 class="m-0 font-weight-bold text-dark card-title">Pelanggaran Tanggal {{ $date }}</h3>  
             @else
               <h3 class="m-0 font-weight-bold text-dark card-title">Semua Pelanggaran</h3>
             @endif
@@ -25,14 +25,25 @@
           <div class="card-body">
             <form action="{{route('catat')}}" id="pilih">
               <div class="form-row">
-                <div class="form-group col-md-3" >Pilih Tanggal: 
-                  <input type="date" name="tgl" id="tgl" oninput='pilih.submit()'>
-                  <noscript>
+                <div class="form-group col-md-4" >Tanggal Awal: 
+                  <input
+                    placeholder="{{ substr($date,0,11); }}"
+                    class="textbox-n"
+                    type="text"
+                    onfocus="(this.type='date')" name="tgl_awal" id="tgl_awal" >
+                  {{-- <noscript>
                     <input type="submit" value="submit">
-                  </noscript>
-                  {{-- <button type="submit" class="btn btn-primary" >Kirim</button> --}}
+                  </noscript> --}}
                 </div>
-                <div class="form-group col-md-9 text-right" >
+                <div class="form-group col-md-4" >Tanggal Akhir: 
+                  <input
+                    placeholder="{{ substr($date,16,11) }}"
+                    class="textbox-n"
+                    type="text"
+                    onfocus="(this.type='date')" name="tgl_akhir" id="tgl_akhir" >
+                </div>
+                <div class="form-group col-md-4 text-right" >
+                  <button type="submit" class="btn btn-primary" >Kirim</button>
                   <button type="submit" id="tgl" name="tgl" value="all" class="btn btn-success">Tampilkan Semua</button>
                 </div>
               </div>

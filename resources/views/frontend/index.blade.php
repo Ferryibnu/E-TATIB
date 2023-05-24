@@ -313,13 +313,19 @@
       <div class="container">
         <div class="section-title" data-aos="fade-up">
           <h2>Pelanggaran Harian</h2>
-          <p>Pelanggaran Tanggal {{date('d-m-Y', strtotime($date))}}</p>
+          <p>Pelanggaran Tanggal {{ $date }}</p>
           <form action="{{route('berandaSiswa')}}" id="pilih">
-            <div class="form-group col-md-3" >Pilih Tanggal: 
-              <input type="date" name="tgl" id="tgl" oninput='pilih.submit()'>
-              <noscript>
-                <input type="submit" value="submit">
-              </noscript>
+            <div class="form-row">
+              <div class="form-group col-md-4" >Pilih Tanggal: 
+                <input
+                    placeholder="{{ $date }}"
+                    class="textbox-n"
+                    type="text"
+                    onfocus="(this.type='date')" name="tgl" id="tgl" oninput='pilih.submit()'>
+                <noscript>
+                  <input type="submit" value="submit">
+                </noscript>
+              </div>
             </div>
           </form>
         </div>

@@ -307,10 +307,10 @@ class DashboardController extends Controller
     {
         if($request->tgl == null) {
                 $pelanggar = Poin::whereDate('created_at', date('Y-m-d'))->paginate(10);
-                $date = date('d-m-Y');
+                $date = date('d M Y');
         } else {
                 $pelanggar = Poin::whereDate('created_at', $request->tgl)->paginate(10);
-                $date = date('d-m-Y', strtotime($request->tgl));
+                $date = date('d M Y', strtotime($request->tgl));
         }
         $url = url()->full();
         $pelanggar->setPath($url);

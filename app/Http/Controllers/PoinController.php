@@ -17,18 +17,32 @@ class PoinController extends Controller
 {
     public function index(Request $request)
     {
+        $awal_bulan = date('Y-m-01');
+        $hari_ini = date('Y-m-d'); 
+        $tambah = $stop_date = date('Y-m-d', strtotime($hari_ini . ' +1 day'));
+        // dd($request->tgl);
         if($request->tgl == 'all') {
             $siswaPoin = Poin::orderBy('id', 'DESC')->paginate(10);
             $date = null;
-        } elseif($request->tgl == null) {
-            $siswaPoin = Poin::orderBy('id', 'DESC')->whereDate('created_at', date('Y-m-d'))->paginate(10);
-            $date = date('d-m-Y');
+        } else if ($request->tgl_awal == '' && $request->tgl_akhir == '') {
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$awal_bulan, $tambah])->paginate(10);
+            $date = date('d M Y', strtotime($awal_bulan)) . ' s/d ' . date('d M Y', strtotime($hari_ini));
+            $page = null;
+        } else if($request->tgl_awal != '' && $request->tgl_akhir == '') {
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$request->tgl_awal, $tambah])->paginate(10);
+            $date = date('d M Y', strtotime($request->tgl_awal)) . ' s/d ' . date('d M Y', strtotime($hari_ini));
+            $page = null;
+        } else if($request->tgl_awal != '' && $request->tgl_akhir != '') {
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])->paginate(10);
+            $date = date('d M Y', strtotime($request->tgl_awal)) . ' s/d ' . date('d M Y', strtotime($request->tgl_akhir));
             $page = null;
         } else {
-            $siswaPoin = Poin::orderBy('id', 'DESC')->whereDate('created_at', $request->tgl)->paginate(10);
-            $date = date('d-m-Y', strtotime($request->tgl));
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$hari_ini, $tambah])->paginate(10);
+            $date = date('d M Y', strtotime($hari_ini)) . ' s/d ' . date('d M Y', strtotime($hari_ini));
             $page = null;
         }
+        
+
         $pelanggaran = Pelanggaran::all();
         $url = url()->full();
         $siswaPoin->setPath($url);
@@ -38,6 +52,8 @@ class PoinController extends Controller
             // 'poinTotal' => $poinTotal,
             'pelanggaran' => $pelanggaran,
             'date' => $date,
+            'awal_bulan' => $awal_bulan,
+            'hari_ini' => $hari_ini,
         ]);
     }
     
