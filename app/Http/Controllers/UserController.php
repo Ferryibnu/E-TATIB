@@ -26,17 +26,41 @@ class UserController extends Controller
             Alert::error('Gagal Menambahkan', 'User Telah Terdaftar');
             return redirect()->back();
         } else {
+            $this->validate($request, [
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+    
+            $image_path = $request->file('image')->store('img', 'public_uploads');
             $tambahUser = new User();
             $tambahUser->name = $request->name;
             $tambahUser->email = $request->email;
             $tambahUser->password = Hash::make($request->password);
             $tambahUser->level = 'admin';
+            $tambahUser->image = $image_path;
             $tambahUser->status = $request->status;
             $tambahUser->save();
 
             Alert::success('Sukses Tambah', 'User baru berhasil ditambahkan');
             return redirect()->back();
         }
+    }
+    
+    public function edit($id, Request $request)
+    {
+        $this->validate($request, [
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $image_path = $request->file('image')->store('img', 'public_uploads');
+
+        $editUser = User::find($id);
+        $editUser->name = $request->name;
+        $editUser->image = $image_path;
+        $editUser->status = $request->status;
+        $editUser->update();
+
+        Alert::success('Edit Sukses', 'Data Berhasil Diedit');
+        return redirect()->back();
     }
 
     public function hapus($id)

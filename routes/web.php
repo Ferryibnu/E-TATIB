@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
     Route::post('/user/tambah/', [App\Http\Controllers\UserController::class, 'tambah'])->name('tambah_user');
     Route::get('/user/hapus/{id}', [App\Http\Controllers\UserController::class, 'hapus']);
+    Route::post('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);
 
     //Menu Data Master Penghargaan
     Route::get('/penghargaan', [App\Http\Controllers\PenghargaanController::class, 'index'])->name('penghargaan');

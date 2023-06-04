@@ -332,21 +332,23 @@ class DashboardController extends Controller
                 }
                 //Membuat QR Code
                 $qrCode = QrCode::size(250)->generate($siswa_withID->nisn);
-                return view('frontend.index', [
-                        'siswa_withID' => $siswa_withID,
-                        'total' => $total,
-                        'siswaPoin' => $siswaPoin,
-                        'qrCode' => $qrCode,
-                        'pelanggar' => $pelanggar,
-                        'date' => $date,
-                ]);
         } else {
-                // dd($date);
-                return view('frontend.index', [
-                        'pelanggar' => $pelanggar,
-                        'date' => $date,
-                ]);
+                $siswa_withID = '';
+                $total = null;
+                $qrCode = '';
+                $siswaPoin = '';
         }
+        $guru = User::where('level','admin')->where('image', '!=', '')->get();
+
+        return view('frontend.index', [
+                'siswa_withID' => $siswa_withID,
+                'total' => $total,
+                'siswaPoin' => $siswaPoin,
+                'qrCode' => $qrCode,
+                'pelanggar' => $pelanggar,
+                'date' => $date,
+                'guru' => $guru,
+        ]);
         
     }
 }

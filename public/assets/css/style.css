@@ -776,9 +776,10 @@ section {
 }
 
 .team .member {
-  text-align: center;
+  text-align: left;
   margin-bottom: 20px;
   background: #343a40;
+  height: 370px;
   position: relative;
   overflow: hidden;
 }
@@ -1253,12 +1254,14 @@ section {
     text-align-last: center;
     padding: 3px 0;
   }
-}
 
-@media (max-width: 575px) {
   .dropdown-menu{
     background-color: rgb(78, 64, 57);
     /* border-inline-color: rgb(78, 64, 57); */
     border-color: rgb(78, 64, 57);
+  }
+
+  .team .member{
+    height: 370px;
   }
 }

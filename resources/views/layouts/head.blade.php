@@ -106,7 +106,11 @@
 	    <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
             <span><strong>{{ Auth::user()->name }} </strong></span>
-              <img class="image-e rounded-circle" src="{{ asset('img/user.png') }}" style="width: 40px; margin-left: 10px;" alt="User Image">
+            @if ( Auth::user()->image )
+              <img class="image-e rounded-circle" src="{{ Auth::user()->image }}" height="40px" width="40px" style="width: 40px; height: 40px;  margin-left: 10px;" alt="User Image">
+            @else
+              <img class="image-e rounded-circle" src="{{ asset('img/user.png') }}" style="max-width: 40px; margin-left: 10px;" alt="admin Image">
+            @endif
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="margin-left: -10px;">
           <a class="dropdown-item dropdown-footer" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

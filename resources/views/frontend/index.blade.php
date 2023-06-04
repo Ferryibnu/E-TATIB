@@ -437,13 +437,15 @@
 
     <div class="row">
 
+      @foreach ($guru as $gurus)
+          
       <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
         <div class="member">
-          <img src="img/guru1.jpg" class="img-fluid" alt="">
+          <img src={{ $gurus->image }} class="img-fluid" alt="" width="370px">
           <div class="member-info">
             <div class="member-info-content">
-              <h4>Abdul Majid, S.Pd.</h4>
-              <span>Pendidikan Pancasila dan Kewarganegaraan</span>
+              <h4>{{ $gurus->name }}</h4>
+              {{-- <span>Pendidikan Pancasila dan Kewarganegaraan</span> --}}
             </div>
             {{-- <div class="social">
               <a href=""><i class="icofont-twitter"></i></a>
@@ -454,67 +456,7 @@
           </div>
         </div>
       </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-        <div class="member">
-          <img src="img/guru2.jpg" class="img-fluid" alt="">
-          <div class="member-info">
-            <div class="member-info-content">
-              <h4>Cheby Marse, S.Pd</h4>
-              <span>Bimbingan Konseling</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-        <div class="member">
-          <img src="img/guru3.jpg" class="img-fluid" alt="">
-          <div class="member-info">
-            <div class="member-info-content">
-              <h4>Ririn Wartinah, S.Pd</h4>
-              <span>Produktif Perhotelan</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-        <div class="member">
-          <img src="img/guru4.jpg" class="img-fluid" alt="">
-          <div class="member-info">
-            <div class="member-info-content">
-              <h4>Sunardi, S.Pd</h4>
-              <span>Prakarya dan Kewirausahaan, Sejarah Indonesia</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-        <div class="member">
-          <img src="img/yunita.png" class="img-fluid" alt="">
-          <div class="member-info">
-            <div class="member-info-content">
-              <h4>Yunitaningrum Dwi Candrarini,S.T</h4>
-              <span>Fisika Kimia dan Seni Budaya</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-        <div class="member">
-          <img src="img/zain.png" class="img-fluid" alt="">
-          <div class="member-info">
-            <div class="member-info-content">
-              <h4>Zainuri, S.Pd.I</h4>
-              <span>Pendidikan Agama Islam</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      @endforeach
     </div>
 
   </div>

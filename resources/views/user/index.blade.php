@@ -52,6 +52,11 @@
                       </div>
                     </div>
 
+                    <label for="inputStatus">Foto</label>
+                    <br>
+                    <input type="file" name="image"
+                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+
                     </div>
                     <div class="modal-footer">
                       <button type="submit" class="btn btn-primary">Tambah</button></form>
@@ -67,6 +72,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Email</th>
+                <th>Image</th>
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>
@@ -78,9 +84,19 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->name }}</td>
                 <td>{{ $s->email }}</td>
+                @if ($s->image)
+                  <td>
+                    <img src={{ $s->image }} height="150px" width="150px"  style="width: 150px; height: 150px;
+                    margin: auto;
+                    display: block;"> 
+                  </td>
+                @else
+                  <td></td>
+                @endif
                 <td>{{ $s->status }}</td>
                 <td>
                   <button type="button" title="Hapus" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalHapus{{$s->id}}"><i class="fa fa-trash"></i></button>
+                  <button type="button" title="Edit" class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#ModalEdit{{$s->id}}"><i class="fa fa-edit"></i></button>
                 </td>
               </tr>
               
@@ -106,6 +122,57 @@
               </div>
               {{-- End Modal Delete --}}
              
+               {{-- Modal Edit --}}
+               <div class="modal fade" id="ModalEdit{{$s->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home{{$s->id}}" role="tabpanel" aria-labelledby="home-tab{{$s->id}}">
+                          <form action="/user/edit/{{$s->id}}" method="post" enctype="multipart/form-data">
+                          {{csrf_field()}}
+              
+                          <div class="form-row">
+                            <div class="form-group col-md-6" >
+                              <label for="inputStatus">Nama</label>
+                              <input required type="text" class="form-control" name="name" value="{{$s->name}}">
+                            </div>
+      
+                            <div class="form-group col-md-6" >
+                              <label for="inputStatus">Status</label>
+                              <select class="form-control" name="status" style="width: 100%;" required>
+                                  <option value="{{$s->status}}">{{$s->status}}</option>
+                                  <option value="Tim Tatib">Tim Tatib</option>
+                                  <option value="Koordinator">Koordinator Tim Tatib</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <label for="inputStatus">Foto</label>
+                          <br>
+                          <input type="file" name="image"
+                              class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                          <br>
+                          @if ($s->image)
+                            <h6>Foto Lama</h6>
+                            <img src={{ $s->image }} style="max-width: 150px; max-height: 150px"> 
+                          @endif
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Ubah</button></form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
                 @endforeach
               </tbody>
             </table>
