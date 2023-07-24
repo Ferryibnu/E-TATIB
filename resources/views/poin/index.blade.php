@@ -95,7 +95,7 @@
 
                     <div class="form-row">
                       <div class="form-group col-md-5" >
-                        <label for="inputStatus">NISN</label>
+                        <label for="inputStatus">NISN<span style="color: red;">&#42;</span></label>
                         <input id="nisn" type="text" class="form-control" name="nisn"  onkeyup="rfidSiswa()" required>
                       </div>
 
@@ -393,7 +393,7 @@
     }
   }
   let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250 });
+    "reader", { fps: 10, qrbox: 250 }); //ukuran qr code box 250
   html5QrcodeScanner.render(onScanSuccess);
 </script>
 

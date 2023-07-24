@@ -47,16 +47,17 @@ class UserController extends Controller
     
     public function edit($id, Request $request)
     {
-        $this->validate($request, [
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
-
-        $image_path = $request->file('image')->store('img', 'public_uploads');
-
         $editUser = User::find($id);
         $editUser->name = $request->name;
-        $editUser->image = $image_path;
         $editUser->status = $request->status;
+
+        if ($request->image) {
+            $this->validate($request, [
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $image_path = $request->file('image')->store('img', 'public_uploads');
+            $editUser->image = $image_path;
+        }
         $editUser->update();
 
         Alert::success('Edit Sukses', 'Data Berhasil Diedit');

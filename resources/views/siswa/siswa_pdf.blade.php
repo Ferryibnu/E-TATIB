@@ -3,6 +3,7 @@
   <link rel="stylesheet" type="style/css" href="../public/css/bootstrap.min.css">
 </head>
 
+  {{-- KOP SURAT --}}
 	<center>
     <b style="font-size: 10px">PEMERINTAH PROVINSI JAWA TIMUR DINAS PENDIDIKAN
       <br>
@@ -19,21 +20,23 @@
         <br>
       TAHUN PELAJARAN {{date('Y', strtotime($tahun))}}</b>
 	</center>
+  {{-- END KOP SURAT --}}
 
-  {{-- Logo SMKN 1 --}}
+  {{-- Logo SMKN 1 DI DENGAN OPACITY RENDAH DAN DI TENGAH HALAMAN--}}
   <img src="../public/img/icon.png" style="opacity:0.1;
   position:fixed;
   width:220px;
   bottom:270px;
   left:230px; "/>
 
-  {{-- logo kemendikbud surabaya --}}
+  {{-- logo kemendikbud surabaya DI KOP SURAT--}}
   <img src="../public/img/kemendik.png" style="
   position: absolute;
   width:80px;
   bottom:960px;
   left:80px; "/>
 		
+    {{-- DATA SISWA --}}
   <div class="card-body">
     <div class="row">
       <div class="col-md-4"> <pre>Nama                   : {{$siswa->nama}}</pre></div>
@@ -74,6 +77,7 @@
     </div>
   </div>
 
+  {{-- TABEL PELANGGARAN YANG DILAKUKAN --}}
   <table class="table table-bordered" style="font-size: 12px">
     <thead class="thead">
       <tr>
@@ -98,6 +102,7 @@
     </tbody>
   </table>
 
+  {{-- TABEL TINDAK LANJUT YANG DILAKUKAN --}}
   <b style="font-size: 12px">Catatan Penanganan</b>
   <table class="table table-bordered" style="font-size: 12px">
     <thead class="thead">
@@ -119,6 +124,7 @@
     </tbody>
   </table>
 
+  {{-- TANDA TANGAN KOORDINATOR TATIB --}}
   <center>
     <p style="font-size: 12px; position:relative; left:250px;"> Surabaya, {{date('d M Y', strtotime($tahun))}}
       <br>
@@ -135,19 +141,3 @@
     NIP. {{$tim->email}}
   </p>
   </center>
-
-  {{-- <center>
-    <p style="font-size: 12px; position:relative; right:250px; bottom:199px;">
-      <br>
-      Wali Murid
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    (<b style="text-decoration: underline">_______________________</b>)
-    <br>
-  </p>
-  </center> --}}

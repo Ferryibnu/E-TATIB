@@ -1,7 +1,7 @@
-@extends('layouts.head')
-@section('konten')
-<!-- Main content -->
-<section class="content">
+  @extends('layouts.head')
+  @section('konten')
+  <!-- Main content -->
+  <section class="content">
   <div class="container-fluid">
     
     <div class="alert alert-warning alert-block">
@@ -56,19 +56,22 @@
                     <!-- Tab 1 -->
 
                     <div class="form-row">
-                      <div class="form-group col-md-6" >
-                        <label for="inputStatus">NISN</label>
-                        <input id="nisn" type="text" class="form-control" name="nisn" required>
+                      <div class="form-group col-md-6">
+                          <label for="inputStatus">NISN<span style="color: red;">&#42;</span></label>
+                          <input id="nisn" type="text" class="form-control" name="nisn" required pattern="^[0-9]{10}$" title="NISN must be exactly 10 digits.">
+                          <small class="form-text text-muted">NISN Harus 10 digit angka.</small>
                       </div>
+                    
+                    
 
                       <div class="form-group col-md-6" >
                         <label for="inputStatus">RFID</label>
-                        <input required id="rfid" type="text" class="form-control" name="rfid" required>
+                        <input id="rfid" type="text" class="form-control" name="rfid">
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-12" >
-                        <label for="inputStatus">Nama</label>
+                        <label for="inputStatus">Nama<span style="color: red;">&#42;</span></label>
                         <input required id="nama" type="text" class="form-control" name="nama" required>
                       </div>
                     </div>
@@ -90,7 +93,7 @@
 
                       <div class="form-group col-md-5" >
                         <label for="inputStatus">Tanggal Lahir</label>
-                        <input type="date" class="form-control" name="tgl_lahir" required>
+                        <input type="date" class="form-control" name="tgl_lahir">
                       </div>
                     </div>
 
@@ -115,8 +118,8 @@
                       </div>
 
                       <div class="form-group col-md-5" >
-                        <label for="inputStatus">No HP Orang Tua</label>
-                        <input type="text" class="form-control" name="no_telp">
+                        <label for="inputStatus">No HP Orang Tua<span style="color: red;">&#42;</span></label>
+                        <input type="text" class="form-control" name="no_telp" required>
                       </div>
                     </div>
 

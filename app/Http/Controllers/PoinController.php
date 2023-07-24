@@ -141,34 +141,59 @@ class PoinController extends Controller
             if($jumlah->total <= 56 ) {
                 //Jika skor pelanggaran kurang dari 56 poin (tindak lanjut pelanggaran kategori ringan) maka tidak akan dikirim peringatan via WA.
             } else {
-                $br = "\n\n"; //membuat new lines.
+                $br = "\n\n"; // membuat new lines.
 
-                //deadline 1 minggu
+                // Deadline 1 minggu
                 $tgl = date_modify($addPoin1->created_at, "+ 7 days");
                 $tenggat = date('d-m-Y', strtotime($tgl));
 
                 $curl = curl_init();
 
+                // First target
                 curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.fonnte.com/send',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array(
-                'target' => $getNRP->no_telp, //ini no telp dari ortu siswa
-                'message' => 'Assalamulaikum wr.wb. Kami dari *TATIB SMK Negeri 1 Surabaya* menginformasikan bahwa: ' . $br . 'Siswa bernama ' . '*'.$getNRP->nama. '*' . ' dari kelas ' . '*' . $getNRP->kelas->kelas . '*' . ' telah melakukan pelanggaran tata tertib sehingga mendapatkan tindak lanjut '. '*' . $addPoin1->catatan . '*' .' dengan total skor pelanggaran: ' . '*' . $jumlah->total . ' poin*.' . $br . 'Mohon untuk segera memenuhi panggilan TATIB sampai dengan tanggal ' . $tenggat . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.',
-                ),
-                CURLOPT_HTTPHEADER => array(
-                    'Authorization: EBLcVu1Ug3fPwaa4y!dq' //ini Key dari Whatsapp API fonnte.com
-                ),
+                    CURLOPT_URL => 'https://api.fonnte.com/send',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => array(
+                        'target' => $getNRP->no_telp, // ini no telp dari ortu siswa
+                        'message' => 'Assalamulaikum wr.wb. Kami dari *TATIB SMK Negeri 1 Surabaya* menginformasikan bahwa: ' . $br . 'Siswa bernama ' . '*' . $getNRP->nama . '*' . ' dari kelas ' . '*' . $getNRP->kelas->kelas . '*' . ' telah melakukan pelanggaran tata tertib sehingga mendapatkan tindak lanjut ' . '*' . $addPoin1->catatan . '*' . ' dengan total skor pelanggaran: ' . '*' . $jumlah->total . ' poin*.' . $br . 'Mohon untuk segera memenuhi panggilan TATIB sampai dengan tanggal ' . $tenggat . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.',
+                    ),
+                    CURLOPT_HTTPHEADER => array(
+                        'Authorization: EBLcVu1Ug3fPwaa4y!dq' // ini Key dari Whatsapp API fonnte.com
+                    ),
                 ));
-                
-                $response = curl_exec($curl);//eksekusi
+
+                $response1 = curl_exec($curl); // eksekusi
+
+                // Second target
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://api.fonnte.com/send',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => array(
+                        'target' => '081259536877', // Second target number
+                        // 'target' => '081993973552', // Second target number
+                        'message' => 'Assalamulaikum wr.wb. Kami dari *TATIB SMK Negeri 1 Surabaya* menginformasikan bahwa: ' . $br . 'Siswa bernama ' . '*' . $getNRP->nama . '*' . ' dari kelas ' . '*' . $getNRP->kelas->kelas . '*' . ' telah melakukan pelanggaran tata tertib sehingga mendapatkan tindak lanjut ' . '*' . $addPoin1->catatan . '*' . ' dengan total skor pelanggaran: ' . '*' . $jumlah->total . ' poin*.' . $br . 'Mohon untuk segera memenuhi panggilan TATIB sampai dengan tanggal ' . $tenggat . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.',
+                    ),
+                    CURLOPT_HTTPHEADER => array(
+                        'Authorization: EBLcVu1Ug3fPwaa4y!dq' // ini Key dari Whatsapp API fonnte.com
+                    ),
+                ));
+
+                $response2 = curl_exec($curl); // eksekusi
+
                 curl_close($curl);
+
             }
 
             Alert::success('Sukses Tambah', 'Data Berhasil Ditambahkan');

@@ -53,14 +53,7 @@ class SiswaController extends Controller
     public function tambah(Request $request)
     {
         $this->validate($request, [
-            'nisn' => 'required',
-            'nama' => '',
-            'kelas' => '',
-            'agama' => '',
-            'no_telp' => '',
-            'tempat_lahir' => '',
-            'tgl_lahir' => '',
-            'jns_kelamin' => '',
+            'nisn' => 'required|regex:/^[0-9]+$/',
         ]);
         
         $jikaAda = Siswa::where('nisn', $request->nisn)->first();
@@ -96,13 +89,6 @@ class SiswaController extends Controller
 
     public function edit($id, Request $request)
     {
-        $this->validate($request, [
-            'nama' => '',
-            'kelas' => '',
-            'tempat_lahir' => '',
-            'tgl_lahir' => '',
-            'no_telp' => '',
-        ]);
 
         $editSiswa = Siswa::find($id);
         $editSiswa->nama = $request->nama;
@@ -122,7 +108,6 @@ class SiswaController extends Controller
         $siswa = Siswa::find($id);
         User::find($siswa->users_id)->delete();
         $siswa->delete();
-    //    Poin::where('siswa_id', $id)->delete();
 
         Alert::success('Hapus Sukses', 'Data berhasil dihapus');
         return redirect()->back();
