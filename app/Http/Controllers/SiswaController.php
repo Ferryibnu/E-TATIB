@@ -38,16 +38,16 @@ class SiswaController extends Controller
             ->orderBy('total')
             ->get();
             
-            return view('siswa.index', [
+            
+        } else {
+            $totalPoin = 0;
+        }
+        return view('siswa.index', [
                 'siswa' => $siswa,
                 'siswaKelas' => $siswaKelas,
                 'totalPoin' => $totalPoin,
                 'kelas' => $kelas,
             ]);
-        } else {
-            Alert::error('ERROR', 'Data Tidak Ditemukan!');
-            return redirect()->back();
-        }
     }
     
     public function tambah(Request $request)
