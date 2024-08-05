@@ -20,7 +20,8 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('AdminLTE/dist/css/adminlte.min.css')}}">
   {{-- sweetalert --}}
-  <link rel="stylesheet" href="{{asset('AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+  {{-- <link rel="stylesheet" href="{{asset('AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}"> --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="{{asset('AdminLTE/plugins/toastr/toastr.min.css')}}">
   <!-- Select2 -->
@@ -319,7 +320,8 @@
 <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('AdminLTE/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+{{-- <script src="{{asset('AdminLTE/plugins/sweetalert2/sweetalert2.min.js')}}"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{asset('AdminLTE/plugins/pdfmake/vfs_fonts.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
