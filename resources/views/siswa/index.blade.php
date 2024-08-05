@@ -14,7 +14,11 @@
       <div class="col-12">
         <div class="card shadow mt-4">
           <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-dark card-title">Kelas {{ $siswaKelas->kelas->kelas }} </h3>
+              <h3 class="m-0 font-weight-bold text-dark card-title">Kelas 
+                @if (isset($siswaKelas))
+                    {{ $siswaKelas->kelas->kelas }}
+                @endif
+             </h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -36,7 +40,12 @@
       <div class="col-12">
         <div class="card shadow mt-4">
           <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-dark card-title">Data Siswa Kelas {{$siswaKelas->kelas->kelas}}</h3>
+              <h3 class="m-0 font-weight-bold text-dark card-title">Data Siswa Kelas 
+                @if (isset($siswaKelas))
+                    {{ $siswaKelas->kelas->kelas }}
+                @endif
+
+              </h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -135,20 +144,17 @@
             <!-- Import RFID -->
             <div class="modal fade" id="importRFID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <form method="post" action="/siswa/import_RFID" enctype="multipart/form-data">
+                <form id="importRFIDForm" enctype="multipart/form-data">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">Import RFID dan No Whatsapp Orang Tua</h5>
                     </div>
                     <div class="modal-body">
-        
                       {{ csrf_field() }}
-        
                       <label>Pilih file excel untuk menambahkan RFID dan No WA Orang Tua Siswa</label>
                       <div class="form-group">
                         <input type="file" name="file" required="required">
                       </div>
-                        
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -159,23 +165,21 @@
               </div>
             </div>
 
+
             <!-- Import Excel -->
             <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <form method="post" action="/siswa/import_excel" enctype="multipart/form-data">
+                <form id="importExcelForm" enctype="multipart/form-data">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                     </div>
                     <div class="modal-body">
-        
                       {{ csrf_field() }}
-        
                       <label>Pilih file excel</label>
                       <div class="form-group">
                         <input type="file" name="file" required="required">
                       </div>
-                        
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -186,7 +190,8 @@
               </div>
             </div>
 
-            {{-- Modal Reset --}}
+
+            <!-- Modal for Reset Confirmation -->
             <div class="modal fade" id="ModalReset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -201,11 +206,12 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="/siswa/reset" class="btn btn-primary">Iya</a>
+                    <button type="button" class="btn btn-primary" id="confirmReset">Iya</button>
                   </div>
                 </div>
               </div>
             </div>
+
 
             <table id="example1" class="table table-bordered table-striped">
               <thead>
@@ -384,8 +390,8 @@
 </section>
 {{-- Data Tables AdminLTE --}}
 <script>
-  $(function () {
-    //Initialize Select2 Elements
+  $(document).ready(function() {
+
     $('.select2').select2()
 
     //Initialize Select2 Elements
@@ -396,32 +402,177 @@
     $("#example1").DataTable({
       "responsive": true, "lengthChange": true, "autoWidth": false,
       "buttons": [
-       {
-           extend: 'print',
-           title: '',
-           footer: false,
-           exportOptions: {
+      {
+          extend: 'print',
+          title: '',
+          footer: false,
+          exportOptions: {
                 columns: [1,2,3,4]
             }
-       },
-       {
-           extend: 'copy',
-           title: '',
-           footer: false,
-           exportOptions: {
+      },
+      {
+          extend: 'copy',
+          title: '',
+          footer: false,
+          exportOptions: {
             columns: [1,2,3,4]
             }
-       },
-       {
-           extend: 'excel',
-           title: '',
-           footer: false,
-           exportOptions:  {
+      },
+      {
+          extend: 'excel',
+          title: '',
+          footer: false,
+          exportOptions:  {
             columns: [1,2,3,4]
             }
-       }         
+      }         
     ]  
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    $('#importExcelForm').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        const pleaseWaitNotification = Swal.fire({
+            toast: true,
+            position: 'top-right',
+            icon: 'info',
+            title: 'Please wait...',
+            showConfirmButton: false,
+            timer: 0, // Set to 0 to keep it visible until AJAX is complete
+            timerProgressBar: true
+        });
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '/siswa/import_excel', // Your URL to handle the import
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                // Handle the success response
+                Swal.close();
+                $('#importExcel').modal('hide');
+                Swal.fire({
+                    title: 'Sukses!',
+                    text: 'Data berhasil diimport',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Optionally, refresh the page or perform other actions
+                    location.reload();
+                });
+            },
+            error: function(xhr) {
+                // Handle the error response
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Terjadi kesalahan saat mengimport data',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+
+
+    $('#importRFIDForm').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        const pleaseWaitNotification = Swal.fire({
+            toast: true,
+            position: 'top-right',
+            icon: 'info',
+            title: 'Please wait...',
+            showConfirmButton: false,
+            timer: 0, // Set to 0 to keep it visible until AJAX is complete
+            timerProgressBar: true
+        });
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '/siswa/import_RFID', // Your URL to handle the import
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                // Handle the success response
+                Swal.close();
+                $('#importRFID').modal('hide');
+                
+                Swal.fire({
+                    title: 'Sukses!',
+                    text: 'Data berhasil diimport',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            },
+            error: function(xhr) {
+                // Handle the error response
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Terjadi kesalahan saat mengimport data',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+    
+    $('#confirmReset').on('click', function() {
+        // Show "Please wait" notification
+        Swal.fire({
+            toast: true,
+            position: 'top-right',
+            icon: 'info',
+            title: 'Please wait...',
+            showConfirmButton: false,
+            timer: 0,
+            timerProgressBar: true
+        });
+
+        $.ajax({
+            url: '/siswa/reset', // URL for the reset route
+            type: 'GET',
+            success: function(response) {
+                // Close the "Please wait" notification
+                Swal.close();
+
+                // Handle success response
+                Swal.fire({
+                    icon: 'success',
+                    title: 'success',
+                    text: 'Data berhasil dihapus',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then(() => {
+                    // Optionally, refresh the page or perform other actions
+                    location.reload();
+                });
+                
+                // Close the modal
+                $('#ModalReset').modal('hide');
+            },
+            error: function(xhr) {
+                // Close the "Please wait" notification
+                Swal.close();
+
+                // Handle error response
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error',
+                    text: 'Terjadi kesalahan',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                // Close the modal
+                $('#ModalReset').modal('hide');
+            }
+        });
+    });
+
   });
 </script>
 <!-- /.content -->

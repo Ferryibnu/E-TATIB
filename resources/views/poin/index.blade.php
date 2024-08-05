@@ -26,21 +26,13 @@
             <form action="{{route('catat')}}" id="pilih">
               <div class="form-row">
                 <div class="form-group col-md-4" >Tanggal Awal: 
-                  <input
-                    placeholder="{{ substr($date,0,11); }}"
-                    class="textbox-n"
-                    type="text"
-                    onfocus="(this.type='date')" name="tgl_awal" id="tgl_awal" >
+                  <input type="date" name="tgl_awal" id="tgl_awal" >
                   {{-- <noscript>
                     <input type="submit" value="submit">
                   </noscript> --}}
                 </div>
                 <div class="form-group col-md-4" >Tanggal Akhir: 
-                  <input
-                    placeholder="{{ substr($date,16,11) }}"
-                    class="textbox-n"
-                    type="text"
-                    onfocus="(this.type='date')" name="tgl_akhir" id="tgl_akhir" >
+                  <input type="date" name="tgl_akhir" id="tgl_akhir" >
                 </div>
                 <div class="form-group col-md-4 text-right" >
                   <button type="submit" class="btn btn-primary" >Kirim</button>
@@ -404,36 +396,20 @@
     var nisn = $('#nisn').val();
 
     if (rfid != '') {
-      // document.getElementById("nisn").disabled = true;
-      if(rfid.substr(0, 3) == "000") {
-        $.ajax({
-          url: "{{route('autoRFID')}}",
-          data: { rfid: +rfid, _token: '{{csrf_token()}}' },
-          method: 'post',
-            success: function(data)
-            {
-              $("#nama").val(data.nama),
-              $("#nisn").val(data.nisn),
-              $("#kelas").val(data.kelas);
-            }
-        });
-      } else {
-        $.ajax({
-          url: "{{route('autoRFID2')}}",
-          data: { rfid: +rfid, _token: '{{csrf_token()}}' },
-          method: 'post',
-            success: function(data)
-            {
-              $("#nama").val(data.nama),
-              $("#nisn").val(data.nisn),
-              $("#kelas").val(data.kelas);
-            }
-        });
-      }
+      $.ajax({
+        url: "{{route('autoRFID')}}",
+        data: { rfid: +rfid, _token: '{{csrf_token()}}' },
+        method: 'post',
+          success: function(data)
+          {
+            $("#nama").val(data.nama),
+            $("#nisn").val(data.nisn),
+            $("#kelas").val(data.kelas);
+          }
+      });
     } else {
-      if(nisn.substr(0, 2) == "00") {
-        $.ajax({
-        url: "{{route('autofill')}}",
+      $.ajax({
+        url: "{{route('autofillNull')}}",
         data: { nisn: +nisn, _token: '{{csrf_token()}}' },
         method: 'post',
           success: function(data)
@@ -442,20 +418,7 @@
             $("#rfid").val(data.rfid),
             $("#kelas").val(data.kelas);
           }
-        });
-      } else {
-        $.ajax({
-          url: "{{route('autofillNull')}}",
-          data: { nisn: +nisn, _token: '{{csrf_token()}}' },
-          method: 'post',
-            success: function(data)
-            {
-              $("#nama").val(data.nama),
-              $("#rfid").val(data.rfid),
-              $("#kelas").val(data.kelas);
-            }
-        });
-      }
+      });
     }
 
     // if (rfid == '' || nisn == '') {

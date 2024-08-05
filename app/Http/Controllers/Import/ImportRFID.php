@@ -17,16 +17,17 @@ class ImportRFID implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        $jikaAda = Siswa::where('nisn', $row['nisn'])->first();
+        $nisn = str_pad($row['nisn'], 10, '0', STR_PAD_LEFT);
+        $jikaAda = Siswa::where('nisn', $nisn)->first();
 
         if($jikaAda){
-            $siswa = Siswa::where('nisn', $row['nisn'])->first();
+            $siswa = Siswa::where('nisn', $nisn)->first();
             if($row['rfid'] != null) {
                 $siswa->rfid = $row['rfid'];
             } else {
                 //nothing
             }
-            if($row['no_wa'] != null) {
+            if(isset($row['no_wa'])) {
                 $siswa->no_telp = $row['no_wa'];
             } else {
                 //nothing

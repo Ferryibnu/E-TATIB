@@ -210,6 +210,7 @@ class SiswaController extends Controller
         return $pdf->stream();
     }
 
+    
     public function reset()
     {
         foreach (Siswa::all() as $e) { 
@@ -218,6 +219,5 @@ class SiswaController extends Controller
             $e->delete();
         }
         Alert::success('Hapus Sukses', 'Data berhasil dihapus');
-        return redirect()->back();
     }
 }
