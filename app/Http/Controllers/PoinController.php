@@ -15,6 +15,27 @@ use Illuminate\Pagination\Paginator;
 
 class PoinController extends Controller
 {
+    public function getSiswaList(Request $request)
+    {
+        $search = $request->input('q');
+        $siswaList = Siswa::with('kelas')
+            ->where('nisn', 'LIKE', "%{$search}%")
+            ->orWhere('nama', 'LIKE', "%{$search}%")
+            ->orWhereHas('kelas', function($query) use ($search) {
+                $query->where('kelas', 'LIKE', "%{$search}%");
+            })
+            ->get()
+            ->map(function ($siswa) {
+                return [
+                    'id' => $siswa->id,
+                    'text' => $siswa->nisn . ' - ' . $siswa->nama . ' - ' . $siswa->kelas->kelas,
+                ];
+            });
+
+        return response()->json($siswaList);
+    }
+
+
     public function index(Request $request)
     {
         $awal_bulan = date('Y-m-01');
@@ -22,34 +43,36 @@ class PoinController extends Controller
         $tambah = $stop_date = date('Y-m-d', strtotime($hari_ini . ' +1 day'));
         // dd($request->tgl);
         if($request->tgl == 'all') {
-            $siswaPoin = Poin::orderBy('id', 'DESC')->paginate(10);
+            $siswaPoin = Poin::orderBy('id', 'DESC')->get();
             $date = null;
         } else if ($request->tgl_awal == '' && $request->tgl_akhir == '') {
-            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$awal_bulan, $tambah])->paginate(10);
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$awal_bulan, $tambah])->get();
             $date = date('d M Y', strtotime($awal_bulan)) . ' s/d ' . date('d M Y', strtotime($hari_ini));
             $page = null;
         } else if($request->tgl_awal != '' && $request->tgl_akhir == '') {
-            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$request->tgl_awal, $tambah])->paginate(10);
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$request->tgl_awal, $tambah])->get();
             $date = date('d M Y', strtotime($request->tgl_awal)) . ' s/d ' . date('d M Y', strtotime($hari_ini));
             $page = null;
         } else if($request->tgl_awal != '' && $request->tgl_akhir != '') {
-            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])->paginate(10);
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$request->tgl_awal, $request->tgl_akhir])->get();
             $date = date('d M Y', strtotime($request->tgl_awal)) . ' s/d ' . date('d M Y', strtotime($request->tgl_akhir));
             $page = null;
         } else {
-            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$hari_ini, $tambah])->paginate(10);
+            $siswaPoin = Poin::orderBy('id', 'DESC')->whereBetween('created_at', [$hari_ini, $tambah])->get();
             $date = date('d M Y', strtotime($hari_ini)) . ' s/d ' . date('d M Y', strtotime($hari_ini));
             $page = null;
-        }
-        
+        }        
 
+        // $siswaList = Siswa::select('id', 'nisn', 'nama', 'rfid')->get();
+        
+        // $siswaList = Siswa::all();
         $pelanggaran = Pelanggaran::all();
-        $url = url()->full();
-        $siswaPoin->setPath($url);
+        // $url = url()->full();
+        // $siswaPoin->setPath($url);
         
         return view('poin.index', [
             'siswaPoin' => $siswaPoin,
-            // 'poinTotal' => $poinTotal,
+            // 'siswaList' => $siswaList,
             'pelanggaran' => $pelanggaran,
             'date' => $date,
             'awal_bulan' => $awal_bulan,
@@ -61,17 +84,20 @@ class PoinController extends Controller
     {
         $this->validate($request, [
             'siswa_id' => '',
-            'nisn' => '',
             'pelanggaran_id' => '',
             'pencatat' => '',
+            'tanggal_pelanggaran' => '',
         ]);
-        $getNRP = Siswa::where('nisn', $request->nisn)->first();
+        $getNRP = Siswa::where('id', $request->siswa_id)->first();
+
+        // dd($request->siswa_id);
        
         if($getNRP){
             $addPoin = new Poin;
             $addPoin->siswa_id = $getNRP->id;
             $addPoin->pelanggaran_id = $request->pelanggaran_id;
             $addPoin->pencatat = Auth::user()->name;
+            $addPoin->created_at = $request->tanggal_pelanggaran;
             $addPoin->save();
 
             $jumlah = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
@@ -83,6 +109,13 @@ class PoinController extends Controller
             $addPoin1 = Poin::find($addPoin->id);
             $pelanggaran = Pelanggaran::find($addPoin->pelanggaran_id);
             $nama_pelanggaran = $pelanggaran->pelanggaran;
+            $poin_pelanggaran = $pelanggaran->poin;
+
+            $created_at = $addPoin1->created_at;
+            $tanggal = \Carbon\Carbon::parse($created_at)->format('d M Y');
+
+            // Get the day of the week in Indonesian
+            $hari = \Carbon\Carbon::parse($created_at)->locale('id')->dayName;
 
             if($jumlah->total  >= 10 && $jumlah->total <= 29) {
                 $addPoin1->kategori = 'ringan';
@@ -658,24 +691,26 @@ class PoinController extends Controller
                 $br = "\n\n"; // membuat new lines.
 
                 $msg_wa = 'Assalamulaikum wr.wb. Kami dari *TATIB SMK Negeri 1 Surabaya* menginformasikan bahwa: ' 
-                        . $br . 'Siswa bernama ' . '*' . $getNRP->nama . '*' . ' dari kelas ' . '*' . $getNRP->kelas->kelas . '*' . 
+                        . $br . 'Pada hari '.$hari.' tanggal '.$tanggal.'. Siswa bernama ' . '*' . $getNRP->nama . '*' . ' dari kelas ' . '*' . $getNRP->kelas->kelas . '*' . 
                         ' telah melakukan pelanggaran ' . '*' . $nama_pelanggaran . '*' . 
-                        ' dengan total skor pelanggaran: ' . '*' . $jumlah->total . ' poin*.' . $br
+                        '  dengan  skor pelanggaran:  ' . '*' . $poin_pelanggaran . ' poin*.'.$br.'Sehingga akumulasi point pelanggaran menjadi ' . '*' . $jumlah->total . ' poin*.' . $br
                         ;
                 //WHATSAPP API\
                 if($jumlah->total >= 30 &&  $jumlah->total < 50) {
-                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan untuk pembinaan menemui wali kelas.*' . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.';
+                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan untuk pembinaan menemui wali kelas.*' . $br;
                 } else if($jumlah->total >= 50 &&  $jumlah->total < 100) {
-                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (pertama) untuk menemui wali kelas.*' . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.';
+                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (pertama) untuk menemui wali kelas.*' . $br;
                 } else if($jumlah->total >= 100 &&  $jumlah->total < 150) {
-                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (kedua) untuk  menemui walas dan di dampingi BK.*' . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.';
+                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (kedua) untuk  menemui walas dan di dampingi BK.*' . $br;
                 } else if($jumlah->total >= 150 &&  $jumlah->total < 200) {
-                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (ketiga) untuk menemui walas di dampingi BK dan kaprog.*' . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.';
+                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (ketiga) untuk menemui walas di dampingi BK dan kaprog.*' . $br;
                 } else if($jumlah->total >= 200 &&  $jumlah->total < 250) {
-                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (keempat) untuk menenmui walas di dampingi BK, kaprog, waka kesiswaan.*' . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.';
+                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (keempat) untuk menenmui walas di dampingi BK, kaprog, waka kesiswaan.*' . $br;
                 } else if($jumlah->total >= 250) {
-                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (kelima) untuk menemui walas dan di dampingi BK, kaprog, waka kesiswaan, dan kepsek.*' . $br . 'Terimakasih atas perhatiannya. Wassalamualaikum wr.wb.';
+                    $msg_wa = $msg_wa . '*Mohon untuk siswa bersangkutan segera memenuhi panggilan orang tua (kelima) untuk menemui walas dan di dampingi BK, kaprog, waka kesiswaan, dan kepsek.*' . $br;
                 }
+                
+                $msg_wa = $msg_wa . 'Terimakasih atas kerjasamanya.';
                 $curl = curl_init();
     
                 // First target

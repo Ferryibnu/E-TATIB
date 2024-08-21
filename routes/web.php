@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/siswa/cetak_pdf/{id}', [App\Http\Controllers\SiswaController::class, 'cetak_pdf']);
     Route::get('/siswa/reset', [App\Http\Controllers\SiswaController::class, 'reset']);
 
+    Route::get('/get-siswa-list', [App\Http\Controllers\PoinController::class, 'getSiswaList'])->name('getSiswaList');
     Route::post('/poin/tambah/', [App\Http\Controllers\PoinController::class, 'tambah'])->name('catat_pelanggaran');
     Route::post('/poin/edit/{id}', [App\Http\Controllers\PoinController::class, 'edit']);
     Route::get('/poin/hapus/{id}', [App\Http\Controllers\PoinController::class, 'hapus']);

@@ -72,65 +72,52 @@
             </div>
             <!-- Modal Tambah -->
             <div class="modal fade" id="tambahModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog " role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Catat Pelanggaran</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Catat Pelanggaran</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <form action="{{route('catat_pelanggaran')}}" method="POST" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+          
+                              <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                      <label for="selectSiswa">Nama Siswa<span style="color: red;">&#42;</span></label>
+                                      <select id="selectSiswa" class="form-control select2bs4" name="siswa_id" style="width: 100%;" required></select>
+                                  </div>
+                              </div>
+          
+                              <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                      <label for="selectPelanggaran">Pelanggaran<span style="color: red;">&#42;</span></label>
+                                      <select id="selectPelanggaran" class="form-control select2bs4" name="pelanggaran_id" style="width: 100%;" required>
+                                          @foreach($pelanggaran as $p)
+                                              <option value="{{ $p->id }}">{{ $p->pelanggaran }} (Poin: {{ $p->poin }})</option>
+                                          @endforeach
+                                      </select>
+                                  </div>
+                              </div>
+
+                              <div class="form-row">
+                                <div class="form-group col-md-12">
+                                  <label for="tanggalPelanggaran">Tanggal Pelanggaran<span style="color: red;">&#42;</span></label>
+                                  <input type="datetime-local" class="form-control" id="tanggalPelanggaran" name="tanggal_pelanggaran" required>
+                                </div>
+                              </div>
+          
+                          </div>
+                          <div class="modal-footer">
+                              <button id="submitButton" type="submit" class="btn btn-primary">Tambah</button>
+                          </div>
+                      </form>
                   </div>
-                  <div class="modal-body">
-                    <form action="{{route('catat_pelanggaran')}}" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <!-- Tab 1 -->
-
-                    <div class="form-row">
-                      <div class="form-group col-md-5" >
-                        <label for="inputStatus">NISN<span style="color: red;">&#42;</span></label>
-                        <input id="nisn" type="text" class="form-control" name="nisn"  onkeyup="rfidSiswa()" required>
-                      </div>
-
-                      <div class="form-group col-md-7" >
-                        <label for="inputStatus">Nama</label>
-                        <input id="nama" type="text" class="form-control" name="nama" disabled>
-                      </div>
-
-                    </div>
-                    <div class="form-row">
-                      <div class="form-group col-md-4" >
-                        <label for="inputStatus">Kelas</label>
-                        <input id="kelas" type="text" class="form-control" name="kelas" disabled>
-                      </div>
-
-                      <div class="form-group col-md-8" style="display: none;">
-                        <label for="inputStatus">Nama Pencatat</label>
-                        <input id="pencatat" type="text" class="form-control" name="pencatat" value="{{Auth::user()->name}}" disabled>
-                      </div>
-                      <div class="form-group col-md-8">
-                        <label for="inputStatus">RFID</label>
-                        <input id="rfid" type="text" class="form-control" name="rfid" onkeyup="rfidSiswa()">
-                      </div>
-                    </div>
-
-                    <div class="form-row">
-                      <div class="form-group col-md-12" >
-                        <label for="inputStatus">Pelanggaran</label>
-                         <select class="form-control select2bs4" name="pelanggaran_id" style="width: 100%;" required>
-                            @foreach($pelanggaran as $p)
-                              <option value="{{$p->id}}">{{$p->pelanggaran}}  (Poin: {{$p->poin}})</option>
-                            @endforeach
-                          </select>
-                      </div>
-                    </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button id="submitButton" type="submit" class="btn btn-primary">Tambah</button></form>
-                  </div>
-                </div>
               </div>
-            </div>
+           </div>
+          
             <!-- /.modal -->
 
             <!-- Modal Scan QR Code -->
@@ -278,7 +265,7 @@
                 @endforeach
               </tbody>
             </table>
-              {{ $siswaPoin->links() }}
+              {{-- {{ $siswaPoin->links() }} --}}
           </div>
           <!-- /.card-body -->
         </div>
@@ -301,132 +288,141 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-{{-- Data Tables AdminLTE --}}
-<script>
-  $(function () {
-
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-    //Initialize Select2 Elements
+{{-- Data Tables AdminLTE --}}<script>
+  $(document).ready(function() {
+    // Initialize Select2 Elements
+    $('.select2').select2();
     $('.select2bs4').select2({
       theme: 'bootstrap4'
-    })
+    });
 
+    // Initialize DataTable
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": false,  "bPaginate": false,
-      "buttons": [
-       {
-           extend: 'print',
-           title: '',
-           footer: false,
-           exportOptions: {
-                columns: [1,2,3,4,5,6]
-            }
-       },
-       {
-           extend: 'copy',
-           title: '',
-           footer: false,
-           exportOptions: {
-            columns: [1,2,3,4,5,6]
-            }
-       },
-       {
-           extend: 'excel',
-           title: '',
-           footer: false,
-           exportOptions:  {
-            columns: [1,2,3,4,5,6]
-            }
-       }         
-    ]  
+      responsive: true,
+      lengthChange: true,
+      autoWidth: false,
+      bPaginate: true,
+      buttons: [
+        {
+          extend: 'print',
+          title: '',
+          footer: false,
+          exportOptions: {
+            columns: [1, 2, 3, 4, 5, 6]
+          }
+        },
+        {
+          extend: 'copy',
+          title: '',
+          footer: false,
+          exportOptions: {
+            columns: [1, 2, 3, 4, 5, 6]
+          }
+        },
+        {
+          extend: 'excel',
+          title: '',
+          footer: false,
+          exportOptions: {
+            columns: [1, 2, 3, 4, 5, 6]
+          }
+        }
+      ]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    // Initialize QR Code Scanner
+    function onScanSuccess(decodedText, decodedResult) {
+      $("#nisn").val(decodedText);
+      $('#tambahModal').modal('show');
+      $('#scanQr').modal('hide');
+      var nisn = $('#nisn').val();
+
+      $.ajax({
+        url: nisn.substr(0, 2) == "00" ? "{{ route('autofill') }}" : "{{ route('autofillNull') }}",
+        data: { nisn: +nisn, _token: '{{ csrf_token() }}' },
+        method: 'post',
+        success: function(data) {
+          $("#nama").val(data.nama);
+          $("#rfid").val(data.rfid);
+          $("#kelas").val(data.kelas);
+        }
+      });
+    }
+
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+      "reader", { fps: 10, qrbox: 250 } // ukuran qr code box 250
+    );
+    html5QrcodeScanner.render(onScanSuccess);
+
+    // Autofill RFID
+    function rfidSiswa() {
+      var rfid = $('#rfid').val();
+      var nisn = $('#nisn').val();
+      var url = rfid ? "{{ route('autoRFID') }}" : "{{ route('autofillNull') }}";
+      var data = rfid ? { rfid: +rfid, _token: '{{ csrf_token() }}' } : { nisn: +nisn, _token: '{{ csrf_token() }}' };
+
+      $.ajax({
+        url: url,
+        data: data,
+        method: 'post',
+        success: function(data) {
+          $("#nama").val(data.nama);
+          $("#nisn").val(data.nisn);
+          $("#kelas").val(data.kelas);
+        }
+      });
+
+      // Toggle submit button state
+      // $('#submitButton').attr('disabled', rfid == '' || nisn == '');
+    }
+
+    $('#selectSiswa').select2({
+      theme: 'bootstrap4',
+      ajax: {
+        url: '{{ route('getSiswaList') }}',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) {
+          return {
+            q: params.term // search term
+          };
+        },
+        processResults: function(data) {
+          return {
+            results: data
+          };
+        },
+        cache: true
+      },
+      placeholder: 'Select a student',
+      allowClear: true
+    });
+  });
+
+  $('#submitButton').on('click', function() {
+    $(this).hide();
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get the current date and time
+    var now = new Date();
+    
+    // Format the date and time to match the datetime-local input format
+    var year = now.getFullYear();
+    var month = ('0' + (now.getMonth() + 1)).slice(-2); // Months are 0-based
+    var day = ('0' + now.getDate()).slice(-2);
+    var hours = ('0' + now.getHours()).slice(-2);
+    var minutes = ('0' + now.getMinutes()).slice(-2);
+
+    // Construct the datetime-local format
+    var datetimeLocal = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+
+    // Set the default value of the datetime-local input
+    document.getElementById('tanggalPelanggaran').value = datetimeLocal;
   });
 </script>
 
 {{-- SCAN QR CODE --}}
-<script src="{{ asset ('js/html5-qrcode.min.js') }}" type="text/javascript"></script>
-
-{{-- //HTML 5 QR SCANNER --}}
-<script>
-  function onScanSuccess(decodedText, decodedResult) {
-    
-    // handle the scanned code as you like, for example:
-    // menampilkan modal jika field NISN ada nilainya. Lalu menyembunyikan qr scanner
-    $("#nisn").val(decodedText)
-    $('#tambahModal').modal('show')
-    $('#scanQr').modal('hide');
-    var nisn = $('#nisn').val();
-    if(nisn.substr(0, 2) == "00") {
-      $.ajax({
-      url: "{{route('autofill')}}",
-      data: { nisn: +nisn, _token: '{{csrf_token()}}' },
-      method: 'post',
-        success: function(data)
-        {
-          $("#nama").val(data.nama),
-          $("#rfid").val(data.rfid),
-          $("#kelas").val(data.kelas);
-        }
-      });
-    } else {
-      $.ajax({
-        url: "{{route('autofillNull')}}",
-        data: { nisn: +nisn, _token: '{{csrf_token()}}' },
-        method: 'post',
-          success: function(data)
-          {
-            $("#nama").val(data.nama),
-            $("#rfid").val(data.rfid),
-            $("#kelas").val(data.kelas);
-          }
-      });
-    }
-  }
-  let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250 }); //ukuran qr code box 250
-  html5QrcodeScanner.render(onScanSuccess);
-</script>
-
-{{-- Autofill RFID --}}
-<script>
- function rfidSiswa() {
-    var rfid = $('#rfid').val();
-    var nisn = $('#nisn').val();
-
-    if (rfid != '') {
-      $.ajax({
-        url: "{{route('autoRFID')}}",
-        data: { rfid: +rfid, _token: '{{csrf_token()}}' },
-        method: 'post',
-          success: function(data)
-          {
-            $("#nama").val(data.nama),
-            $("#nisn").val(data.nisn),
-            $("#kelas").val(data.kelas);
-          }
-      });
-    } else {
-      $.ajax({
-        url: "{{route('autofillNull')}}",
-        data: { nisn: +nisn, _token: '{{csrf_token()}}' },
-        method: 'post',
-          success: function(data)
-          {
-            $("#nama").val(data.nama),
-            $("#rfid").val(data.rfid),
-            $("#kelas").val(data.kelas);
-          }
-      });
-    }
-
-    // if (rfid == '' || nisn == '') {
-    //   $('#submitButton').attr('disabled', true);
-    // } else {
-    //   $('#submitButton').attr('disabled', false);
-    // }
-  }
-</script>
+<script src="{{ asset('js/html5-qrcode.min.js') }}" type="text/javascript"></script>
 <!-- /.content -->
 @endsection
