@@ -87,7 +87,13 @@
                               <div class="form-row">
                                   <div class="form-group col-md-12">
                                       <label for="selectSiswa">Nama Siswa<span style="color: red;">&#42;</span></label>
-                                      <select id="selectSiswa" class="form-control select2bs4" name="siswa_id" style="width: 100%;" required></select>
+                                      <select id="selectSiswa" class="form-control select2bs4" name="siswa_id" style="width: 100%;" required>
+                                        @foreach($siswaList as $siswa)
+                                          <option value="{{ $siswa->id }}">
+                                              {{ $siswa->nisn }} - {{ $siswa->nama }} - {{ $siswa->kelas->kelas }}
+                                          </option>
+                                      @endforeach
+                                      </select>
                                   </div>
                               </div>
           
@@ -376,27 +382,6 @@
       // $('#submitButton').attr('disabled', rfid == '' || nisn == '');
     }
 
-    $('#selectSiswa').select2({
-      theme: 'bootstrap4',
-      ajax: {
-        url: '{{ route('getSiswaList') }}',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) {
-          return {
-            q: params.term // search term
-          };
-        },
-        processResults: function(data) {
-          return {
-            results: data
-          };
-        },
-        cache: true
-      },
-      placeholder: 'Select a student',
-      allowClear: true
-    });
   });
 
   $('#submitButton').on('click', function() {

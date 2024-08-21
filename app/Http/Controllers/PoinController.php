@@ -65,14 +65,14 @@ class PoinController extends Controller
 
         // $siswaList = Siswa::select('id', 'nisn', 'nama', 'rfid')->get();
         
-        // $siswaList = Siswa::all();
+        $siswaList = Siswa::all();
         $pelanggaran = Pelanggaran::all();
         // $url = url()->full();
         // $siswaPoin->setPath($url);
         
         return view('poin.index', [
             'siswaPoin' => $siswaPoin,
-            // 'siswaList' => $siswaList,
+            'siswaList' => $siswaList,
             'pelanggaran' => $pelanggaran,
             'date' => $date,
             'awal_bulan' => $awal_bulan,
