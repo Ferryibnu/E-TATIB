@@ -17,7 +17,35 @@ class PoinController extends Controller
 {
     public function index()
     {
-        return Poin::all();
+        $poin = Poin::with(['siswa.kelas', 'pelanggaran'])->get();
+        
+        // Format the poin data and calculate total points
+        $formattedPoin = $poin->map(function ($dataPoin) {
+            // Find the siswa_id based on siswa_nisn
+            $siswaId = $dataPoin->siswa->id;
+            
+            // Calculate total points for the siswa_id
+            $total_poin = Poin::join('pelanggaran', 'poin.pelanggaran_id', '=', 'pelanggaran.id')
+                ->select(DB::raw('SUM(pelanggaran.poin) as total'))
+                ->where('siswa_id', '=', $siswaId)
+                ->value('total');
+            
+            return [
+                'siswa_nisn' => $dataPoin->siswa->nisn,
+                'siswa_nama' => $dataPoin->siswa->nama,
+                'siswa_kelas' => $dataPoin->siswa->kelas->kelas,
+                'pelanggaran' => $dataPoin->pelanggaran->pelanggaran,
+                'poin_pelanggaran' => $dataPoin->pelanggaran->poin,
+                'pencatat' => $dataPoin->pencatat,
+                'kategori' => $dataPoin->kategori,
+                'tanggal_pelanggaran' => \Carbon\Carbon::parse($dataPoin->created_at)->format('d M Y H:i:s'),
+                'total_poin' => $total_poin,
+            ];
+        });
+
+        // Return the formatted poin data
+        return response()->json($formattedPoin);
+        
     }
     
     public function tambah(Request $request)

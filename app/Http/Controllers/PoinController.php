@@ -298,8 +298,10 @@ class PoinController extends Controller
                     "kelas" => "10 TKJ 1",
                     "name" => "Muslik, S.Pd",
                     "phone1" => "081357497779",
+                    // "phone1" => "085955146855",
                     "contact1" => "Cheby M",
                     "phone2" => "081233520545"
+                    // "phone2" => "085955146855"
                 ],
                 "10 TKJ 2" => [
                     "kelas" => "10 TKJ 2",
@@ -728,7 +730,8 @@ class PoinController extends Controller
                         'message' => $msg_wa,
                     ),
                     CURLOPT_HTTPHEADER => array(
-                        'Authorization: EBLcVu1Ug3fPwaa4y!dq' // ini Key dari Whatsapp API fonnte.com
+                        'Authorization: GFNtsvhzNTYpH7z2JXN!' // ini Key dari Whatsapp API fonnte.com
+                        // 'Authorization: EBLcVu1Ug3fPwaa4y!dq' // ini Key dari Whatsapp API fonnte.com
                     ),
                 ));
 
@@ -749,7 +752,8 @@ class PoinController extends Controller
                         'message' => $msg_wa,
                     ),
                     CURLOPT_HTTPHEADER => array(
-                        'Authorization: EBLcVu1Ug3fPwaa4y!dq' // ini Key dari Whatsapp API fonnte.com
+                        'Authorization: GFNtsvhzNTYpH7z2JXN!' // ini Key dari Whatsapp API fonnte.com
+                        // 'Authorization: EBLcVu1Ug3fPwaa4y!dq' // ini Key dari Whatsapp API fonnte.com
                     ),
                 ));
 
@@ -770,7 +774,8 @@ class PoinController extends Controller
                         'message' => $msg_wa,
                     ),
                     CURLOPT_HTTPHEADER => array(
-                        'Authorization: EBLcVu1Ug3fPwaa4y!dq' // ini Key dari Whatsapp API fonnte.com
+                        'Authorization: GFNtsvhzNTYpH7z2JXN!' // ini Key dari Whatsapp API fonnte.com
+                        // 'Authorization: EBLcVu1Ug3fPwaa4y!dq' // ini Key dari Whatsapp API fonnte.com
                     ),
                 ));
 
