@@ -282,15 +282,15 @@ class PoinController extends Controller
                 ],
                 "10 RPL 1" => [
                     "kelas" => "10 RPL 1",
-                    "name" => "Wannugroho pasma",
-                    "phone1" => "081333079900",
+                    "name" => "Drs. Joko Prastowo",
+                    "phone1" => "081234281007",
                     "contact1" => "Siswantiningrum",
                     "phone2" => "081938575344"
                 ],
                 "10 RPL 2" => [
                     "kelas" => "10 RPL 2",
-                    "name" => "Drs. Joko Prastowo",
-                    "phone1" => "081234281007",
+                    "name" => "Wannugroho pasma",
+                    "phone1" => "081333079900",
                     "contact1" => "Jefri Mahardika",
                     "phone2" => "085733801213"
                 ],
@@ -376,7 +376,7 @@ class PoinController extends Controller
                 "11 AK 1" => [
                     "kelas" => "11 AK 1",
                     "name" => "Endar Fajar Ramadhan, S.Pd",
-                    "phone1" => "08563224228",
+                    "phone1" => "083892102568",
                     "contact1" => "Romy Setyo Wibowo",
                     "phone2" => "085331226070"
                 ],
